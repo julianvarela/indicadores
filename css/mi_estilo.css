@@ -1,0 +1,54 @@
+/* 
+    Document   : mi_estilo
+    Created on : 28/03/2014, 05:39:05 PM
+    Author     : JULIAN VARELA
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.nombre-app{
+    font-size: 20px;
+}
+header > a.nombre-app{
+    text-align: center;
+}
+
+.texto-menta{
+    font-size: 28px;
+    min-width: 90px;
+    font-family: "Times New Roman", Georgia, serif;
+    font-style: italic;
+    font-weight: 700;
+    padding: 12px 0 18px 0;
+    text-align: center;    
+    color: #22baa0;
+}
+
+.panel-login{
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
+
+.btn-login{
+    float: right;
+}
+
+
+tbody > tr.datos-tabla > td{
+    vertical-align: middle;
+    text-align: center;
+}
+tbody > tr.datos-tabla > td.dato-tabla-nivel{
+    text-align: justify;
+}
+
+.inferior{
+    padding-left: 90px;
+}
+
+
+@media (max-width: 767px) {    
+    .inferior{
+        padding-left: 0;
+    }    
+}    

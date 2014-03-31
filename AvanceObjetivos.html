@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mobile first web app theme | first</title>
+  <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/plugin.css">
+  <link rel="stylesheet" href="css/font.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mi_estilo.css">  
+  <!--[if lt IE 9]>
+    <script src="js/ie/respond.min.js"></script>
+    <script src="js/ie/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <!-- header -->
+  <header id="header" class="navbar">
+    <ul class="nav navbar-nav navbar-avatar pull-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
+          <span class="hidden-xs-only">Mika Sokeil</span>
+          <span class="thumb-small avatar inline"><img src="images/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
+          <b class="caret hidden-xs-only"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Settings</a></li>
+          <li><a href="perfil.html">Profile</a></li>
+          <li class="divider"></li>
+          <li><a href="signin.html">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+    <a class="navbar-brand nombre-app" href="#">SISMEP</a>
+    <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
+      <i class="fa fa-bars fa-lg text-default"></i>
+    </button>
+  </header>
+  <!-- / header -->
+  <!-- nav -->
+  <nav id="nav" class="nav-primary hidden-xs nav-vertical">
+    <ul class="nav" data-spy="affix" data-offset-top="50">
+      <li class="active"><a href="#"><i class="fa fa-home fa-lg"></i><span>Seguimiento</span></a></li>
+      <li class="dropdown-submenu">
+        <a href="#"><i class="fa fa-th fa-lg"></i><span>2012</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="AvanceGeneral.html">Avance General</a></li>
+          <li><a href="AvanceObjetivos.html">Avance Objetivos</a></li>            
+          <li><a href="AvanceProgramas.html">Avance Programas</a></li>
+          <li><a href="AvanceSubprogramas.html">Avance Subprogramas</a></li>
+          <li><a href="SectoresBasicos.html">Sectores Basicos</a></li>            
+          <li><a href="SecretariasDespacho.html">Secretarias Despacho</a></li>
+          <li><a href="DependenciasAdmin.html">Dependencias Administrativas</a></li>
+        </ul>
+      </li>
+      <li class="dropdown-submenu">
+        <a href="#"><i class="fa fa-th fa-lg"></i><span>2013</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="AvanceGeneral.html">Avance General</a></li>
+          <li><a href="AvanceObjetivos.html">Avance Objetivos</a></li>            
+          <li><a href="AvanceProgramas.html">Avance Programas</a></li>
+          <li><a href="AvanceSubprogramas.html">Avance Subprogramas</a></li>
+          <li><a href="SectoresBasicos.html">Sectores Basicos</a></li>            
+          <li><a href="SecretariasDespacho.html">Secretarias Despacho</a></li>
+          <li><a href="DependenciasAdmin.html">Dependencias Administrativas</a></li>
+        </ul>
+      </li>
+      <li class="dropdown-submenu">
+        <a href="#"><i class="fa fa-th fa-lg"></i><span>2014</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="AvanceGeneral.html">Avance General</a></li>
+          <li><a href="AvanceObjetivos.html">Avance Objetivos</a></li>            
+          <li><a href="AvanceProgramas.html">Avance Programas</a></li>
+          <li><a href="AvanceSubprogramas.html">Avance Subprogramas</a></li>
+          <li><a href="SectoresBasicos.html">Sectores Basicos</a></li>            
+          <li><a href="SecretariasDespacho.html">Secretarias Despacho</a></li>
+          <li><a href="DependenciasAdmin.html">Dependencias Administrativas</a></li>
+        </ul>
+      </li>
+      <li class="dropdown-submenu">
+        <a href="#"><i class="fa fa-th fa-lg"></i><span>2015</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="AvanceGeneral.html">Avance General</a></li>
+          <li><a href="AvanceObjetivos.html">Avance Objetivos</a></li>            
+          <li><a href="AvanceProgramas.html">Avance Programas</a></li>
+          <li><a href="AvanceSubprogramas.html">Avance Subprogramas</a></li>
+          <li><a href="SectoresBasicos.html">Sectores Basicos</a></li>            
+          <li><a href="SecretariasDespacho.html">Secretarias Despacho</a></li>
+          <li><a href="DependenciasAdmin.html">Dependencias Administrativas</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <!-- / nav -->
+  <section id="content">
+    <section class="main padder">
+        
+        <ul class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Seguimiento</a></li>
+            <li><a href="#">2013</a></li>
+            <li class="active">Avance Objetivos</li>
+        </ul>        
+        
+<!--      <div class="row">
+        <div class="col-lg-12">
+          <section class="panel">
+            <header class="panel-heading"> <h4> Avance de Objetivos Estrategicos Diciembre 2013</h4></header>
+            <div class="table-responsive">
+              <table class="table table-striped m-b-none" data-ride="datatables">
+                <thead>
+                  <tr>                    
+                    <th width="5%">Codigo Nivel PDM</th>
+                    <th width="25%">Nivel PDM</th>
+                    <th width="10%">Semaforo seguimiento Fisico 2013</th>
+                    <th width="10%">Estado de la Meta de Producto 2013</th>
+                    <th width="15%">Recursos Programados 2013</th>
+                    <th width="15%">Recursos Ejecutados 2013</th>
+                    <th width="10%">Semaforo seguimiento Financiero 2013</th>
+                    <th width="10%">Estado Finanaciero 2013</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>                    
+                    <td>1</td>
+                    <td>kasfkaksfj sdkafjakdsskafsdklflkfkaljfkl skdl j sdkfja kldfkal ak adak akldj klñaf ak dffñak f</td>
+                    <td><b class="badge bg-success">90,86</b></td>
+                    <td>Alto</td>
+                    <td>20.195.175.182,70</td>
+                    <td>16.461.047.251,86</td>
+                    <td><b class="badge bg-success">85,51</b></td>
+                    <td>Alto</td>
+                  </tr>                    
+                  <tr>
+                    <td>2</td>
+                    <td>kasfkaksfj sdkafjakdsskafsdklflkfkaljfkl skdl j sdkfja kldfkal ak adak akldj klñaf ak dffñak f</td>
+                    <td><b class="badge bg-warning">69,86</b></td>
+                    <td>Medio</td>
+                    <td>20.195.175.182,70</td>
+                    <td>16.461.047.251,86</td>
+                    <td><b class="badge bg-warning">71,51</b></td>
+                    <td>Medio</td>
+                  </tr>                    
+                  <tr>
+                    <td>3</td>
+                    <td>kasfkaksfj sdkafjakdsskafsdklflkfkaljfkl skdl j sdkfja kldfkal ak adak akldj klñaf ak dffñak f</td>
+                    <td><b class="badge bg-warning">61,86</b></td>
+                    <td>Medio</td>
+                    <td>20.195.175.182,70</td>
+                    <td>16.461.047.251,86</td>
+                    <td><b class="badge bg-warning">72,51</b></td>
+                    <td>Medio</td>
+                  </tr>                                      
+                  <tr>
+                    <td>4</td>
+                    <td>kasfkaksfj sdkafjakdsskafsdklflkfkaljfkl skdl j sdkfja kldfkal ak adak akldj klñaf ak dffñak f</td>
+                    <td><b class="badge bg-success">90,86</b></td>
+                    <td>Alto</td>
+                    <td>20.195.175.182,70</td>
+                    <td>16.461.047.251,86</td>
+                    <td><b class="badge bg-success">85,51</b></td>
+                    <td>Alto</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>kasfkaksfj sdkafjakdsskafsdklflkfkaljfkl skdl j sdkfja kldfkal ak adak akldj klñaf ak dffñak f</td>
+                    <td><b class="badge bg-danger">30,86</b></td>
+                    <td>Bajo</td>
+                    <td>20.195.175.182,70</td>
+                    <td>16.461.047.251,86</td>
+                    <td><b class="badge bg-danger">25,51</b></td>
+                    <td>Bajo</td>
+                  </tr>                  
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>-->
+        
+        <div class="row">
+          <div class="col-lg-12">
+            <section class="panel">
+              <header class="panel-heading"> <h4> Avance de Objetivos Estrategicos Diciembre 2013</h4></header>
+              <div class="table-responsive">
+                <table class="table table-striped m-b-none" data-ride="datatables">
+                  <thead>
+                    <tr>                    
+                      <th width="5%">Codigo Nivel PDM</th>
+                      <th width="25%">Nivel PDM</th>
+                      <th width="10%">Semaforo seguimiento Fisico 2013</th>
+                      <th width="10%">Estado de la Meta de Producto 2013</th>
+                      <th width="15%">Recursos Programados 2013</th>
+                      <th width="15%">Recursos Ejecutados 2013</th>
+                      <th width="10%">Semaforo seguimiento Financiero 2013</th>
+                      <th width="10%">Estado Finanaciero 2013</th>
+                    </tr>
+                  </thead>
+                  <tbody id="TablaAvanceObjetivos">              
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+      </div>        
+        
+        <section id="graficas">
+            <div class="row">
+                <div class="col-lg-6">
+                    <section class="panel">
+                        <header class="panel-heading"><h5><b>Avance General (Fisico - Financiero)</b></h5></header>
+                        <div class="panel-body">
+                            <div id="graficaGeneral1" style="height: 240px; padding: 0px; position: relative;"></div>
+                        </div>
+                    </section>        
+                </div>                
+                <div class="col-lg-6">
+                    <section class="panel">
+                        <header class="panel-heading"><h5><b>Ejecucion Financiero General</b></h5></header>
+                        <div class="panel-body">
+                            <div id="graficaGeneral2" style="height: 240px; padding: 0px; position: relative;"></div>
+                        </div>
+                    </section>        
+                </div>                            
+            </div>                 
+         </section>
+        
+    </section>
+  </section>
+  <!-- footer -->
+  <footer id="footer">
+    <div class="text-center inferior">
+        <div class="row m-b-large">
+            <div class="col-lg-3 col-lg-offset-1 m-t">
+                <img src="imagenes/logo_vive_digital_40.png" alt="San Jose del Guaviare Vive Digital">
+            </div>                    
+            <div class="col-lg-2 m-t">
+                <img src="imagenes/logo_min_tic_40.png" alt="Ministerio de Tecnologias de la Informacion y las Comunicaciones">            
+            </div>                
+            <div class="col-lg-2 m-t">
+                <img src="imagenes/logo_colciencias_40.png" alt="Colciencias">            
+            </div>                
+            <div class="col-lg-1 m-t">
+                <img src="imagenes/logo_san_jose_40.png" alt="San Jose del Guaviare">            
+            </div>                        
+            <div class="col-lg-2 m-t">
+                <img src="imagenes/logo_parquesoft_meta_40.png" alt="ParqueSoft Meta">            
+            </div>                      
+        </div>
+    </div>
+  </footer>
+  <!-- / footer -->
+  
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-1.10.2.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="js/bootstrap.js"></script>
+  <!-- app -->
+  <script src="js/app.js"></script>
+  <script src="js/app.plugin.js"></script>
+  <script src="js/app.data.js"></script>
+
+  <!-- datos Tabla -->   
+   <script src="js/datos/avanceObjetivos.js"></script>    
+   
+  <!-- Grafica -->
+   <script src="js/graficas/highcharts.js"></script>    
+   <script src="js/graficas/graficas.js"></script>    
+
+</body>
+</html>
