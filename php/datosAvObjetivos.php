@@ -1,35 +1,88 @@
 <?php
-session_start();
-include_once 'Config.php';
-include_once 'ConectarBD.php';
-include_once 'consultasAvObjetivos.php';
-
-//$ruta="http://localhost:8080/taxionline/";
+@session_start();  
 
 
-    $consultas = new consultasAvObjetivos();
-    $datos = $consultas->datosTablaAvanceObjetivos();
-    $retorno = array();
 
-    for($i=0; $i<count($datos); $i++){
-        $fila = array(
-                "codigo"=> $datos[$i]['codigo_nivel_pdm'],
-                "nivel"=> $datos[$i]['nivel_pdm'],
-                "semaSeguiFisico"=> $datos[$i]['semaforo_seguimiento'],
-                "estadoMetaProducto"=> "Alto",
-                "recurProgramados"=> $datos[$i]['recursos_programados'],
-                "recurEjecutados"=> $datos[$i]['recursos_ejecutados'],
-                "semaSeguiFinanciero"=> $datos[$i]['semaforo_seguimiento_financiero'],
-                "estadoFinanciero"=> "Alto"
-            );
 
-            array_push($retorno, $fila);
-    }
+require_once 'consultaGeneral.php';
+require_once 'consultasAvObjetivos.php';
 
-   $retorno = json_encode($retorno);            
-            
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+
+$opcion="";
+$salida=array('correcto'=>false);
+
+if($_POST['opcion'])
+    $opcion = $_POST['opcion'];
+
+
+//CUERPO DE OPCIONES 
+switch ($opcion) {
     
-    echo $retorno;
+    //CASO DE OPCION1 ... CAMBIO DEL AÑO
+    case 'avance_objetivos':        
+               
+      //  if(isset($_SESSION['vigencia']))
+        {
+            
+       
+            
+            $consultaGeneral=new consultaGeneral();
+            $colores= $consultaGeneral->rangoEstado();
+            $idVigencia= $consultaGeneral->vigencia($_POST['year']);
+            
+            $idClase =$consultaGeneral->getIdClase('OE');
+            
 
 
+            $consultasAvObjetivos=new consultasAvObjetivos();
+            $datos=$consultasAvObjetivos->datos($idClase , $idVigencia);
+            $datosFinales=array();
+            
+            //formatea el json 
+            for($i =0 ; $i<count($datos); $i++)
+            {
+                
+                    $fila=array(
+                        
+                        'codigo'=> $datos[$i]['codigo_nivel_pdm']
+                        ,'nivel'=> $datos[$i]['nivel_pdm']
+                        ,'semaforoSeguimientoFis'=> $datos[$i]['semaforo_seguimiento']
+                        ,'ponderado'    => $datos[$i]['ponderado']
+                        ,'recursosProgramado'=> $datos[$i]['recursos_programados']
+                        ,'recursosEjecutados'=> $datos[$i]['recursos_ejecutados']
+                        ,'semaforoSeguimientoFin'=> $datos[$i]['semaforo_seguimiento_financiero']
+                        
+                    );
+                $datosFinales[]=$fila;
+                
+                
+                
+                
+            }
+            
+            
+            $salida=array('correcto'=>true, 'datos'=>$datosFinales,'colores'=>$colores);
+            
+        } 
+        
+        
+        break;
+
+        
+        
+        
+    
+    default:
+        break;
+}
+//FIN de OPCIONES 
+
+echo json_encode($salida);
 ?>

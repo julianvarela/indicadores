@@ -1,5 +1,27 @@
-$(document).ready(function(){
+//$(document).ready(function(){
+    
+    var URL="";
+    var year=null;
+    //$(document).ready(function(){
 
+
+     var datos = leerGET();
+
+     year=datos['year'];
+     if(year)
+      {   
+   
+          $('.my_year').html(year);
+          $("#nav").html(construirNav(2012,2015,year));
+      
+
+                ///cambiar apariencia login
+                if(isLocalStorageAvailable())
+                {
+                    $(".my_usuario").html(localStorage.getItem("correo"));
+
+
+                }
         /*
          * Hace el llamado para obtener los datos de la tabla de Avance General  y los carga en su tabla
          */    
@@ -7,10 +29,20 @@ $(document).ready(function(){
                 url:'php/datosAvSubprogramas.php'
                 ,type:'POST'
                 ,dataType:'json'  
-                ,success: function(data,textStatus,jqXHR){
+                ,data:{year:year}
+                ,success: function(midata,textStatus,jqXHR){
+
+
+                    
+                   var data=midata.datos;
+                   var colores=midata.colores;
+
+                         ///para los colores
+                   setColor(colores);//establece los colores por defecto de estado
+
 
                     var filas="";     
-                    
+                    var data=midata.datos;
                     var programas = new Array();
                     var ponderado = new Array();
                     var semaFin = new Array();
@@ -22,13 +54,14 @@ $(document).ready(function(){
                             <td class='dato-tabla-nivel'>"+data[i]['nivel']+"</td>\n\
                             <td>"+data[i]['ponderado']+"</td>\n\
                             <td>"+data[i]['avancePonderado']+"</td>\n\
-                            <td><b class='badge bg-success'>"+data[i]['semaSeguiFisico']+"</b></td>\n\
-                            <td>"+data[i]['estadoMetaProducto']+"</td>\n\
-                            <td>"+data[i]['recurProgramados']+"</td>\n\
-                            <td>"+data[i]['recurEjecutados']+"</td>\n\
-                            <td><b class='badge bg-success'>"+data[i]['semaSeguiFinanciero']+"</b></td>\n\
-                            <td>"+data[i]['estadoFinanciero']+"</td>\n\
-                            <td>"+data[i]['fechaCorte']+"</td>\n\
+                            <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"</td>\n\
+                            <td>"+nombreRango(data[i]['semaSeguiFisico'])+"</td>\n\
+                            <td>"+"$"+formaterNumeros(data[i]['recurProgramados'])+"</td>\n\
+                            <td>"+"$"+formaterNumeros(data[i]['recurEjecutados'])+"</td>\n\
+                            <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"</td>\n\
+                            <td>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</td>\n\
+                            <td>"+data[i]['fechaCorte']+"</td>\n\\n\
+                             <td>"+data[i]['fecha_creacion']+"</td>\n\
                         </tr>";
                                      
                         programas[i] = data[i]['codigo'];
@@ -243,4 +276,12 @@ $(document).ready(function(){
                 }
          });
          
-});
+         
+    }//fin del if
+    else{
+        
+        alert("URL Incorrecta");
+        
+    }
+         
+//});

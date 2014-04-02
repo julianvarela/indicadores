@@ -3,12 +3,49 @@ $(document).ready(function(){
         /*
          * Hace el llamado para obtener los datos de la tabla de Avance General  y los carga en su tabla
          */    
+        
+        
+    var URL="";
+    var year=null;
+    //$(document).ready(function(){
+
+
+     var datos = leerGET();
+
+     year=datos['year'];
+     if(year)
+      {   
+   
+      $('.my_year').html(year);
+      $("#nav").html(construirNav(2012,2015,year));
+      
+      
+      ///cambiar apariencia login
+      if(isLocalStorageAvailable())
+      {
+          $(".my_usuario").html(localStorage.getItem("correo"));
+          
+          
+      }
+      
+      
+   
+        
         $.ajax({
                 url:'php/datosAvGeneral.php'
                 ,type:'POST'
                 ,dataType:'json'  
-                ,success: function(data,textStatus,jqXHR){
+                ,data:{opcion:'avance_objetivos',year:year}
+                ,success: function(midata,textStatus,jqXHR){
 
+                var data=midata.datos;
+                var colores=midata.colores;
+                
+                 ///para los colores
+                setColor(colores);//establece los colores por defecto de estado
+               
+                
+                
                     var filas="";
                     var semaFis = new Array();
                     var semaFin = new Array();
@@ -16,15 +53,15 @@ $(document).ready(function(){
                     var recurEje = new Array();                    
                     
                     for(var i=0; i<data.length; i++){
-                        filas += "<tr class='datos-tabla'>\n\
+                        filas += "<tr  class='datos-tabla'>\n\
                             <td>"+data[i]['codigo']+"</td>\n\
-                            <td class='dato-tabla-nivel'>"+data[i]['nivel']+"</td>\n\
-                            <td><b class='badge bg-success'>"+data[i]['semaSeguiFisico']+"</b></td>\n\
-                            <td>"+data[i]['estadoMetaProducto']+"</td>\n\
-                            <td>"+data[i]['recurProgramados']+"</td>\n\
-                            <td>"+data[i]['recurEjecutados']+"</td>\n\
-                            <td><b class='badge bg-success'>"+data[i]['semaSeguiFinanciero']+"</b></td>\n\
-                            <td>"+data[i]['estadoFinanciero']+"</td>\n\
+                            <td  class='dato-tabla-nivel'>"+data[i]['nivel']+"</td>\n\
+                            <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"</b></td>\n\
+                            <td>"+nombreRango(data[i]['semaSeguiFisico'])+"</td>\n\
+                            <td>"+"$"+formaterNumeros(data[i]['recurProgramados'])+"</td>\n\
+                            <td>"+"$"+formaterNumeros(data[i]['recurEjecutados'])+"</td>\n\
+                            <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"</td>\n\
+                            <td>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</td>\n\
                         </tr>";
                                                 
                         var semaforos = [ parseFloat(data[i]['semaSeguiFisico']) , parseFloat(data[i]['semaSeguiFinanciero']) ];
@@ -45,8 +82,8 @@ $(document).ready(function(){
                     $("#TablaAvanceGeneral").html(filas);                                        
         
 
-                    var etiquetasS = [ 'Semaforo Seguimiento Fisico 2012' , 'Semaforo Seguimiento Financiero 2012' ];
-                    var etiquetasR = [ 'Recursos Programados 2012' , 'Recursos Ejecutados 2012' ];
+                    var etiquetasS = [ 'Semaforo Seguimiento Fisico '+year , 'Semaforo Seguimiento Financiero '+year ];
+                    var etiquetasR = [ 'Recursos Programados '+year , 'Recursos Ejecutados '+year ];
                     
                     $('#graficaGeneral1').highcharts({
                         chart: {
@@ -236,4 +273,14 @@ $(document).ready(function(){
                 }
          });
          
+         
+    }///fin if validacion
+    else{
+        
+        alert("Direccion Incorrecta");
+        
+    }     
+         
+         
 });
+

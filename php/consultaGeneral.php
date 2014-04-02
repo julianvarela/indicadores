@@ -1,6 +1,5 @@
 <?php
 
-//session_start();
 include_once 'Config.php';
 include_once 'ConectarBD.php';
 
@@ -13,20 +12,62 @@ class consultaGeneral {
     
     
     /***
-     * @param $vigencia {String} año del tipo YYYY
+     * 
+     * busca el id de l vigencia
+     * 
+     * @param $year {String} año del tipo YYYY
      * @return id de la vigencia
      */
-    function vigencia($vigencia){
-        
+    function vigencia($year)
+    {
         $sql="SELECT id FROM vigencias
-                WHERE id='{$vigencia}'
+                WHERE vigencia='{$year}'
                       --  AND municipios_id='0'";
                 
-        $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
-        $conexion->consultaSQL($sql);       
-        return $conexion->_datosRegistros[0]['id'];           
+    
+                
+       $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+       $conexion->consultaSQL($sql);       
+         return $conexion->_datosRegistros[0]['id'];           
+                
+        
     }
+    
+    
+    
+    
+    
+    /**
+     * se obtine el id de la clase 
+     * 
+     * @param $clase nombre de la clase
+     **
+     * @return int id de la calse 
+     */
+
+    function getIdClase($clase)
+    {
+        
+        $sql="SELECT id FROM clases
+            WHERE activo ='1'
+             AND nombre ='{$clase}'";
+    
+       $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+       $conexion->consultaSQL($sql);       
+       $dato=null;
        
+       
+       if(count($conexion->_datosRegistros)>0 )
+           $dato= $conexion->_datosRegistros[0]['id']; 
+       
+       
+         return $dato;           
+    
+        
+    }
+    
+    
+    
     
     
     /***
@@ -35,11 +76,12 @@ class consultaGeneral {
      */
     function rangoEstado(){
     
-        $sql="SELECT * FROM estados";            
-        
-        $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
-        $conexion->consultaSQL($sql);       
-        return $conexion->_datosRegistros;           
+        $sql="SELECT * FROM estados ";            
+    
+                
+       $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+       $conexion->consultaSQL($sql);       
+         return $conexion->_datosRegistros;           
                 
     }
     

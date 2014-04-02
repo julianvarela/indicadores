@@ -4,11 +4,21 @@ include_once 'Config.php';
 include_once 'ConectarBD.php';
 include_once 'consultasAvGeneral.php';
 
+
+
 //$ruta="http://localhost:8080/taxionline/";
 
+$year=$_POST['year'];
+$consultaGeneral=new consultaGeneral();
+$idVigencia= $consultaGeneral->vigencia($year);
+
+
+ $consultaGeneral=new consultaGeneral();
+ $colores= $consultaGeneral->rangoEstado();
+           
 
     $consultas = new consultasAvGeneral();
-    $datos = $consultas->datosTablaAvanceGeneral();
+    $datos = $consultas->datosTablaAvanceGeneral($idVigencia);
     $retorno = array();
     
     for($i=0; $i<count($datos); $i++){        
@@ -27,7 +37,7 @@ include_once 'consultasAvGeneral.php';
             array_push($retorno, $fila);
     }
 
-   $retorno = json_encode($retorno);            
+   $retorno = json_encode(array('datos'=>$retorno,'colores'=>$colores));            
             
     
     echo $retorno;

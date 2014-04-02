@@ -4,34 +4,41 @@ include_once 'Config.php';
 include_once 'ConectarBD.php';
 
 
-/*
- * Clase que agrupa las funciones que realizaran las consultas relacionadas al Avance de Objetivos
- */
 class consultasAvObjetivos {
+
     
-    /*
-     * Funcion que consulta los datos sobre el Avance de los Objetivos
-     * @returns array La funcion retorna un array con los datos a mostrar en la tabla
-     */    
-    public function datosTablaAvanceObjetivos(){
-        $sql="SELECT m.codigo_nivel_pdm, m.nivel_pdm, sfis.semaforo_seguimiento, sfin.recursos_programados, sfin.recursos_ejecutados, sfin.semaforo_seguimiento_financiero
-            FROM matriz m, seguimiento_financiero sfin, seguimiento_fisico sfis, vigencias v, fila_matriz fm, clases c
-            WHERE v.id='0'            
-                AND fm.id_vigencia = v.id
-                AND m.id = fm.id_matriz
-                AND sfis.id = fm.id_seguimiento_fisico
-                AND sfin.id = fm.id_seguimiento_financiero
-                AND c.nombre = 'OE'
-                AND c.id = m.clases_id
-                AND m.activo = '1'
-                AND sfis.activo = '1'
-                AND sfin.activo = '1'                
-                ";       
-        $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
-        $conexion->consultaSQL($sql);       
-        return $conexion->_datosRegistros;         
+    
+    
+    /****
+     * @param String $idClave id de la clase 
+     * @param String  $idVigencia id vigencia
+     */
+    function datos($idClase, $idVigencia){
+        
+        $sql="SELECT m.codigo_nivel_pdm
+		,m.nivel_pdm
+		,s_fis.semaforo_seguimiento
+		,s_fis.ponderado
+		,s_fin.recursos_programados
+		,s_fin.recursos_ejecutados
+		,s_fin.semaforo_seguimiento_financiero
+                FROM matriz m, fila_matriz f_m,seguimiento_financiero s_fin, seguimiento_fisico s_fis 
+                WHERE 
+                        m.activo='1'
+                        AND s_fis.activo='1'
+                        AND s_fin.activo='1'
+                      
+                        AND f_m.id_seguimiento_fisico = s_fis.id
+                        AND id_seguimiento_financiero = s_fin.id
+                        AND id_matriz= m.id
+                        AND m.clases_id='{$idClase}'
+                        AND f_m.id_vigencia='{$idVigencia}'";
+                        
+       $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+       $conexion->consultaSQL($sql);       
+         return $conexion->_datosRegistros;                           
+              
     }
-       
     
     
 }
