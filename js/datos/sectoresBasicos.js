@@ -1,4 +1,105 @@
-$(document).ready(function(){
+//$(document).ready(function(){
+
+   var URL="";
+    var year=null;
+    //$(document).ready(function(){
+
+
+     var datos = leerGET();
+
+     year=datos['year'];
+     if(year)
+      {   
+   
+   
+   
+        $('.my_year').html(year);
+        $("#nav").html(construirNav(2012,2015,year));
+      
+
+                ///cambiar apariencia login
+                if(isLocalStorageAvailable())
+                {
+                    $(".my_usuario").html(localStorage.getItem("correo"));
+
+
+                }
+
+
+
+
+
+
+      ///carga la lista 
+      $.ajax({
+                    url:'php/datosSectoresBasicos.php'
+                    ,type:'POST'
+                     ,dataType:'json'  
+                    ,data:{opcion:'lista_sectores'}
+                    ,success: function(data,textStatus,jqXHR){
+                        
+                        
+                        if(data && data.datos )
+                        {
+                        
+                
+                            var colores=data.colores;
+                            var htmlOpciones="";
+                            setColor(colores);//establece los colores por defecto de estado  
+                                
+                             
+                            
+                            
+                            /// generar opciones
+                            htmlOpciones=generarHtmlOpcion(data.datos);
+                            $("#selectSectorBasico").html(htmlOpciones);  
+                            
+                            $("#selectSectorBasico").change();
+                            
+                            
+                        }
+                        
+                    }
+                    
+        });
+                    
+
+
+
+
+   
+        /*
+         *  selecciona el Sector Basico
+         */
+	$("#selectSectorBasico").change(function(){          
+                datosSectorBasico();
+        });
+        
+//});
+
+      }else {
+          
+          alert("URL Incorrecta");
+          
+          
+      }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      /****
+      *** trae la informaciona de los setores basicos elegido
+      *
+      */
+     
+     
 
         /*
          * Hace el llamado para obtener los datos de la tabla de Avance General  y los carga en su tabla
@@ -8,7 +109,7 @@ $(document).ready(function(){
             $.ajax({
                     url:'php/datosSectoresBasicos.php'
                     ,type:'POST'
-                    ,data:{id_sector: $('#selectSectorBasico').val()}
+                    ,data:{year:year,opcion:'seleccion_sector',id_sector: $('#selectSectorBasico').val()}
                     ,dataType:'json'  
                     ,success: function(data,textStatus,jqXHR){
 
@@ -28,13 +129,14 @@ $(document).ready(function(){
                                 <td>"+data[i]['valorLogrado']+"</td>\n\
                                 <td>"+data[i]['ponderado']+"</td>\n\
                                 <td>"+data[i]['avancePonderado']+"</td>\n\
-                                <td><b class='badge bg-success'>"+data[i]['semaSeguiFisico']+"</b></td>\n\
-                                <td>"+data[i]['estadoMetaProducto']+"</td>\n\
-                                <td>"+data[i]['recurProgramados']+"</td>\n\
-                                <td>"+data[i]['recurEjecutados']+"</td>\n\
-                                <td><b class='badge bg-success'>"+data[i]['semaSeguiFinanciero']+"</b></td>\n\
-                                <td>"+data[i]['estadoFinanciero']+"</td>\n\
-                                <td>"+data[i]['fechaCorte']+"</td>\n\
+                                <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"</b></td>\n\
+                                <td>"+nombreRango(data[i]['semaSeguiFisico'])+"</td>\n\
+                                <td>"+"$"+formaterNumeros(data[i]['recurProgramados'])+"</td>\n\
+                                <td>"+"$"+formaterNumeros(data[i]['recurEjecutados'])+"</td>\n\
+                                <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"</b></td>\n\
+                                <td>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</td>\n\
+                                <td>"+data[i]['fechaCorte']+"</td>\n\\n\
+                             <td>"+data[i]['fecha_creacion']+"</td>\n\
                             </tr>";
 
                             metas[i] = data[i]['codigo'];
@@ -251,12 +353,4 @@ $(document).ready(function(){
              });
          }
    
-   
-        /*
-         *  selecciona el Sector Basico
-         */
-	$("#selectSectorBasico").change(function(){          
-                datosSectorBasico();
-        });
-        
-});
+

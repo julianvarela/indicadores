@@ -21,8 +21,7 @@ include_once 'consultasAvSubprogramas.php';
 
      $consultaGeneral=new consultaGeneral();
      $colores= $consultaGeneral->rangoEstado();
-
-     
+ 
 
    
     $consultas = new consultasAvSubprogramas();

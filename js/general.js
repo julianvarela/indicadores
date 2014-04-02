@@ -283,3 +283,25 @@ function construirNav(inicio,fin,actual)
  return html; 
 
 } 
+
+
+
+
+/**
+ * genere le htm de las opciones del select
+ * @param {array} del  forma id , nombre con los datos de opcion
+ *  @return {String} html de los option
+ * */
+
+function generarHtmlOpcion(datos)
+{
+    var html="";
+    for(var i=0; i<datos.length; i++)
+    {
+        
+        html+="<option value='"+datos[i].id+"'> "+datos[i].nombre+"</option>";
+        
+    }
+  return html;  
+    
+}

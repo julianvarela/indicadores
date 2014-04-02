@@ -16,10 +16,12 @@ class consultasSectoresBasicos {
      * @param integer ID del Sector Basico a consultar
      * @returns array La funcion retorna un array con los datos a mostrar en la tabla
      */    
-    public function datosTablaSectoresBasicos($id_sector){
-        $sql="SELECT m.codigo_nivel_pdm, m.nivel_pdm, m.metas, sfis.valor_esperado_meta_producto, sfis.valor_logrado_meta_producto, sfis.ponderado, sfis.avance_ponderado, sfis.semaforo_seguimiento, sfin.recursos_programados, sfin.recursos_ejecutados, sfin.semaforo_seguimiento_financiero, sfin.fecha_corte
+    public function datosTablaSectoresBasicos($id_vigencia,$id_sector){
+        $sql="SELECT m.codigo_nivel_pdm, m.nivel_pdm, m.metas, sfis.valor_esperado_meta_producto, sfis.valor_logrado_meta_producto, sfis.ponderado, sfis.avance_ponderado, sfis.semaforo_seguimiento, sfin.recursos_programados, sfin.recursos_ejecutados, sfin.semaforo_seguimiento_financiero
+            ,DATE_FORMAT(m.fecha_creacion,'%d / %m / %Y') as fecha_creacion , DATE_FORMAT(sfin.fecha_corte,'%d / %m / %Y') as fecha_corte
+
             FROM matriz m, seguimiento_financiero sfin, seguimiento_fisico sfis, vigencias v, fila_matriz fm, clases c, municipios mu, departamentos de, sectores s
-            WHERE v.id='0'            
+            WHERE v.id='{$id_vigencia}'            
                 AND fm.id_vigencia = v.id
                 AND m.id = fm.id_matriz
                 AND sfis.id = fm.id_seguimiento_fisico
@@ -34,13 +36,29 @@ class consultasSectoresBasicos {
                 AND m.sectores_id = '$id_sector'
                 AND m.sectores_id = s.id
                 ";
+            
+         //   echo "$sql";
         $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
         $conexion->consultaSQL($sql);       
         return $conexion->_datosRegistros;         
 
     }
     
-        
+     
+    
+    /***
+     * lista de sectores basicos 
+     * @return {arrray} lista de los sectores basico con id, nombre
+     */
+    public function listaSectoresBasicos(){
+        $sql="SELECT id, UPPER(nombre) nombre FROM sectores
+                where activo ='1' and nombre !=''
+                order by nombre";
+        $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+        $conexion->consultaSQL($sql);       
+        return $conexion->_datosRegistros;         
+
+    }
     
 }
 ?>

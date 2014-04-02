@@ -37,7 +37,7 @@
                    var data=midata.datos;
                    var colores=midata.colores;
 
-                         ///para los colores
+                    ///para los colores
                    setColor(colores);//establece los colores por defecto de estado
 
 

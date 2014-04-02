@@ -1,4 +1,4 @@
-$(document).ready(function(){
+//$(document).ready(function(){
     var URL="";
     var year=null;
     //$(document).ready(function(){
@@ -285,4 +285,4 @@ $(document).ready(function(){
               
               alert("URL Incorrecta");
           }   
-});
+//});

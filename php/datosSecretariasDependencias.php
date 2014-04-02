@@ -2,16 +2,27 @@
 session_start();
 include_once 'Config.php';
 include_once 'ConectarBD.php';
+include_once 'consultaGeneral.php';
 include_once 'consultasSecretariasDependencias.php';
 
 //$ruta="http://localhost:8080/taxionline/";
+
+ $year=$_POST['year'];
+ $consultaGeneral=new consultaGeneral();
+ $idVigencia= $consultaGeneral->vigencia($year);
+
+
             
     switch($_POST['opcion']){
         
         case "consultaDatos":       
+            
+            
+           
+
 
             $consultas = new consultasSecretariasDependencias();
-            $datos = $consultas->datosTabla_Secretarias_Dependencias($_POST['id_sd']);  
+            $datos = $consultas->datosTabla_Secretarias_Dependencias($idVigencia,$_POST['id_sd']);  
             $retorno = array();
 
             for($i=0; $i<count($datos); $i++){
@@ -24,11 +35,11 @@ include_once 'consultasSecretariasDependencias.php';
                         "ponderado"=> $datos[$i]['ponderado'],
                         "avancePonderado"=> $datos[$i]['avance_ponderado'],
                         "semaSeguiFisico"=> $datos[$i]['semaforo_seguimiento'],
-                        "estadoMetaProducto"=> "Alto",
+                      
                         "recurProgramados"=> $datos[$i]['recursos_programados'],
                         "recurEjecutados"=> $datos[$i]['recursos_ejecutados'],
                         "semaSeguiFinanciero"=> $datos[$i]['semaforo_seguimiento_financiero'],
-                        "estadoFinanciero"=> "Alto"
+                   
                     );
 
                     array_push($retorno, $fila);
@@ -38,43 +49,43 @@ include_once 'consultasSecretariasDependencias.php';
            
         break;
         
+        
+        
+        
+           
+    /////DATOS QUEMMAS EN LA BASE DE DATOS ............!!!
         case "listaSecretarias":
-
+            $consultaGeneral=new consultaGeneral();
+            $colores= $consultaGeneral->rangoEstado();   
+        
+            
             $consultas = new consultasSecretariasDependencias();
-            $datos = $consultas->listaSemaforo(2);
-            $retorno = array();
+            $datos = $consultas->listaSemaforo($idVigencia,2);
+           
 
-            for($i=0; $i<count($datos); $i++){
-                $fila = array(
-                        "id"=> $datos[$i]['id'],
-                        "nombre"=> $datos[$i]['nombre']
-                    );
-
-                    array_push($retorno, $fila);
-            }
-
-           $retorno = json_encode($retorno);                        
+           $retorno = json_encode(array('datos'=>$datos,'colores'=>$colores));                        
             
         break;
     
+    
+    
+    /////DATOS QUEMMAS EN LA BASE DE DATOS ............!!!
         case "listaDependencias":
-
+            $consultaGeneral=new consultaGeneral();
+            $colores= $consultaGeneral->rangoEstado();   
+        
+            
             $consultas = new consultasSecretariasDependencias();
-            $datos = $consultas->listaSemaforo(3);
-            $retorno = array();
+            $datos = $consultas->listaSemaforo($idVigencia,3);
+           
+           
 
-            for($i=0; $i<count($datos); $i++){
-                $fila = array(
-                        "id"=> $datos[$i]['id'],
-                        "nombre"=> $datos[$i]['nombre']
-                    );
-
-                    array_push($retorno, $fila);
-            }
-
-           $retorno = json_encode($retorno);                                    
+            $retorno = json_encode(array('datos'=>$datos,'colores'=>$colores));                                      
             
         break;    
+        
+        
+        
     
         default : break;
     }

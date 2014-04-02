@@ -1,6 +1,129 @@
-$(document).ready(function(){
+//$(document).ready(function(){
+    var URL="";
+    var year=null;
+    //$(document).ready(function(){
 
+
+     var datos = leerGET();
+
+     year=datos['year'];
+     if(year)
+      {   
+   
+          $('.my_year').html(year);
+          $("#nav").html(construirNav(2012,2015,year));
+          
+          
+          
+                ///cambiar apariencia login
+                if(isLocalStorageAvailable())
+                {
+                    $(".my_usuario").html(localStorage.getItem("correo"));
+
+
+                }
+
+
+   
+   
+            //solo para selectre cretarias
+            //carga la lista de secretarias 
+            if( $("#selectSecretarias").length>0 ){
+
+                 /*
+                  *  carga el listado de Secretarias
+                  */
+                 $.ajax({
+                         url:'php/datosSecretariasDependencias.php'
+                         ,type:'POST'
+                         ,data:{ opcion: 'listaSecretarias',year:year }
+                         ,dataType:'json'  
+                         ,success: function(data,textStatus,jqXHR){
+                             
+                                if(data && data.colores)
+                                {
+                             
+                                     var select = generarHtmlOpcion(data.datos);
+
+                                        var colores=data.colores;
+                                        var htmlOpciones="";
+                                        setColor(colores);//establece los colores por defecto de estado  
+
+
+                                     $("#selectSecretarias").html(select);  
+                                     $("#selectSecretarias").change();
+                                 }
+                             
+                             
+                            }
+                     });  
+
+            }// fin de if
+           else{
+               if( $("#selectDependencias").length ){
+         
+                /*
+                 *  carga el listado de Dependencias
+                 */        
+                $.ajax({
+                        url:'php/datosSecretariasDependencias.php'
+                        ,type:'POST'
+                        ,data:{ opcion: 'listaDependencias',year:year }
+                        ,dataType:'json'  
+                        ,success: function(data,textStatus,jqXHR){
+
+                             var select = generarHtmlOpcion(data.datos);
+
+                             var colores=data.colores;
+                             var htmlOpciones="";
+                             setColor(colores);//establece los colores por defecto de estado  
+
+
+                             $("#selectDependencias").html(select);  
+                             $("#selectDependencias").change();
+                                     
+                            
+                            
+                             
+                            }
+                    });        
+
+             }
+   
+               
+           }// fin del if .. .
+           
+           
+           
+           
         /*
+         *  selecciona la Secretaria
+         */
+	$("#selectSecretarias").change(function(){          
+                datosSecretariasDependencias('secretaria');
+        });
+        
+        /*
+         *  selecciona la Dependencias
+         */
+	$("#selectDependencias").change(function(){          
+                datosSecretariasDependencias('dependencia');
+        });
+           
+       
+
+
+    }// fin del if ... Year
+    
+    
+    
+    
+      
+
+
+
+
+/*
          * Hace el llamado para obtener los datos de la tabla de Avance General  y los carga en su tabla
          */    
         function datosSecretariasDependencias(tipo){
@@ -10,7 +133,8 @@ $(document).ready(function(){
                     ,type:'POST'
                     ,data:{
                         opcion: 'consultaDatos',
-                        id_sd: $('#selectSecretarias').val()
+                        year:year,
+                        id_sd:tipo=='dependencia'? $("#selectDependencias").val() : $('#selectSecretarias').val()
                     }
                     ,dataType:'json'  
                     ,success: function(data,textStatus,jqXHR){
@@ -31,12 +155,12 @@ $(document).ready(function(){
                                 <td>"+data[i]['valorLogrado']+"</td>\n\
                                 <td>"+data[i]['ponderado']+"</td>\n\
                                 <td>"+data[i]['avancePonderado']+"</td>\n\
-                                <td><b class='badge bg-success'>"+data[i]['semaSeguiFisico']+"</b></td>\n\
-                                <td>"+data[i]['estadoMetaProducto']+"</td>\n\
-                                <td>"+data[i]['recurProgramados']+"</td>\n\
-                                <td>"+data[i]['recurEjecutados']+"</td>\n\
-                                <td><b class='badge bg-success'>"+data[i]['semaSeguiFinanciero']+"</b></td>\n\
-                                <td>"+data[i]['estadoFinanciero']+"</td>\n\
+                                <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"</b></td>\n\
+                                <td>"+nombreRango(data[i]['semaSeguiFisico'])+"</td>\n\
+                                <td>"+"$"+formaterNumeros(data[i]['recurProgramados'])+"</td>\n\
+                                <td>"+"$"+formaterNumeros(data[i]['recurEjecutados'])+"</td>\n\
+                                <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"</td>\n\
+                                <td>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</td>\n\
                             </tr>";
 
                             metas[i] = data[i]['codigo'];
@@ -259,68 +383,8 @@ $(document).ready(function(){
              });
          }
    
-   
-   if( $("#selectSecretarias").length ){
-
-        /*
-         *  carga el listado de Secretarias
-         */
-        $.ajax({
-                url:'php/datosSecretariasDependencias.php'
-                ,type:'POST'
-                ,data:{ opcion: 'listaSecretarias' }
-                ,dataType:'json'  
-                ,success: function(data,textStatus,jqXHR){
-                        
-                            var select = "<option value=''></option>";
-                            
-                            for(var i=0; i<data.length; i++){                        
-                                select += "<option value='"+data[i]['id']+"'>"+data[i]['nombre']+"</option>";
-                            }
-                            
-                            $("#selectSecretarias").html(select);    
-                    }
-            });  
-                
-   }
      
      
-     if( $("#selectDependencias").length ){
-         
-        /*
-         *  carga el listado de Dependencias
-         */        
-        $.ajax({
-                url:'php/datosSecretariasDependencias.php'
-                ,type:'POST'
-                ,data:{ opcion: 'listaDependencias' }
-                ,dataType:'json'  
-                ,success: function(data,textStatus,jqXHR){
-                        
-                            var select = "<option value=''></option>";
-                            
-                            for(var i=0; i<data.length; i++){                        
-                                select += "<option value='"+data[i]['id']+"'>"+data[i]['nombre']+"</option>";
-                            }
-                            
-                            $("#selectDependencias").html(select);    
-                    }
-            });        
-         
-     }
-   
-        /*
-         *  selecciona la Secretaria
-         */
-	$("#selectSecretarias").change(function(){          
-                datosSecretariasDependencias('secretaria');
-        });
+             
         
-        /*
-         *  selecciona la Dependencias
-         */
-	$("#selectDependencias").change(function(){          
-                datosSecretariasDependencias('dependencia');
-        });        
-        
-});
+//});
