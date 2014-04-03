@@ -24,6 +24,16 @@
                 }
 
 
+
+                   
+                $("#select_my_table").change(function(){
+                        var particion= parseInt($(this).val());   
+                        
+                        if($("#TablaSecretariasDespacho").length>0)
+                            irPaginaTable(1,particion,"#TablaSecretariasDespacho");
+                        else 
+                             irPaginaTable(1,particion,"#TablaDependenciasAdmin");
+                });
    
    
             //solo para selectre cretarias
@@ -182,7 +192,9 @@
                             $("#TablaDependenciasAdmin").html(filas);                                            
                         }
                         
-
+                        
+                        $("#select_my_table").change();
+                        
 
                         $('#graficaGeneral1').highcharts({
                             chart: {

@@ -331,7 +331,7 @@ function generarHtmlPaginadoTable( fin, actual,tm)
       ///anterior
       if(actual==1)
       {
-        html+=" <li><a href='#'><i class='fa fa-chevron-left my_disabled'></i></a></li>";  
+        html+=" <li><a href='#' onclick='return false;' class='my_disabled'  ><i class='fa fa-chevron-left '></i></a></li>";  
       }
       else{
         html+=" <li><a href='#' onclick=\"irPaginaTable("+1+","+tm+")\"><i class='fa fa-chevron-left'></i></a></li>";  
@@ -341,7 +341,9 @@ function generarHtmlPaginadoTable( fin, actual,tm)
       
       for(var i=1; i<=fin; i++)
           {
-           html+=" <li><a href='#' onclick=\"irPaginaTable("+i+","+tm+")\"  "+ (actual==i?"class='my_disabled'":"")+ ">"+i+"</a></li>";   
+              
+              
+           html+=" <li><a href='#'  "+ (actual==i? " onclick='return false ;' class='my_disabled' " : " onclick=\"irPaginaTable("+i+","+tm+")\" ")+ ">"+i+"</a></li>";   
               
           }
           
@@ -350,7 +352,7 @@ function generarHtmlPaginadoTable( fin, actual,tm)
       ///siguiente
       if(actual==fin)
       {
-        html+="<li><a href='#' ><i class='fa fa-chevron-right my_disabled'></i></a></li>";  
+        html+="<li onclick='return false;'  ><a href='#' onclick='return false;'class='my_disabled'  ><i onclick='return false;' class='fa fa-chevron-right my_disabled'></i></a></li>";  
       }
       else{
         html+=" <li ><a href='#' onclick=\"irPaginaTable("+fin+","+tm+")\"><i class='fa fa-chevron-right'></i></a></li>";  

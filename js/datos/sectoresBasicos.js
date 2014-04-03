@@ -28,6 +28,13 @@
 
 
 
+                         
+                
+                $("#select_my_table").change(function(){
+                        var particion= parseInt($(this).val());   
+                        irPaginaTable(1,particion,"#TablaSectoresBasicos");
+                });
+
 
 
       ///carga la lista 
@@ -54,6 +61,7 @@
                             htmlOpciones=generarHtmlOpcion(data.datos);
                             $("#selectSectorBasico").html(htmlOpciones);  
                             
+                              
                             $("#selectSectorBasico").change();
                             
                             
@@ -153,6 +161,8 @@
 
                         $("#TablaSectoresBasicos").html(filas);                                        
 
+                        $("#select_my_table").change();
+                             
 
                         $('#graficaGeneral1').highcharts({
                             chart: {

@@ -119,7 +119,12 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="dataTables_length">
-                                <label>Show <select size="1" ><option value="10" selected="selected">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label>
+                                <label>Show <select size="1"  id="select_my_table" >
+                                        <option value="2" selected="selected">2</option>
+                                        <option value="5" selected="selected">5</option>
+                                        <option value="10">10</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option></select> entries</label>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -157,23 +162,12 @@
                     </table>
                 </div>
                 <footer class="panel-footer">
-                <div class="row">
-                  <div class="col-sm-6 text-center-sm">
-                    <span class="text-muted inline m-t-small">showing 20-30 of 50 items</span>
-                  </div>
-                  <div class="col-sm-6 text-right text-center-sm">                
-                    <ul class="pagination m-t-none m-b-none">
-                      <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
-                      <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-                    </ul>
-                  </div>
+                    <div class="row" id="my_footer_table">
+                  
                 </div>
-              </footer>                
+              </footer> 
+                
+                
 <!--                <div class="row">
                     <div class="col-sm-6">
                         <div class="dataTables_info">Showing 21 to 30 of 57 entries</div>                    
