@@ -31,11 +31,10 @@ function login_usuario()
         
         success:function ( data, textStatus, jqXHR ){
             
-            if(data && data.correcto)
-            {
+            if(data && data.correcto){
                 
-                if(isLocalStorageAvailable())
-                {
+                if(isLocalStorageAvailable()){
+                    
                     console.log(data.datos.correo);
                 
                     localStorage.setItem("correo",data.datos[0].correo);
@@ -43,13 +42,12 @@ function login_usuario()
                     localStorage.setItem("nombre",data.datos[0].nombre);
                 
                 }   
-                console.log(data);
-                 location.href='AvanceGeneral.html?year=2012';
                 
-            }
-            else{
+                console.log(data);                 
+                location.href='noticias.html';
                 
-                alert("datos Incorrectos");
+            }else{
+                alert("Datos Incorrectos");
             }
             
         }

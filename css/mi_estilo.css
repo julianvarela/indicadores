@@ -24,6 +24,13 @@ header > a.nombre-app{
     color: #22baa0;
 }
 
+/******NOTICIAS*****/
+.noticias{
+    overflow: auto;
+    height: 470px;
+}
+
+/******LOGIN*****/
 .panel-login{
     margin-top: 20%;
     margin-bottom: 20%;
@@ -33,7 +40,7 @@ header > a.nombre-app{
     float: right;
 }
 
-
+/******TABLAS*****/
 tbody > tr.datos-tabla > td{
     vertical-align: middle;
     text-align: center;
