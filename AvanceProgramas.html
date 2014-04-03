@@ -73,7 +73,12 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div id="DataTables_Table_0_length" class="dataTables_length">
-                            <label>Show <select size="1" name="DataTables_Table_0_length" aria-controls="DataTables_Table_0"><option value="10" selected="selected">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label>
+                            <label>Show <select size="1" id="select_my_table" name="DataTables_Table_0_length" aria-controls="DataTables_Table_0">
+                                    <option value="2" selected="selected">2</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="100">100</option>
+                                </select> entries</label>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -83,7 +88,8 @@
                     </div>
                     <div id="DataTables_Table_0_processing" class="dataTables_processing" style="visibility: hidden;">Processing...</div>
                 </div>
-            </div>              
+            </div>  
+              
             <div class="table-responsive" style="overflow-x:auto">
               <table class="table table-striped m-b-none" data-ride="datatables">
                 <thead>
@@ -108,21 +114,8 @@
               </table>
             </div>
               <footer class="panel-footer">
-              <div class="row">
-                <div class="col-sm-6 text-center-sm">
-                  <span class="text-muted inline m-t-small">showing 20-30 of 50 items</span>
-                </div>
-                <div class="col-sm-6 text-right text-center-sm">                
-                  <ul class="pagination m-t-none m-b-none">
-                    <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-                  </ul>
-                </div>
+              <div class="row" id="my_footer_table">
+              
               </div>
             </footer>
           </section>

@@ -59,3 +59,18 @@ tbody > tr.datos-tabla > td.dato-tabla-nivel{
         padding-left: 0;
     }    
 }    
+
+
+
+
+
+
+.my_disabled, .my_disabled:hover
+{
+    
+background: #eaeaea;
+opacity: 0.2;
+cursor: default;
+    
+}
+

@@ -21,7 +21,12 @@
 
 
                 }
-
+                
+                
+                $("#select_my_table").change(function(){
+                        var particion= parseInt($(this).val());   
+                        irPaginaTable(1,particion,"#TablaAvanceProgramas");
+                });
 
 
 
@@ -79,6 +84,9 @@
     //                    console.log(recurEje);
 
                         $("#TablaAvanceProgramas").html(filas);                                        
+                        
+                         $("#select_my_table").change();
+                            
 
 
                         $('#graficaGeneral1').highcharts({

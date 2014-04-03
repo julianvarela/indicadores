@@ -12,7 +12,7 @@
 var URL="";
 
 var _colores=null;
-
+var idTable=null;/// id de tabla donde se muestra los resultados
 
 function cargar_opcion1 (year,clase,pagina){
     
@@ -259,7 +259,7 @@ function construirNav(inicio,fin,actual)
     actual=parseInt(actual.trim());
     
     var html=" <ul class='nav' data-spy='affix' data-offset-top='50'> "
-            +"  <li ><a href='noticias.html'><i class='fa fa-home fa-lg'></i><span>Noticias</span></a></li>";
+            +"  <li ><a href='index1.html'><i class='fa fa-home fa-lg'></i><span>Seguimiento</span></a></li>";
        
       
     for(var yearAux=inicio ; yearAux <=fin; yearAux++)
@@ -303,5 +303,132 @@ function generarHtmlOpcion(datos)
         
     }
   return html;  
+    
+}
+
+
+
+/**
+ * genera el html de footer de la tabla para controlar su paginado
+
+ * @param {int} fin
+ * @param {int} actual
+ * @param {int} tam tamaño de particion cantidad max de filas que se puestra por pagina
+ * @returns {String} html
+ */
+function generarHtmlPaginadoTable( fin, actual,tm)
+{
+    
+    if(fin<=1)
+    return "";
+    
+    var html="<div class='col-sm-6 text-center-sm'>";
+      html+="<span class='text-muted inline m-t-small'>"+actual+"/"+fin+"</span></div>";
+      html+= "<div class='col-sm-6 text-right text-center-sm'>  "              ;
+      html+=   "      <ul class='pagination m-t-none m-b-none'>";
+      
+      
+      ///anterior
+      if(actual==1)
+      {
+        html+=" <li><a href='#'><i class='fa fa-chevron-left my_disabled'></i></a></li>";  
+      }
+      else{
+        html+=" <li><a href='#' onclick=\"irPaginaTable("+1+","+tm+")\"><i class='fa fa-chevron-left'></i></a></li>";  
+          
+      }
+      
+      
+      for(var i=1; i<=fin; i++)
+          {
+           html+=" <li><a href='#' onclick=\"irPaginaTable("+i+","+tm+")\"  "+ (actual==i?"class='my_disabled'":"")+ ">"+i+"</a></li>";   
+              
+          }
+          
+      
+      
+      ///siguiente
+      if(actual==fin)
+      {
+        html+="<li><a href='#' ><i class='fa fa-chevron-right my_disabled'></i></a></li>";  
+      }
+      else{
+        html+=" <li ><a href='#' onclick=\"irPaginaTable("+fin+","+tm+")\"><i class='fa fa-chevron-right'></i></a></li>";  
+          
+      } 
+    
+    
+        html+= " </ul> </div>";
+     
+    
+      return html;
+}
+
+
+
+/**
+ * muestra los elementos de la particion 
+ * @param {type} irPagina numero de la pagina a ver .. inicia desdde 1 
+ * @param {type} tm
+ *  @param {String} miIdTable de la tabla
+ * @returns {undefined}
+ */
+function irPaginaTable(irPagina,tm,miIdTable)
+{
+    if(miIdTable)
+        idTable=miIdTable;
+    
+    var totaFilas= $(idTable).find("tr").length;
+    
+    
+   
+    //valida que debe ser menor al  las particiones 
+    if(tm<totaFilas)
+    {
+        
+        var particiones= Math.ceil(totaFilas/tm);
+        
+        
+        var $filas= $(idTable).find("tr");
+        $filas.hide();
+        
+        
+         for(var i=(tm*(irPagina-1)); i< (tm*irPagina); i++)
+        {
+            $($filas[i]).show();
+        }
+        
+        
+            
+       $("#my_footer_table").html(generarHtmlPaginadoTable(particiones,irPagina,tm));
+        
+    }
+    //muy grande se muestra todo y elimina la paginacion
+    else{
+        
+         var $filas= $(idTable).find("tr");
+        $filas.show();
+         $("#my_footer_table").html("");
+    }
+   return false; 
+}
+
+
+/**
+ * redonde el numero a el entre mayor 
+ * @param {Float} n1
+ 
+ * @returns {undefined}
+ */
+function redoarMayor(n1)
+{
+    var parteEntera= parseInt(n1);
+    var diferencia =n1- parteEntera;
+    
+    if(diferencia==0)
+        return n1;
+    else
+        return n1+1;
+    
     
 }
