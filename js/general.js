@@ -259,7 +259,7 @@ function construirNav(inicio,fin,actual)
     actual=parseInt(actual.trim());
     
     var html=" <ul class='nav' data-spy='affix' data-offset-top='50'> "
-            +"  <li ><a href='index1.html'><i class='fa fa-home fa-lg'></i><span>Seguimiento</span></a></li>";
+            +"  <li ><a href='noticias.html'><i class='fa fa-home fa-lg'></i><span>Noticias</span></a></li>";
        
       
     for(var yearAux=inicio ; yearAux <=fin; yearAux++)
