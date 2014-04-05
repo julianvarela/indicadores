@@ -6,6 +6,7 @@
         Purpose of the stylesheet follows.
 */
 
+/******HEAD*****/
 .nombre-app{
     font-size: 20px;
 }
@@ -22,6 +23,24 @@ header > a.nombre-app{
     padding: 12px 0 18px 0;
     text-align: center;    
     color: #22baa0;
+}
+
+/******PRELOAD*****/
+.body-preload{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    display: none;    
+    background-color: #ffffff;   
+    opacity: 0.8;
+    filter: alpha(opacity=80);    
+}
+.img-preload{
+    text-align: center;
+    margin-top: 10%;
 }
 
 /******NOTICIAS*****/
@@ -65,12 +84,9 @@ tbody > tr.datos-tabla > td.dato-tabla-nivel{
 
 
 
-.my_disabled, .my_disabled:hover
-{
-    
-background: #eaeaea;
-opacity: 0.2;
-cursor: default;
-    
+.my_disabled, .my_disabled:hover{    
+    background: #eaeaea;
+    opacity: 0.2;
+    cursor: default;
 }
 

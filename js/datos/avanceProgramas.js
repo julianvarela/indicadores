@@ -7,19 +7,16 @@
      var datos = leerGET();
 
      year=datos['year'];
-     if(year)
-      {   
+     
+     if(year){   
    
           $('.my_year').html(year);
           $("#nav").html(construirNav(2012,2015,year));
       
 
                 ///cambiar apariencia login
-                if(isLocalStorageAvailable())
-                {
+                if(isLocalStorageAvailable()){
                     $(".my_usuario").html(localStorage.getItem("correo"));
-
-
                 }
                 
                 
@@ -38,8 +35,16 @@
                     url:URL+'php/datosAvProgramas.php'
                     ,type:'POST'
                     ,dataType:'json' 
-                    ,data:{year:year}
+                    ,data:{ year:year }
+                    ,beforeSend:function(jqXHR,settings){
+                        $(".body-preload").css({display:'inline'});
+                    }    
+                    ,error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                        alert("Se presentó un problema con la conexión a Internet")
+                    }                                        
                     ,success: function(midata,textStatus,jqXHR){
+
+                            $(".body-preload").css({display:'none'});
 
 
                         var data=midata.datos;
@@ -106,8 +111,6 @@
                                     }                                                                
                                 },
                                 labels: {
-                                    y: 20,
-                                    //rotation: -45,                                
                                     style: {
                                         fontWeight: 'bold',  
                                         fontSize: '12px'                                    
@@ -184,7 +187,7 @@
     //                            }]                        
                             series: [{
                                 name: 'Avance',
-                                data: ponderado,                                                   
+                                data: ponderado                                                
                             }]
                         });
 
@@ -210,8 +213,6 @@
                                     }                                                                
                                 },
                                 labels: {
-                                    y: 20,
-                                    //rotation: -45,                                
                                     style: {
                                         fontWeight: 'bold',  
                                         fontSize: '12px'                                    
@@ -228,7 +229,7 @@
                                     }                                                                
                                 },
                                 labels: {
-                                    format: '{value}',
+                                    format: '{value}'
                                 }
                             },
 
@@ -282,7 +283,7 @@
     //                            }]                                                
                             series: [{
                                 name: 'Avance',
-                                data: semaFin,                        
+                                data: semaFin                    
                             }]
                         });
 

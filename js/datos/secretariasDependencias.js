@@ -7,8 +7,7 @@
      var datos = leerGET();
 
      year=datos['year'];
-     if(year)
-      {   
+     if(year){   
    
           $('.my_year').html(year);
           $("#nav").html(construirNav(2012,2015,year));
@@ -16,11 +15,8 @@
           
           
                 ///cambiar apariencia login
-                if(isLocalStorageAvailable())
-                {
+                if(isLocalStorageAvailable()){
                     $(".my_usuario").html(localStorage.getItem("correo"));
-
-
                 }
 
 
@@ -44,11 +40,22 @@
                   *  carga el listado de Secretarias
                   */
                  $.ajax({
-                         url:'php/datosSecretariasDependencias.php'
-                         ,type:'POST'
-                         ,data:{ opcion: 'listaSecretarias',year:year }
-                         ,dataType:'json'  
-                         ,success: function(data,textStatus,jqXHR){
+                        url:'php/datosSecretariasDependencias.php'
+                        ,type:'POST'
+                        ,data:{ 
+                            opcion: 'listaSecretarias',
+                            year:year 
+                        }
+                        ,dataType:'json'  
+                        ,beforeSend:function(jqXHR,settings){
+                            $(".body-preload").css({display:'inline'});
+                        }    
+                        ,error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                            alert("Se presentó un problema con la conexión a Internet")
+                        }                                        
+                        ,success: function(data,textStatus,jqXHR){
+
+                                $(".body-preload").css({display:'none'});
                              
                                 if(data && data.colores)
                                 {
@@ -78,9 +85,20 @@
                 $.ajax({
                         url:'php/datosSecretariasDependencias.php'
                         ,type:'POST'
-                        ,data:{ opcion: 'listaDependencias',year:year }
+                        ,data:{ 
+                            opcion: 'listaDependencias',
+                            year:year 
+                        }
                         ,dataType:'json'  
+                        ,beforeSend:function(jqXHR,settings){
+                            $(".body-preload").css({display:'inline'});
+                        }    
+                        ,error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                            alert("Se presentó un problema con la conexión a Internet")
+                        }                                        
                         ,success: function(data,textStatus,jqXHR){
+
+                                $(".body-preload").css({display:'none'});
 
                              var select = generarHtmlOpcion(data.datos);
 
@@ -147,7 +165,15 @@
                         id_sd:tipo=='dependencia'? $("#selectDependencias").val() : $('#selectSecretarias').val()
                     }
                     ,dataType:'json'  
+                    ,beforeSend:function(jqXHR,settings){
+                        $(".body-preload").css({display:'inline'});
+                    }    
+                    ,error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                        alert("Se presentó un problema con la conexión a Internet")
+                    }                                        
                     ,success: function(data,textStatus,jqXHR){
+
+                            $(".body-preload").css({display:'none'});
 
                         var filas="";     
 

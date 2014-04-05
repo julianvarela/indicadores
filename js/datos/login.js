@@ -8,8 +8,6 @@ var URL="";
 
 $(document).ready(function (){
     $("#bton_login").click(login_usuario);
-
-    
 });
 
 
@@ -23,13 +21,19 @@ function login_usuario()
      $.ajax({
         url:URL+"php/manejoVariables.php",
         dataType:'json',
-        type:'POST' ,
-        data:{opcion:'login',pass:pass,correo:correo},
-        beforeSend:function(){
-            
-        },
-        
-        success:function ( data, textStatus, jqXHR ){
+        type:'POST',
+        data:{
+            opcion:'login',
+            pass:pass,
+            correo:correo
+        }
+        ,beforeSend:function(jqXHR,settings){
+            $(".body-preload").css({display:'inline'});
+        }    
+        ,error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            alert("Se presentó un problema con la conexión a Internet")
+        }                                        
+        ,success: function(data,textStatus,jqXHR){
             
             if(data && data.correcto){
                 
@@ -43,7 +47,9 @@ function login_usuario()
                 
                 }   
                 
-                console.log(data);                 
+                console.log(data);   
+                
+                $(".body-preload").css({display:'none'});
                 location.href='noticias.html';
                 
             }else{

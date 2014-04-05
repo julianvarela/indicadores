@@ -23,11 +23,8 @@ var year=null;
       
       
       ///cambiar apariencia login
-      if(isLocalStorageAvailable())
-      {
+      if(isLocalStorageAvailable()){
           $(".my_usuario").html(localStorage.getItem("correo"));
-          
-          
       }
     ///
     //
@@ -38,12 +35,19 @@ var year=null;
         url:URL+"php/datosAvObjetivos.php",
         dataType:'json',
         type:'POST' ,
-        data:{opcion:'avance_objetivos',year:year},
-        beforeSend:function(){
-            
-        },
-        
-        success:function ( data, textStatus, jqXHR ){
+        data:{
+            opcion:'avance_objetivos',
+            year:year
+        }
+        ,beforeSend:function(jqXHR,settings){
+            $(".body-preload").css({display:'inline'});
+        }    
+        ,error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            alert("Se presentó un problema con la conexión a Internet")
+        }                                        
+        ,success: function(data,textStatus,jqXHR){
+
+                $(".body-preload").css({display:'none'});
            
            
            
@@ -139,7 +143,7 @@ function graficaOE_grafica1(miEtiqueta,misDatos){
                         yAxis: {
                             min: 0,
                             title: {
-                                text: 'semaforo seguimiento',
+                                text: 'semaforo seguimiento'
                                 //align: 'high'
                             },
                             labels: {
@@ -220,7 +224,7 @@ function graficaOE_grafica2(miEtiqueta,misDatos){
                         yAxis: {
                             min: 0,
                             title: {
-                                text: 'semaforo seguimiento',
+                                text: 'semaforo seguimiento'
                                 //align: 'high'
                             },
                             labels: {

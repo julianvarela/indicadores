@@ -21,11 +21,8 @@ $(document).ready(function(){
       
       
       ///cambiar apariencia login
-      if(isLocalStorageAvailable())
-      {
+      if(isLocalStorageAvailable()){
           $(".my_usuario").html(localStorage.getItem("correo"));
-          
-          
       }
       
       
@@ -35,8 +32,19 @@ $(document).ready(function(){
                 url:'php/datosAvGeneral.php'
                 ,type:'POST'
                 ,dataType:'json'  
-                ,data:{opcion:'avance_objetivos',year:year}
+                ,data:{
+                    opcion:'avance_objetivos',
+                    year:year
+                }
+                ,beforeSend:function(jqXHR,settings){
+                    $(".body-preload").css({display:'inline'});
+                }    
+                ,error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                    alert("Se presentó un problema con la conexión a Internet")
+                }                                        
                 ,success: function(midata,textStatus,jqXHR){
+                    
+                        $(".body-preload").css({display:'none'});
 
                 var data=midata.datos;
                 var colores=midata.colores;
