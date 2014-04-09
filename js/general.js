@@ -164,8 +164,6 @@ function getHtmlColor(valor)
     
     if(_colores)
     {
-        console.log("los colores son ");
-        console.log(_colores);
         for(var i=0;i<_colores.length; i++)
         {
             
@@ -192,12 +190,12 @@ function getHtmlColor(valor)
  */
 function formaterNumeros(numero)
 {
-    
-    
+     
     numero=numero+"";
     
     var salida="";
     var datosNumeros = numero.split(".");
+    
     var numerosParte1= datosNumeros[0];
     
     for(var i =0 ; i< numerosParte1.length ; i++)
@@ -205,11 +203,11 @@ function formaterNumeros(numero)
         
         if((i+1)%3==0)
         {
-            salida+=","+numerosParte1[i];
+           salida=","+numerosParte1[numerosParte1.length-1-i]+salida;
         
         }
         else{
-            salida+=numerosParte1[i]; 
+            salida=numerosParte1[numerosParte1.length-1-i]+salida; 
         }
         
         
