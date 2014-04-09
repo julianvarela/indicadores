@@ -37,7 +37,7 @@
 			if ($pass != "")
 				$this->_pass = $pass;
 			
-			$this->Conexion_ID = mysql_connect($this->_servidor, $this->_usuario, $this->_pass);
+			@$this->Conexion_ID = mysql_connect($this->_servidor, $this->_usuario, $this->_pass);
 			if (!$this->Conexion_ID){
 				$this->Error = "Ha fallado la conexión.";
 				return 0;

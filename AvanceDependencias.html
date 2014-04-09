@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <title>Avance de las Dependencias</title>
@@ -22,7 +22,7 @@
     <ul class="nav navbar-nav navbar-avatar pull-right">
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
-          <span class="hidden-xs-only">Mika Sokeil</span>
+          <span class="hidden-xs-only my_usuario">Mika Sokeil</span>
           <span class="thumb-small avatar inline"><img src="imagenes/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
           <b class="caret hidden-xs-only"></b>
         </a>
@@ -42,65 +42,17 @@
   <!-- / header -->
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs nav-vertical">
-    <ul class="nav" data-spy="affix" data-offset-top="50">
-      <li class="active"><a href="index.html"><i class="fa fa-home fa-lg"></i><span>Seguimiento</span></a></li>
-      <li class="dropdown-submenu">
-        <a href="#"><i class="fa fa-th fa-lg"></i><span>2012</span></a>
-        <ul class="dropdown-menu">
-          <li><a href="AvanceGeneral.html">Avance General</a></li>
-          <li><a href="AvanceObjetivos.html">Avance Objetivos</a></li>            
-          <li><a href="AvanceProgramas.html">Avance Programas</a></li>
-          <li><a href="AvanceSubprogramas.html">Avance Subprogramas</a></li>
-          <li><a href="SectoresBasicos.html">Sectores Basicos</a></li>            
-          <li><a href="SecretariasDespacho.html">Secretarias Despacho</a></li>
-          <li><a href="DependenciasAdmin.html">Dependencias Administrativas</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a href="#"><i class="fa fa-th fa-lg"></i><span>2013</span></a>
-        <ul class="dropdown-menu">
-          <li><a href="AvanceGeneral.html">Avance General</a></li>
-          <li><a href="AvanceObjetivos.html">Avance Objetivos</a></li>            
-          <li><a href="AvanceProgramas.html">Avance Programas</a></li>
-          <li><a href="AvanceSubprogramas.html">Avance Subprogramas</a></li>
-          <li><a href="SectoresBasicos.html">Sectores Basicos</a></li>            
-          <li><a href="SecretariasDespacho.html">Secretarias Despacho</a></li>
-          <li><a href="DependenciasAdmin.html">Dependencias Administrativas</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a href="#"><i class="fa fa-th fa-lg"></i><span>2014</span></a>
-        <ul class="dropdown-menu">
-          <li><a href="AvanceGeneral.html">Avance General</a></li>
-          <li><a href="AvanceObjetivos.html">Avance Objetivos</a></li>            
-          <li><a href="AvanceProgramas.html">Avance Programas</a></li>
-          <li><a href="AvanceSubprogramas.html">Avance Subprogramas</a></li>
-          <li><a href="SectoresBasicos.html">Sectores Basicos</a></li>            
-          <li><a href="SecretariasDespacho.html">Secretarias Despacho</a></li>
-          <li><a href="DependenciasAdmin.html">Dependencias Administrativas</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a href="#"><i class="fa fa-th fa-lg"></i><span>2015</span></a>
-        <ul class="dropdown-menu">
-          <li><a href="AvanceGeneral.html">Avance General</a></li>
-          <li><a href="AvanceObjetivos.html">Avance Objetivos</a></li>            
-          <li><a href="AvanceProgramas.html">Avance Programas</a></li>
-          <li><a href="AvanceSubprogramas.html">Avance Subprogramas</a></li>
-          <li><a href="SectoresBasicos.html">Sectores Basicos</a></li>            
-          <li><a href="SecretariasDespacho.html">Secretarias Despacho</a></li>
-          <li><a href="DependenciasAdmin.html">Dependencias Administrativas</a></li>
-        </ul>
-      </li>
-    </ul>
   </nav>
   <!-- / nav -->
+  
+  
   <section id="content">
     <section class="main padder">
         
         <ul class="breadcrumb">
             <li><a href="#"><i class="fa fa-home"></i> Seguimiento</a></li>
-            <li><a href="#">2013</a></li>
+            <li><a href="#" class="my_year">2013</a></li>
+            <li class="active">Dependencias Admin</li>
             <li class="active">Avance General por Dependencias</li>
         </ul>        
         
@@ -112,7 +64,7 @@
               <table class="table table-striped m-b-none" data-ride="datatables">
                 <thead>
                   <tr>
-                    <th>N�</th>
+                    <th>N</th>
                     <th>Meta de Producto</th>
                     <th>Semaforo Avance Fisico</th>
                     <th>Semaforo Avance Financiero</th>
@@ -207,6 +159,8 @@
   <!-- Grafica -->
    <script src="js/graficas/highcharts.js"></script>    
    <script src="js/graficas/graficas.js"></script>    
+   <script src="js/general.js"></script> 
+   <script src="js/datos/avanceSecretarias.js"></script>    
 
   
 </body>

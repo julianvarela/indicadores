@@ -32,7 +32,7 @@
              * Hace el llamado para obtener los datos de la tabla de Avance General  y los carga en su tabla
              */    
             $.ajax({
-                    url:URL+'php/datosAvProgramas.php'
+                    url:URL+'php/consutasSecretariasDependencias.php'
                     ,type:'POST'
                     ,dataType:'json' 
                     ,data:{ year:year }

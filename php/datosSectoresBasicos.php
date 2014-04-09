@@ -80,6 +80,48 @@ switch ($_opcion) {
         
         break;
         
+    
+    
+    ///avance general de sectores basicos
+    case "avance_general":
+        
+        
+        
+        $year=$_POST['year'];
+        $consultaGeneral=new consultaGeneral();
+        $idVigencia= $consultaGeneral->vigencia($year);
+    
+        
+        $consultaGeneral=new consultaGeneral();
+        $colores= $consultaGeneral->rangoEstado();
+
+    
+        
+        $consultas = new consultasSectoresBasicos();
+        $datoslistas = $consultas->listaSectoresBasicos();
+        $datos=array();
+        
+        for($i=0;$i<count($datoslistas); $i++)
+        {
+                $fila= $consultas->avanceGeneralPorSector($idVigencia, $datoslistas[$i]['id']);
+               
+                $fila=$fila[0]; 
+            
+               
+                $fila['semaforo_seguimiento_financiero']=$fila['semaforo_seguimiento_financiero']==null?"0":$fila['semaforo_seguimiento_financiero'];
+                $fila['semaforo_seguimiento_fisico']=$fila['semaforo_seguimiento_fisico']==null?"0":$fila['semaforo_seguimiento_fisico'];                
+                    $fila['nombre']=$datoslistas[$i]['nombre'];
+                
+                array_push($datos, $fila);
+            
+        }
+        
+        
+        
+        $retorno= array('datos'=>$datos,'colores'=>$colores);
+        
+        
+        break;
         
     default:
         break;

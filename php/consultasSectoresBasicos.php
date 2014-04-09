@@ -60,5 +60,42 @@ class consultasSectoresBasicos {
 
     }
     
+    
+    
+   /**
+    * retorna los datos para gener el avance general de sectores basicos .. por un sector 
+    * @param int $id_vigencia
+    * @param int $id_sector
+    * @return Array de los datos secroes bascios [semaforo_seguimiento_fisico,semaforo_seguimiento_finaciero]
+    */ 
+    public function avanceGeneralPorSector($id_vigencia,$id_sector)
+    {
+        $sql="SELECT 	
+            avg(sfin.semaforo_seguimiento_financiero)   semaforo_seguimiento_financiero ,
+            avg(sfis.semaforo_seguimiento) semaforo_seguimiento_fisico
+  
+            FROM matriz m, seguimiento_financiero sfin, seguimiento_fisico sfis, vigencias v, fila_matriz fm, clases c, municipios mu, departamentos de, sectores s
+            WHERE v.id='{$id_vigencia}'            
+                AND fm.id_vigencia = v.id
+                AND m.id = fm.id_matriz
+                AND sfis.id = fm.id_seguimiento_fisico
+                AND sfin.id = fm.id_seguimiento_financiero
+                AND m.activo = '1'
+                AND sfis.activo = '1'
+                AND sfin.activo = '1'
+                AND c.nombre = 'MET'
+                AND c.id = m.clases_id
+                AND mu.departamentos_id = de.id
+                AND v.municipios_id = mu.id
+                AND m.sectores_id = '{$id_sector}'
+                AND m.sectores_id = s.id";
+                
+        
+                
+        $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+        $conexion->consultaSQL($sql);       
+        return $conexion->_datosRegistros;     
+        
+    }
 }
 ?>

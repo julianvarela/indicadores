@@ -73,6 +73,12 @@
 
 
 
+        //manejo de la grafica de avances generales    
+        $("#bton_graficas").click(function(e){
+            
+            $("#bton_graficas").attr("href","AvanceSectores.html?year="+year);
+          });
+
 
    
         /*

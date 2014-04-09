@@ -9,6 +9,9 @@
      year=datos['year'];
      if(year){   
    
+   
+   
+   
           $('.my_year').html(year);
           $("#nav").html(construirNav(2012,2015,year));
           
@@ -31,7 +34,20 @@
                              irPaginaTable(1,particion,"#TablaDependenciasAdmin");
                 });
    
-   
+  
+             //para ver graficas  al darle click de secretaria
+             $("#ver_graficas").click(function(e){
+                $("#ver_graficas").attr("href","AvanceSecretarias.html?year="+year); 
+             });
+             
+             ///ver graficas avance general de dependencias
+             $("#bton_avance_dependencias").click(function(e){
+                 $("#bton_avance_dependencias").attr("href","AvanceDependencias.html?year="+year);
+             });
+        
+    
+    
+    
             //solo para selectre cretarias
             //carga la lista de secretarias 
             if( $("#selectSecretarias").length>0 ){

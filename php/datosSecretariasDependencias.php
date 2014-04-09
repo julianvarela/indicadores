@@ -60,7 +60,7 @@ include_once 'consultasSecretariasDependencias.php';
         
             
             $consultas = new consultasSecretariasDependencias();
-            $datos = $consultas->listaSemaforo($idVigencia,2);
+            $datos = $consultas->listaSemaforo($idVigencia,"Secretarias");
            
 
            $retorno = json_encode(array('datos'=>$datos,'colores'=>$colores));                        
@@ -76,7 +76,7 @@ include_once 'consultasSecretariasDependencias.php';
         
             
             $consultas = new consultasSecretariasDependencias();
-            $datos = $consultas->listaSemaforo($idVigencia,3);
+            $datos = $consultas->listaSemaforo($idVigencia,"dependencias");
            
            
 
@@ -85,7 +85,71 @@ include_once 'consultasSecretariasDependencias.php';
         break;    
         
         
+    
+    //datso generala para las graficasa ge
+        case "avance_general_secretaria":
+            
+            $consultaGeneral=new consultaGeneral();
+            $colores= $consultaGeneral->rangoEstado();   
         
+            //secretaria--- POR DEFECTO ESTA QUEMADO
+            $consultas = new consultasSecretariasDependencias();
+            $datoslistas = $consultas->listaSemaforo($idVigencia,"Secretarias");
+            $datos=array();
+            
+            for($i=0;$i<count($datoslistas); $i++)
+            {
+                $fila = $consultas->avanceGeneral($idVigencia,$datoslistas[$i]['id']);  
+                $fila=$fila[0];
+                
+                $fila['semaforo_seguimiento_financiero']=$fila['semaforo_seguimiento_financiero']==null?"0":$fila['semaforo_seguimiento_financiero'];
+                $fila['semaforo_seguimiento_fisico']=$fila['semaforo_seguimiento_fisico']==null?"0":$fila['semaforo_seguimiento_fisico'];                
+                $fila['nombre']=$datoslistas[$i]['nombre'];
+                
+                array_push($datos, $fila);
+                
+            }
+            
+                       
+              $retorno = json_encode(array('datos'=>$datos,'colores'=>$colores));            
+           
+            break;
+        
+            
+            
+         //obtener los avances generales de la depencias   
+        case "avance_general_dependencia":
+            
+            $consultaGeneral=new consultaGeneral();
+            $colores= $consultaGeneral->rangoEstado();   
+        
+            
+            $consultas = new consultasSecretariasDependencias();
+            $datoslistas = $consultas->listaSemaforo($idVigencia,"dependencias");
+            
+            
+            $datos=array();
+            
+            for($i=0;$i<count($datoslistas); $i++)
+            {
+                $fila = $consultas->avanceGeneral($idVigencia,$datoslistas[$i]['id']);  
+                $fila=$fila[0];
+                
+                $fila['semaforo_seguimiento_financiero']=$fila['semaforo_seguimiento_financiero']==null?"0":$fila['semaforo_seguimiento_financiero'];
+                $fila['semaforo_seguimiento_fisico']=$fila['semaforo_seguimiento_fisico']==null?"0":$fila['semaforo_seguimiento_fisico'];                
+                $fila['nombre']=$datoslistas[$i]['nombre'];
+                
+                array_push($datos, $fila);
+                
+            }
+            
+                       
+              $retorno = json_encode(array('datos'=>$datos,'colores'=>$colores));          
+           
+            
+            
+            break;   
+            
     
         default : break;
     }
