@@ -150,19 +150,8 @@ function getHtmlColor(valor){
    var html="<b class='badge' ";
    var estilo=" style='background-color:white' "
     valor = parseFloat(valor);
-    
-    
-    
-<<<<<<< HEAD
-    if(_colores)
-    {
-        for(var i=0;i<_colores.length; i++)
-        {
-=======
-    if(_colores){
         
-        console.log("los colores son ");
-        console.log(_colores);
+    if(_colores){
         
         for(var i=0;i<_colores.length; i++){
 		
@@ -182,14 +171,9 @@ function getHtmlColor(valor){
  * formate los numeros de la forma 232,113.32
  * @returns {undefined}
  */
-<<<<<<< HEAD
-function formaterNumeros(numero)
-{
-     
-=======
+
 function formaterNumeros(numero){
         
->>>>>>> origin/julian
     numero=numero+"";
     
     var salida="";
@@ -199,15 +183,8 @@ function formaterNumeros(numero){
     
     for(var i =0 ; i< numerosParte1.length ; i++){
         
-<<<<<<< HEAD
-        if((i+1)%3==0)
-        {
-           salida=","+numerosParte1[numerosParte1.length-1-i]+salida;
-        
-=======
         if((i+1)%3==0){            
             salida+=","+numerosParte1[i];
->>>>>>> origin/julian
         }
         else{
             salida=numerosParte1[numerosParte1.length-1-i]+salida; 
@@ -280,9 +257,6 @@ function construirNav(inicio,fin,actual){
     
     html+="  <li  class='"+("1"==actual?" active ":"")+"' ><a href='AvanceVigencia.html'><i class='fa fa-bar-chart-o fa-lg'></i><span>Ponderado</span></a></li>"
          +" </ul>";
-    
-//    html+=" </ul>"
-    
     
  return html; 
 
