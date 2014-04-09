@@ -64,7 +64,7 @@ $(document).ready(function(){
                         filas += "<tr  class='datos-tabla'>\n\
                             <td>"+data[i]['codigo']+"</td>\n\
                             <td  class='dato-tabla-nivel'>"+data[i]['nivel']+"</td>\n\
-                            <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"</b></td>\n\
+                            <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"</td>\n\
                             <td>"+nombreRango(data[i]['semaSeguiFisico'])+"</td>\n\
                             <td>"+"$"+formaterNumeros(data[i]['recurProgramados'])+"</td>\n\
                             <td>"+"$"+formaterNumeros(data[i]['recurEjecutados'])+"</td>\n\
