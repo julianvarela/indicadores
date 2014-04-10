@@ -122,8 +122,6 @@ function nombreRango(valor){
     var nombre="-";
     valor = parseFloat(valor);
     
-    
-    
     if(_colores){
         
         for(var i=0;i<_colores.length; i++){
@@ -172,8 +170,9 @@ function getHtmlColor(valor){
  * @returns {undefined}
  */
 
-function formaterNumeros(numero){
-        
+function formaterNumeros(numero)
+{
+     
     numero=numero+"";
     
     var salida="";
@@ -183,18 +182,18 @@ function formaterNumeros(numero){
     
     for(var i =0 ; i< numerosParte1.length ; i++){
         
-        if((i+1)%3==0){            
-            salida+=","+numerosParte1[i];
+        if((i+1)%3==0){
+           salida=","+numerosParte1[numerosParte1.length-1-i]+salida;        
         }
         else{
-            salida=numerosParte1[numerosParte1.length-1-i]+salida; 
-        }
+            salida=numerosParte1[numerosParte1.length-1-i]+salida;
+        }        
         
     }//fin del for
     
     
     
-    if(salida.length>0 &&  salida[0]==","){        
+    if(salida.length>0 && salida[0]==","){        
         salida=salida.substring(1,salida.length);
     }
     
@@ -206,7 +205,6 @@ function formaterNumeros(numero){
     
     return salida;
 }
-
 
 
 /***
