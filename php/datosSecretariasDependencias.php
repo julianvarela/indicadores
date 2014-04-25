@@ -36,6 +36,8 @@ include_once 'consultasSecretariasDependencias.php';
                         "avancePonderado"=> $datos[$i]['avance_ponderado'],
                         "semaSeguiFisico"=> $datos[$i]['semaforo_seguimiento'],
                       
+
+                       "fecha_modificacion"=> $datos[$i]['fecha_modificacion'],
                         "recurProgramados"=> $datos[$i]['recursos_programados'],
                         "recurEjecutados"=> $datos[$i]['recursos_ejecutados'],
                         "semaSeguiFinanciero"=> $datos[$i]['semaforo_seguimiento_financiero'],

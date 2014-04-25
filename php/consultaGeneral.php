@@ -34,6 +34,30 @@ class consultaGeneral {
     }
     
     
+
+
+    /***
+     * 
+     * busca el id de l vigencia
+     * 
+     * @param $year {String} año del tipo YYYY
+     * @return id de la vigencia
+     */
+    function listaVigencias()
+    {
+        $sql="SELECT vigencia, activo FROM vigencias
+               WHERE  periodo='1'
+                -- and municipios_id='0'";
+                
+    
+                
+       $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+       $conexion->consultaSQL($sql);       
+         return $conexion->_datosRegistros;           
+                
+        
+    }
+    
     
     
     

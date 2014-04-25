@@ -90,3 +90,9 @@ tbody > tr.datos-tabla > td.dato-tabla-nivel{
     cursor: default;
 }
 
+.invisible_menu > a, .invisible_menu:hover > a{
+    color:#8e9eae !important; 
+    cursor: default;
+
+}
+

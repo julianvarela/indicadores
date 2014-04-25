@@ -41,6 +41,7 @@ $idVigencia= $consultaGeneral->vigencia($year);
                 "recurEjecutados"=> $datos[$i]['recursos_ejecutados'],
                 "semaSeguiFinanciero"=> $datos[$i]['semaforo_seguimiento_financiero'],
                 
+                "fecha_modificacion"=> $datos[$i]['fecha_modificacion'],
                 "fechaCorte"=> $datos[$i]['fecha_corte'],
                 "fecha_creacion"=> $datos[$i]['fecha_creacion'],
             );

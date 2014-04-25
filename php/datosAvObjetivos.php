@@ -57,7 +57,8 @@ switch ($opcion) {
                         ,'ponderado'    => $datos[$i]['ponderado']
                         ,'recursosProgramado'=> $datos[$i]['recursos_programados']
                         ,'recursosEjecutados'=> $datos[$i]['recursos_ejecutados']
-                        ,'semaforoSeguimientoFin'=> $datos[$i]['semaforo_seguimiento_financiero']
+                        ,'semaforoSeguimientoFin'=> $datos[$i]['semaforo_seguimiento_financiero'] ,
+                        'fecha_modificacion'=> $datos[$i]['fecha_modificacion']
                         
                     );
                 $datosFinales[]=$fila;

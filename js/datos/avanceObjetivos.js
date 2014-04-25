@@ -67,14 +67,14 @@ var year=null;
                         filas += "<tr  class='datos-tabla'>"
                             +" <td>"+data.datos[i]['codigo']+"</td> "
                             +" <td class='dato-tabla-nivel'>"+data.datos[i]['nivel']+"</td> "                    
-                            +" <td>"+getHtmlColor(data.datos[i]['semaforoSeguimientoFis'])+"</td> "
-                            +" <td>"+data.datos[i]['ponderado']+"</td> "
+                            +" <td>"+getHtmlColor(data.datos[i]['semaforoSeguimientoFis'])+"<br>"+nombreRango(data.datos[i]['semaforoSeguimientoFis'])+"</td> "
+                           
                      
                             +" <td>"+"$"+formaterNumeros( data.datos[i]['recursosProgramado'])+"</td> "                    
                             +" <td>"+"$"+formaterNumeros( data.datos[i]['recursosEjecutados'])+"</td> "
                     
-                            +" <td>"+getHtmlColor(data.datos[i]['semaforoSeguimientoFin'])+"</td> "
-                            +" <td>"+nombreRango(data.datos[i]['semaforoSeguimientoFin'])+"</td> "
+                            +" <td>"+getHtmlColor(data.datos[i]['semaforoSeguimientoFin'])+"<br>"+nombreRango(data.datos[i]['semaforoSeguimientoFin'])+"</td> "
+                            +" <td>"+data.datos[i]['fecha_modificacion']+"</td> "
                        +" </tr>";
                
                

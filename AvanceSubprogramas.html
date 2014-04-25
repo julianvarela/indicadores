@@ -5,7 +5,6 @@
   <title>Avance Subprogramas</title>
   <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
-  <link rel="shortcut icon" href="imagenes/favicon.png">  
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/plugin.css">
@@ -86,9 +85,9 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="dataTables_filter">
+                            <!--<div class="dataTables_filter">
                                 <label>Search: <input type="text" ></label>
-                            </div>
+                            </div>-->
                         </div>
                         <div  class="dataTables_processing" style="visibility: hidden;">Processing...</div>
                     </div>
@@ -98,17 +97,16 @@
                     <table class="table table-striped m-b-none dataTable" data-ride="datatables">
                         <thead>
                           <tr>
-                              <th><input type="checkbox"></th>    
+                              <th><input type="checkbox" checked='true' onclick='actulizarGraficaSubprogramas()'></th>    
                             <th width="5%">Codigo Nivel PDM</th>
                             <th width="15%">Nivel PDM</th>
                             <th width="8%">Ponderado Meta de Producto <p class="my_year">2013</p></th>
                             <th width="8%">Avance Ponderado <p class="my_year">2013</p></th>
-                            <th width="8%">Semaforo Seguimiento Fisico <p class="my_year">2013</p></th>
-                            <th width="8%">Estado de la Meta de Producto <p class="my_year">2013</p></th>
+                            <th width="8%">Semaforo Seguimiento Fisico <p class="my_year">2013</p></th>                           
                             <th width="8%">Recursos Programados <p class="my_year">2013</p></th>
                             <th width="8%">Recursos Ejecutados <p class="my_year">2013</p></th>
                             <th width="8%">Semaforo seguimiento Financiero <p class="my_year">2013</p></th>
-                            <th width="8%">Estado Finanaciero <p class="my_year">2013</p></th>
+                            <th width="8%">Ultima Modificación <p class="my_year">2013</p></th>
                             <th width="8%">Fecha de Corte <p class="my_year">2013</p></th>
                             <th width="8%">Fecha de Registro <p class="my_year">2013</p></th>
                           </tr>

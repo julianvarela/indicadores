@@ -60,25 +60,29 @@
                     var semaFin = new Array();
                                 
                     for(var i=0; i<data.length; i++){
-                        filas += "<tr class='datos-tabla'>\n\
-                            <td><input type='checkbox' name='post[]' value="+data[i]['codigo']+"></td>\n\
+                        filas += 
+                        "<tr class='datos-tabla'>\n\
+                            <td><input type='checkbox' class='mis_checkbox' onclick='actulizarGraficaSubprogramas()' name='post[]' checked='true' "
+                                +"data-programas='"+data[i]['codigo'] + "' "
+                                +"data-ponderado='"+data[i]['semaSeguiFisico']  + "' "
+                                +"data-semafin='"+data[i]['semaSeguiFinanciero'] + "' " 
+                                +" value="+data[i]['codigo']+"></td>\n\
                             <td>"+data[i]['codigo']+"</td>\n\
                             <td class='dato-tabla-nivel'>"+data[i]['nivel']+"</td>\n\
                             <td>"+data[i]['ponderado']+"</td>\n\
                             <td>"+data[i]['avancePonderado']+"</td>\n\
-                            <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"</td>\n\
-                            <td>"+nombreRango(data[i]['semaSeguiFisico'])+"</td>\n\
+                            <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"<br>"+nombreRango(data[i]['semaSeguiFisico'])+"</td>\n\
                             <td>"+"$"+formaterNumeros(data[i]['recurProgramados'])+"</td>\n\
                             <td>"+"$"+formaterNumeros(data[i]['recurEjecutados'])+"</td>\n\
-                            <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"</td>\n\
-                            <td>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</td>\n\
+                            <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"<br>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</td>\n\
+                            <td>"+data[i]['fecha_modificacion']+"</td>\n\
                             <td>"+data[i]['fechaCorte']+"</td>\n\\n\
                              <td>"+data[i]['fecha_creacion']+"</td>\n\
                         </tr>";
                                      
                         programas[i] = data[i]['codigo'];
                         
-                        ponderado[i] =  parseFloat(data[i]['ponderado']);
+                        ponderado[i] =  parseFloat(data[i]['semaSeguiFisico']);
                         semaFin[i] = parseFloat(data[i]['semaSeguiFinanciero']);  
 
                     }
@@ -93,7 +97,65 @@
                     
                      $("#select_my_table").change();
                     
-                    $('#graficaGeneral1').highcharts({
+            
+                graficarSubprogramas(programas,                         
+                        ponderado,
+                        semaFin); 
+            }
+         });
+    }//fin del if
+    else{
+        
+        alert("URL Incorrecta");
+        
+    }
+         
+
+
+/**actulizarGraficaSubprogramas
+*/
+function actulizarGraficaSubprogramas()
+{
+var $misCheckbox= $(".mis_checkbox");
+var con=0;
+var  programas=Array();
+var ponderado =  Array();
+var semaFin = Array();  
+
+
+
+  $.each($misCheckbox, function( index, value ) {
+            console.log(value);
+            
+            if(value.checked)
+            {
+                var datos = value.dataset;
+                programas[con]=datos.programas;
+                ponderado[con] =parseFloat( datos.ponderado);
+                semaFin[con] = parseFloat(datos.semafin);  
+
+                con++;
+            }
+
+    });
+
+
+  graficarSubprogramas(programas,                         
+                        ponderado,
+                        semaFin);
+}
+
+
+/***
+dibujar las graficas de subprogramas 
+
+*/
+function graficarSubprogramas(programas,                         
+                        ponderado,
+                        semaFin){
+
+
+            $('#graficaGeneral1').highcharts({
                         chart: {
                             type: 'bar'
                         },
@@ -286,15 +348,9 @@
                         }]
                     });
                     
-                }
-         });
+                
          
-         
-    }//fin del if
-    else{
-        
-        alert("URL Incorrecta");
-        
-    }
-         
+}
+
+
 //});

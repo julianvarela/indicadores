@@ -59,26 +59,30 @@
                         var ponderado = new Array();
                         var semaFin = new Array();
 
+                            console.log(data);
                         for(var i=0; i<data.length; i++){
                             filas += "<tr class='datos-tabla'>\n\
-                                <td><input type='checkbox' name='post[]' value="+data[i]['codigo']+"></td>\n\
+                                <td><input type='checkbox' name='post[]'  class='mis_checkbox' onclick='actulizarGraficaProgramas()'  checked='true' "
+                                +"data-programas='"+data[i]['codigo'] + "' "
+                                +"data-ponderado='"+data[i]['semaSeguiFisico']  + "' "
+                                +"data-semafin='"+data[i]['semaSeguiFinanciero'] + "' " 
+                                 +" value="+data[i]['codigo']+"></td>\n\
                                 <td>"+data[i]['codigo']+"</td>\n\
                                 <td class='dato-tabla-nivel' >"+data[i]['nivel']+"</td>\n\
                                 <td>"+data[i]['ponderado']+"</td>\n\
                                 <td>"+data[i]['avancePonderado']+"</td>\n\
-                                <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"</b></td>\n\
-                                <td>"+nombreRango(data[i]['semaSeguiFisico'])+"</td>\n\
+                                <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"<br>"+nombreRango(data[i]['semaSeguiFisico'])+"</b></td>\n\
                                 <td>"+"$"+formaterNumeros(data[i]['recurProgramados'])+"</td>\n\
                                 <td>"+"$"+formaterNumeros(data[i]['recurEjecutados'])+"</td>\n\
-                                <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"</b></td>\n\
-                                <td>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</td>\n\
+                                <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"<br>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</b></td>\n\
+                                <td>"+data[i]['fecha_modificacion']+"</td>\n\
                                 <td>"+data[i]['fechaCorte']+"</td>\n\\n\
                                 <td>"+data[i]['fecha_creacion']+"</td>\n\
                             </tr>";
 
                             programas[i] = data[i]['codigo'];
 
-                            ponderado[i] =  parseFloat(data[i]['ponderado']);
+                            ponderado[i] =  parseFloat(data[i]['semaSeguiFisico']);
                             semaFin[i] = parseFloat(data[i]['semaSeguiFinanciero']);  
 
                         }
@@ -94,7 +98,75 @@
                             
 
 
-                        $('#graficaGeneral1').highcharts({
+                       graficarAvancePrograma( programas,
+
+                            ponderado,
+                            semaFin);    
+
+                    }
+             });
+         }//fin if
+          else{
+              
+              alert("URL Incorrecta");
+          }   
+//});
+
+
+
+
+
+
+
+
+/**actulizarGraficaprogramas
+*/
+function actulizarGraficaProgramas()
+{
+var $misCheckbox= $(".mis_checkbox");
+var con=0;
+var  programas=Array();
+var ponderado =  Array();
+var semaFin = Array();  
+
+
+
+  $.each($misCheckbox, function( index, value ) {
+          
+            
+            if(value.checked)
+            {
+                var datos = value.dataset;
+                programas[con]=datos.programas;
+                ponderado[con] =parseFloat( datos.ponderado);
+                semaFin[con] = parseFloat(datos.semafin);  
+
+                con++;
+            }
+
+    });
+
+
+  graficarAvancePrograma(programas,                         
+                        ponderado,
+                        semaFin);
+}
+
+
+
+
+/**
+ * 
+ *genrea la grafica de avace de programa
+ * 
+ * @return {[type]} [description]
+ */
+function graficarAvancePrograma( programas,
+
+                            ponderado,
+                            semaFin){
+
+ $('#graficaGeneral1').highcharts({
                             chart: {
                                 type: 'bar'
                             },
@@ -287,11 +359,4 @@
                             }]
                         });
 
-                    }
-             });
-         }//fin if
-          else{
-              
-              alert("URL Incorrecta");
-          }   
-//});
+}

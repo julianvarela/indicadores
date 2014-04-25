@@ -98,10 +98,7 @@
       }
       
       
-      
-      
-      
-      
+   
       
       
       
@@ -146,7 +143,11 @@
 
                         for(var i=0; i<data.length; i++){
                             filas += "<tr class='datos-tabla'>\n\
-                                <td><input type='checkbox' name='post[]' value="+data[i]['codigo']+"></td>\n\
+                                <td><input type='checkbox'  class='mis_checkbox' onclick='actulizarGraficaSectoresBasicos()' name='post[]' checked='true' "
+                                    +"data-programas='"+data[i]['codigo'] + "' "
+                                    +"data-ponderado='"+data[i]['semaSeguiFisico']  + "' "
+                                    +"data-semafin='"+data[i]['semaSeguiFinanciero'] + "' " 
+                                    +" value="+data[i]['codigo']+"></td>\n\
                                 <td>"+data[i]['codigo']+"</td>\n\
                                 <td class='dato-tabla-nivel'>"+data[i]['nivel']+"</td>\n\\n\
                                 <td class='dato-tabla-nivel'>"+data[i]['metas']+"</td>\n\
@@ -154,12 +155,11 @@
                                 <td>"+data[i]['valorLogrado']+"</td>\n\
                                 <td>"+data[i]['ponderado']+"</td>\n\
                                 <td>"+data[i]['avancePonderado']+"</td>\n\
-                                <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"</b></td>\n\
-                                <td>"+nombreRango(data[i]['semaSeguiFisico'])+"</td>\n\
+                                <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"<br>"+nombreRango(data[i]['semaSeguiFisico'])+"</b></td>\n\
                                 <td>"+"$"+formaterNumeros(data[i]['recurProgramados'])+"</td>\n\
                                 <td>"+"$"+formaterNumeros(data[i]['recurEjecutados'])+"</td>\n\
-                                <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"</b></td>\n\
-                                <td>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</td>\n\
+                                <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"<br>" +nombreRango(data[i]['semaSeguiFinanciero'])+"</b></td>\n\
+                                <td>"+data[i]['fecha_modificacion']+"</td>\n\
                                 <td>"+data[i]['fechaCorte']+"</td>\n\\n\
                              <td>"+data[i]['fecha_creacion']+"</td>\n\
                             </tr>";
@@ -177,11 +177,67 @@
     //                    console.log(recurEje);
 
                         $("#TablaSectoresBasicos").html(filas);                                        
+                        $("input[type=checkbox]").attr("checked",true);    
 
                         $("#select_my_table").change();
                              
+                        graficarSectoresBasicos( metas,
 
-                        $('#graficaGeneral1').highcharts({
+                            semaFis,
+                            semaFin);
+                        
+                    }
+             });
+         }
+   
+
+      
+      
+      /**actulizarGraficaSubprogramas
+*/
+function actulizarGraficaSectoresBasicos()
+{
+var $misCheckbox= $(".mis_checkbox");
+var con=0;
+var  metas=Array();
+var semaFis =  Array();
+var semaFin = Array();  
+
+
+
+  $.each($misCheckbox, function( index, value ) {
+           
+            
+            if(value.checked)
+            {
+                var datos = value.dataset;
+                metas[con]=datos.programas;
+                semaFis[con] =parseFloat( datos.ponderado);
+                semaFin[con] = parseFloat(datos.semafin);  
+
+                con++;
+            }
+
+    });
+
+
+  graficarSectoresBasicos( metas,
+
+                            semaFis,
+                            semaFin)
+}
+   
+
+
+
+
+function graficarSectoresBasicos( metas,
+
+                            semaFis,
+                            semaFin){
+
+
+    $('#graficaGeneral1').highcharts({
                             chart: {
                                 type: 'column'
                             },
@@ -376,8 +432,4 @@
                             }]
                         });
 
-                    }
-             });
-         }
-   
-
+}

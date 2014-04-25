@@ -19,6 +19,7 @@ class consultasSectoresBasicos {
     public function datosTablaSectoresBasicos($id_vigencia,$id_sector){
         $sql="SELECT m.codigo_nivel_pdm, m.nivel_pdm, m.metas, sfis.valor_esperado_meta_producto, sfis.valor_logrado_meta_producto, sfis.ponderado, sfis.avance_ponderado, sfis.semaforo_seguimiento, sfin.recursos_programados, sfin.recursos_ejecutados, sfin.semaforo_seguimiento_financiero
             ,DATE_FORMAT(m.fecha_creacion,'%d / %m / %Y') as fecha_creacion , DATE_FORMAT(sfin.fecha_corte,'%d / %m / %Y') as fecha_corte
+            ,  DATE_FORMAT(fm.fecha_modificacion ,'%d / %m / %Y') as fecha_modificacion 
 
             FROM matriz m, seguimiento_financiero sfin, seguimiento_fisico sfis, vigencias v, fila_matriz fm, clases c, municipios mu, departamentos de, sectores s
             WHERE v.id='{$id_vigencia}'            

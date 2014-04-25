@@ -52,7 +52,7 @@
                                 filas += "<tr class='datos-tabla'>\n\
                                     \n\<td class='dato-tabla-nivel'>"+(i+1)+"</td>\n\\n\
                                     <td class='dato-tabla-nivel'>"+data[i]['nombre']+"</td>\n\\n\
-                                    <td>"+getHtmlColor(data[i]['semaforo_seguimiento_fisico'])+"</b></td>\n\
+                                    <td>"+getHtmlColor(data[i]['semaforo_seguimiento_fisico'])+"</td>\n\
                                     <td>"+getHtmlColor(data[i]['semaforo_seguimiento_financiero'])+"</td>\n\
                                 </tr>";
 
@@ -109,7 +109,7 @@ function dibujarGraficaAvanceSectoreBasicos(mmiId,serie,metas)
 
                         $('#'+mmiId).highcharts({
                             chart: {
-                                type: 'column'
+                                type: 'bar'
                             },
                             title: {
                                 text: ''

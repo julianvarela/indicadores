@@ -1,8 +1,4 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /***
  * @param {year} año en formato YYYY
  * @param {String} incialse de de la clase puede ser .OG ,OE ,PR ,SPR
@@ -229,18 +225,31 @@ function isLocalStorageAvailable() {
  * @param {int} actual el año actual a resalta YYYY
  * @returns {String}
  */
-function construirNav(inicio,fin,actual){
+function construirNav(inicio,fin1,actual){
     
+
+
+
     actual=parseInt(actual.trim());
     
     var html=" <ul class='nav' data-spy='affix' data-offset-top='50'> "
             +"  <li  class='"+("0"==actual?" active ":"")+"' ><a href='noticias.html'><i class='fa fa-home fa-lg'></i><span>Noticias</span></a></li>";
       
-    for(var yearAux=inicio ; yearAux<=fin; yearAux++){
+    for(var i=0 ;  localStorage.getItem("year"+i); i++){
         
-        html+=" <li class='dropdown-submenu "+(yearAux==actual?" active ":"")+"' > "
-          +"  <a href='#'><i class='fa fa-th fa-lg'></i><span>"+yearAux +"</span></a>  "
-          +"  <ul class='dropdown-menu'> "
+
+        var valores= localStorage.getItem("year"+i).split("_");
+        var yearAux=valores[0];
+        var activo =valores[1];
+
+
+
+        html+=" <li class='"+(yearAux==actual?" active ":"")+"  "+(activo=="0"?" invisible_menu ":" dropdown-submenu ")+"' > "
+          +"  <a href='#'><i class='fa fa-th fa-lg'></i><span>"+yearAux +"</span></a>  ";
+        
+        if(activo=="1")
+        {
+          html+="  <ul class='dropdown-menu'> "
           +"    <li><a href='#' onclick=\"cargar_opcion1("+yearAux +",'OG' ,'AvanceGeneral.html')\" >Avance General</a></li> "
           +"    <li><a href='#' onclick=\"cargar_opcion1("+yearAux +",'OE','AvanceObjetivos.html')\" >Avance Objetivos</a></li> "            
           +"    <li><a href='#' onclick=\"cargar_opcion1("+yearAux+",'PR','AvanceProgramas.html') \" >Avance Programas</a></li> "
@@ -250,8 +259,8 @@ function construirNav(inicio,fin,actual){
           +"    <li><a href='#' onclick=\"cargar_opcion1("+yearAux +",'SPR' ,'SecretariasDespacho.html')\" >Secretarias Despacho</a></li> "
           +"    <li><a href='#' onclick=\"cargar_opcion1("+yearAux +",'SPR' ,'DependenciasAdmin.html')\" >Dependencias Administrativas</a></li> "
           +"  </ul> ";
+        }
     }
-    
     
     html+="  <li  class='"+("1"==actual?" active ":"")+"' ><a href='AvanceVigencia.html'><i class='fa fa-bar-chart-o fa-lg'></i><span>Ponderado</span></a></li>"
          +" </ul>";

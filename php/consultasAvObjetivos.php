@@ -22,6 +22,7 @@ class consultasAvObjetivos {
 		,s_fin.recursos_programados
 		,s_fin.recursos_ejecutados
 		,s_fin.semaforo_seguimiento_financiero
+        ,  DATE_FORMAT(f_m.fecha_modificacion ,'%d / %m / %Y') as fecha_modificacion 
                 FROM matriz m, fila_matriz f_m,seguimiento_financiero s_fin, seguimiento_fisico s_fis 
                 WHERE 
                         m.activo='1'

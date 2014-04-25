@@ -64,12 +64,11 @@ $(document).ready(function(){
                         filas += "<tr  class='datos-tabla'>\n\
                             <td>"+data[i]['codigo']+"</td>\n\
                             <td  class='dato-tabla-nivel'>"+data[i]['nivel']+"</td>\n\
-                            <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"</td>\n\
-                            <td>"+nombreRango(data[i]['semaSeguiFisico'])+"</td>\n\
+                            <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"<br>"+nombreRango(data[i]['semaSeguiFisico'])+"</td>\n\
                             <td>"+"$"+formaterNumeros(data[i]['recurProgramados'])+"</td>\n\
                             <td>"+"$"+formaterNumeros(data[i]['recurEjecutados'])+"</td>\n\
-                            <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"</td>\n\
-                            <td>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</td>\n\
+                            <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"<br>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</td>\n\
+                            <td>"+data[i]['fecha_modificacion']+"</td>\n\
                         </tr>";
                                                 
                         var semaforos = [ parseFloat(data[i]['semaSeguiFisico']) , parseFloat(data[i]['semaSeguiFinanciero']) ];

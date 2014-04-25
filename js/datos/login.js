@@ -44,12 +44,25 @@ function login_usuario()
                     localStorage.setItem("correo",data.datos[0].correo);
                     localStorage.setItem("usuario",data.datos[0].usuario);
                     localStorage.setItem("nombre",data.datos[0].nombre);
+
+
+                    //
+                    //                                        
+                     if(data.year)
+                     {
+
+                        for(var i=0 ; i< data.year.length  ; i++)
+                        {
+                            localStorage.setItem("year"+i, data.year[i].vigencia+"_"+data.year[i].activo);
+                        }// fin de for 
+                     }   
+
                 
                 }   
                 
-                console.log(data);   
+                //console.log(data);   
                 
-                $(".body-preload").css({display:'none'});
+               // $(".body-preload").css({display:'none'});
                 location.href='noticias.html';
                 
             }else{

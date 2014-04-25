@@ -49,13 +49,18 @@ switch ($opcion) {
         $pass=$_POST['pass'];
         $correo=$_POST['correo'];
         $login=new Login();
+        $consultaGeneral= new consultaGeneral();
+
+        $vigencias=  $consultaGeneral->listaVigencias();
+
+
         $datos=$login->mi_login($pass,$correo);
         
         if(count($datos)>0)
         {
             
             $_SESSION['correo']=$correo;
-            $salida=array('correcto'=>true,'datos'=>$datos);
+            $salida=array('correcto'=>true,'datos'=>$datos, 'year'=>$vigencias);
         }
             
         break;

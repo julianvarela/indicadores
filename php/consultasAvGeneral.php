@@ -16,7 +16,7 @@ class consultasAvGeneral {
      * @returns array La funcion retorna un array con los datos a mostrar en la tabla
      */    
     public function datosTablaAvanceGeneral($id_vigencia){
-        $sql="SELECT m.codigo_nivel_pdm, m.nivel_pdm, sfis.semaforo_seguimiento, sfin.recursos_programados, sfin.recursos_ejecutados, sfin.semaforo_seguimiento_financiero
+        $sql="SELECT m.codigo_nivel_pdm, m.nivel_pdm, sfis.semaforo_seguimiento, sfin.recursos_programados, sfin.recursos_ejecutados, sfin.semaforo_seguimiento_financiero,  DATE_FORMAT(fm.fecha_modificacion ,'%d / %m / %Y') as fecha_modificacion 
             FROM matriz m, seguimiento_financiero sfin, seguimiento_fisico sfis, vigencias v, fila_matriz fm, clases c
             WHERE v.id='{$id_vigencia}'            
                 AND fm.id_vigencia = v.id

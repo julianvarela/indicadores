@@ -31,7 +31,7 @@ $idVigencia= $consultaGeneral->vigencia($year);
                 "recurProgramados"=> $datos[$i]['recursos_programados'],
                 "recurEjecutados"=> $datos[$i]['recursos_ejecutados'],
                 "semaSeguiFinanciero"=> $datos[$i]['semaforo_seguimiento_financiero'],
-                "estadoFinanciero"=> "Alto"
+                "fecha_modificacion"=> $datos[$i]['fecha_modificacion']
             );
 
             array_push($retorno, $fila);

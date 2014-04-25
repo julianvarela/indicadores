@@ -71,8 +71,8 @@
                                     <td>"+getHtmlColor(data[i]['semaforo_seguimiento_fisico'])+"</b></td>\n\
                                     <td>"+getHtmlColor(data[i]['semaforo_seguimiento_financiero'])+"</td>\n\ ";
                                  
-                                    if($("#TablaAvanceSecretarias").length>0)
-                                         filas +=" <td>"+nombreRango(data[i]['semaforo_seguimiento_fisico'])+"</td>\n\ ";
+                                    //if($("#TablaAvanceSecretarias").length>0)
+                                    //    filas +=" <td>"+nombreRango(data[i]['semaforo_seguimiento_fisico'])+"</td>\n\ ";
 
 
                                 filas +=" </tr>";

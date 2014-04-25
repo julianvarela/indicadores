@@ -33,7 +33,9 @@ class consultaNoticias{
                 FROM noticias n
                 WHERE
                         n.activo='1'
-                        AND  n.tipos_noticias_id= {$idNoticias}";            
+                        AND  n.tipos_noticias_id= {$idNoticias} 
+                     ORDER BY   fecha_creacion  DESC 
+                    LIMIT 0 , 10 ";        
     
                         
                        

@@ -199,7 +199,12 @@
 
                         for(var i=0; i<data.length; i++){
                             filas += "<tr class='datos-tabla'>\n\
-                                <td><input type='checkbox' name='post[]' value="+data[i]['codigo']+"></td>\n\
+                                <td><input type='checkbox'  class='mis_checkbox' onclick='actulizarGraficarSecretaria()' name='post[]' checked='true' "
+                                    +"data-programas='"+data[i]['codigo'] + "' "
+                                    +"data-ponderado='"+data[i]['semaSeguiFisico']  + "' "
+                                    +"data-semafin='"+data[i]['semaSeguiFinanciero'] + "' " 
+                                    +" value="+data[i]['codigo']+"></td>\n\
+                                value="+data[i]['codigo']+"></td>\n\
                                 <td>"+data[i]['codigo']+"</td>\n\
                                 <td class='dato-tabla-nivel'>"+data[i]['nivel']+"</td>\n\\n\
                                 <td class='dato-tabla-nivel'>"+data[i]['metas']+"</td>\n\
@@ -207,12 +212,11 @@
                                 <td>"+data[i]['valorLogrado']+"</td>\n\
                                 <td>"+data[i]['ponderado']+"</td>\n\
                                 <td>"+data[i]['avancePonderado']+"</td>\n\
-                                <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"</b></td>\n\
-                                <td>"+nombreRango(data[i]['semaSeguiFisico'])+"</td>\n\
+                                <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"<br>"+nombreRango(data[i]['semaSeguiFisico'])+"</b></td>\n\
                                 <td>"+"$"+formaterNumeros(data[i]['recurProgramados'])+"</td>\n\
                                 <td>"+"$"+formaterNumeros(data[i]['recurEjecutados'])+"</td>\n\
-                                <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"</td>\n\
-                                <td>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</td>\n\
+                                <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"<br>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</td>\n\
+                                <td>"+data[i]['fecha_modificacion']+"</td>\n\
                             </tr>";
 
                             metas[i] = data[i]['codigo'];
@@ -237,8 +241,66 @@
                         
                         $("#select_my_table").change();
                         
+                        $("input[type=checkbox]").attr("checked",true);
 
-                        $('#graficaGeneral1').highcharts({
+                        graficarSecretaria( metas,
+
+                            semaFis,
+                            semaFin)
+                       
+
+                    }
+             });
+         }
+   
+
+
+
+   /**actulizarGraficaSubprogramas
+*/
+function actulizarGraficarSecretaria()
+{
+var $misCheckbox= $(".mis_checkbox");
+var con=0;
+var  programas=Array();
+var ponderado =  Array();
+var semaFin = Array();  
+
+
+
+  $.each($misCheckbox, function( index, value ) {
+            console.log(value);
+            
+            if(value.checked)
+            {
+                var datos = value.dataset;
+                programas[con]=datos.programas;
+                ponderado[con] =parseFloat( datos.ponderado);
+                semaFin[con] = parseFloat(datos.semafin);  
+
+                con++;
+            }
+
+    });
+
+
+  graficarSecretaria(programas,                         
+                        ponderado,
+                        semaFin);
+}
+     
+     
+
+
+
+
+             
+        function graficarSecretaria( metas,
+
+                            semaFis,
+                            semaFin){
+
+             $('#graficaGeneral1').highcharts({
                             chart: {
                                 type: 'column'
                             },
@@ -432,13 +494,5 @@
                                 data: semaFin,                        
                             }]
                         });
-
-                    }
-             });
-         }
-   
-     
-     
-             
-        
+        }
 //});
