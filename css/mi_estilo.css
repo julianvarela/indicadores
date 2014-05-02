@@ -108,3 +108,10 @@ tr.datos-tabla td hr{
 #panelAcordeonMeta footer{
     text-align: right;
 }
+
+#panelAcordeonMeta textarea{
+    width: 200px;
+    height: 100px;
+    overflow: auto;
+    resize: none;
+}

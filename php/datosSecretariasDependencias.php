@@ -16,10 +16,7 @@ include_once 'consultasSecretariasDependencias.php';
     switch($_POST['opcion']){
         
         case "consultaDatos":       
-            
-            
-           
-
+             
 
             $consultas = new consultasSecretariasDependencias();
             $datos = $consultas->datosTabla_Secretarias_Dependencias($idVigencia,$_POST['id_sd']);  
@@ -62,7 +59,7 @@ include_once 'consultasSecretariasDependencias.php';
         
             
             $consultas = new consultasSecretariasDependencias();
-            $datos = $consultas->listaSemaforo($idVigencia,"Secretarias");
+            $datos = $consultas->listaDependecias($idVigencia,"secretarias");
            
 
            $retorno = json_encode(array('datos'=>$datos,'colores'=>$colores));                        
@@ -78,7 +75,7 @@ include_once 'consultasSecretariasDependencias.php';
         
             
             $consultas = new consultasSecretariasDependencias();
-            $datos = $consultas->listaSemaforo($idVigencia,"dependencias");
+            $datos = $consultas->listaDependecias($idVigencia,"dependencias");
            
            
 
@@ -96,7 +93,7 @@ include_once 'consultasSecretariasDependencias.php';
         
             //secretaria--- POR DEFECTO ESTA QUEMADO
             $consultas = new consultasSecretariasDependencias();
-            $datoslistas = $consultas->listaSemaforo($idVigencia,"Secretarias");
+            $datoslistas = $consultas->listaDependecias($idVigencia,"secretarias");
             $datos=array();
             
             for($i=0;$i<count($datoslistas); $i++)
@@ -127,7 +124,7 @@ include_once 'consultasSecretariasDependencias.php';
         
             
             $consultas = new consultasSecretariasDependencias();
-            $datoslistas = $consultas->listaSemaforo($idVigencia,"dependencias");
+            $datoslistas = $consultas->listaDependecias($idVigencia,"dependencias");
             
             
             $datos=array();
