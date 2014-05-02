@@ -115,3 +115,11 @@ tr.datos-tabla td hr{
     overflow: auto;
     resize: none;
 }
+
+.mis_subprogramas{
+    padding-left: 2%;
+}
+.mis_subprogramas i{ 
+    color: #5191d1;
+}
+
