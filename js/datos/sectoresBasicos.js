@@ -190,246 +190,237 @@
              });
          }
    
-
       
       
       /**actulizarGraficaSubprogramas
 */
-function actulizarGraficaSectoresBasicos()
-{
-var $misCheckbox= $(".mis_checkbox");
-var con=0;
-var  metas=Array();
-var semaFis =  Array();
-var semaFin = Array();  
+    function actulizarGraficaSectoresBasicos(){
+            var $misCheckbox= $(".mis_checkbox");
+            var con=0;
+            var  metas=Array();
+            var semaFis =  Array();
+            var semaFin = Array();  
 
 
 
-  $.each($misCheckbox, function( index, value ) {
-           
-            
-            if(value.checked)
-            {
-                var datos = value.dataset;
-                metas[con]=datos.programas;
-                semaFis[con] =parseFloat( datos.ponderado);
-                semaFin[con] = parseFloat(datos.semafin);  
+            $.each($misCheckbox, function( index, value ) {           
 
-                con++;
-            }
+                      if(value.checked){
 
-    });
+                          var datos = value.dataset;
+                          metas[con]=datos.programas;
+                          semaFis[con] =parseFloat( datos.ponderado);
+                          semaFin[con] = parseFloat(datos.semafin);  
+
+                          con++;
+                      }
+              });
 
 
-  graficarSectoresBasicos( metas,
-
-                            semaFis,
-                            semaFin)
-}
+              graficarSectoresBasicos( metas, semaFis, semaFin)
+  
+    }
    
 
 
 
 
-function graficarSectoresBasicos( metas,
-
-                            semaFis,
-                            semaFin){
+    function graficarSectoresBasicos( metas, semaFis, semaFin){
 
 
-    $('#graficaGeneral1').highcharts({
-                            chart: {
-                                type: 'column'
-                            },
-                            title: {
-                                text: ''
-                            },
-                            xAxis: {
-                                categories: metas,
-                                title: {
-                                    text: 'Codigo de Programa',                                
-                                    style: {
-                                        fontWeight: 'bold',  
-                                        fontSize: '13px'                                    
-                                    }                                                                
+        $('#graficaGeneral1').highcharts({
+                                chart: {
+                                    type: 'column'
                                 },
-                                labels: {                                
-                                    y: 20,                                
-                                    style: {
-                                        fontWeight: 'bold',  
-                                        fontSize: '12px'                                    
-                                    }
-                                }              
-                            },
-                            yAxis: {
-                                min: 0,
                                 title: {
-                                    text: 'Avance (%)',                                
-                                    style: {
-                                        fontWeight: 'bold',  
-                                        fontSize: '13px'                                    
-                                    }                                                                
+                                    text: ''
                                 },
-                                labels: {
-                                    format: '{value} %'
-                                }
-                            },
-                            colors: [
-                                '#24CBE5',
-                                '#64E572',
-                                '#058DC7',
-                                '#50B432',
-                                '#ED561B',
-                                '#DDDF00',
-                                '#24CBE5',
-                                '#64E572',
-                                '#FF9655',
-                                '#FFF263',
-                                '#6AF9C4'
-                            ],       
-                            tooltip: {
-                                valueSuffix: ' %'
-                            },                        
-                            plotOptions: {
-                                column: {
-                                    dataLabels: {
-                                        //rotation: -90,
-                                        //x: 2,
-                                        //y: 25,
-                                        enabled: true,
+                                xAxis: {
+                                    categories: metas,
+                                    title: {
+                                        text: 'Codigo de Programa',                                
                                         style: {
-                                            color: '#000000',
-                                            fontSize: '12px',
-                                            fontFamily: 'Verdana, sans-serif',
-                                            fontWeight: 'bold'                                                            
-                                        }                             
-                                    } 
-                                }
-                            },                        
-                            legend: {
-                                layout: 'vertical',
-                                align: 'right',
-                                verticalAlign: 'top',
-                                x: -40,
-                                y: 100,
-                                floating: true,
-                                borderWidth: 1,
-                                backgroundColor: '#FFFFFF',
-                                shadow: true,
-                                enabled: false
-                            },
-                            credits: {
-                                enabled: false
-                            },
-    //                        series: [{
-    //                                name: 'Fisico',
-    //                                data: semaFis,                                                   
-    //                            },
-    //                            {
-    //                                name: 'Finanaciero',
-    //                                data: semaFin,                                
-    //                            }]                        
-                            series: [{
-                                name: 'Avance',
-                                data: semaFis                                                
-                            }]
-                        });
-
-
-
-                        /*
-                         * Grafica la conparacion entre los recursos ejecutados vs los programados
-                         */
-                        $('#graficaGeneral2').highcharts({
-                            chart: {
-                                type: 'column'
-                            },
-                            title: {
-                                text: ''
-                            },
-                            xAxis: {
-                                categories: metas,
-                                title: {
-                                    text: 'Codigo de Programa',                                
-                                    style: {
-                                        fontWeight: 'bold',  
-                                        fontSize: '13px'                                    
-                                    }                                                                
-                                },
-                                labels: {
-                                    y: 20,                                                                    
-                                    style: {
-                                        fontWeight: 'bold',  
-                                        fontSize: '12px'                                    
-                                    }
-                                }              
-                            },
-                            yAxis: {
-                                min: 0,
-                                title: {
-                                    text: 'Avance (%)',                                                            
-                                    style: {
-                                        fontWeight: 'bold',  
-                                        fontSize: '13px'                                    
-                                    }                                                                
-                                },
-                                labels: {
-                                    format: '{value}'
-                                }
-                            },
-
-                            colors: [
-                                '#FF9655',
-                                '#FFF263',
-                                '#24CBE5',
-                                '#64E572'                           
-                            ],                                                        
-                            tooltip: {
-                                valueSuffix: ' %'
-                            },
-                            plotOptions: {
-                                column: {
-                                    dataLabels: {
-                                        //rotation: -90,
-                                        //x: 2,
-                                        //y: 25,
-                                        enabled: true,
+                                            fontWeight: 'bold',  
+                                            fontSize: '13px'                                    
+                                        }                                                                
+                                    },
+                                    labels: {                                
+                                        y: 20,                                
                                         style: {
-                                            color: '#000000',
-                                            fontSize: '12px',
-                                            fontFamily: 'Verdana, sans-serif',
-                                            fontWeight: 'bold'                                                            
-                                        }                             
-                                        //rotation: -90
-                                    } 
-                                }
-                            },                        
-                            legend: {
-                                layout: 'vertical',
-                                align: 'right',
-                                verticalAlign: 'top',
-                                x: -40,
-                                y: 100,
-                                floating: true,
-                                borderWidth: 1,
-                                backgroundColor: '#FFFFFF',
-                                enabled: false
-                            },
-                            credits: {
-                                enabled: false
-                            },
-    //                        series: [{
-    //                                name: 'Programados',
-    //                                data: recurPro,                                                   
-    //                            },
-    //                            {
-    //                                name: 'Ejecutados',
-    //                                data: recurPro,                                
-    //                            }]                                                
-                            series: [{
-                                name: 'Avance',
-                                data: semaFin                  
-                            }]
-                        });
+                                            fontWeight: 'bold',  
+                                            fontSize: '12px'                                    
+                                        }
+                                    }              
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Avance (%)',                                
+                                        style: {
+                                            fontWeight: 'bold',  
+                                            fontSize: '13px'                                    
+                                        }                                                                
+                                    },
+                                    labels: {
+                                        format: '{value} %'
+                                    }
+                                },
+                                colors: [
+                                    '#24CBE5',
+                                    '#64E572',
+                                    '#058DC7',
+                                    '#50B432',
+                                    '#ED561B',
+                                    '#DDDF00',
+                                    '#24CBE5',
+                                    '#64E572',
+                                    '#FF9655',
+                                    '#FFF263',
+                                    '#6AF9C4'
+                                ],       
+                                tooltip: {
+                                    valueSuffix: ' %'
+                                },                        
+                                plotOptions: {
+                                    column: {
+                                        dataLabels: {
+                                            //rotation: -90,
+                                            //x: 2,
+                                            //y: 25,
+                                            enabled: true,
+                                            style: {
+                                                color: '#000000',
+                                                fontSize: '12px',
+                                                fontFamily: 'Verdana, sans-serif',
+                                                fontWeight: 'bold'                                                            
+                                            }                             
+                                        } 
+                                    }
+                                },                        
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'top',
+                                    x: -40,
+                                    y: 100,
+                                    floating: true,
+                                    borderWidth: 1,
+                                    backgroundColor: '#FFFFFF',
+                                    shadow: true,
+                                    enabled: false
+                                },
+                                credits: {
+                                    enabled: false
+                                },
+        //                        series: [{
+        //                                name: 'Fisico',
+        //                                data: semaFis,                                                   
+        //                            },
+        //                            {
+        //                                name: 'Finanaciero',
+        //                                data: semaFin,                                
+        //                            }]                        
+                                series: [{
+                                    name: 'Avance',
+                                    data: semaFis                                                
+                                }]
+                            });
 
-}
+
+
+                            /*
+                             * Grafica la conparacion entre los recursos ejecutados vs los programados
+                             */
+                            $('#graficaGeneral2').highcharts({
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: ''
+                                },
+                                xAxis: {
+                                    categories: metas,
+                                    title: {
+                                        text: 'Codigo de Programa',                                
+                                        style: {
+                                            fontWeight: 'bold',  
+                                            fontSize: '13px'                                    
+                                        }                                                                
+                                    },
+                                    labels: {
+                                        y: 20,                                                                    
+                                        style: {
+                                            fontWeight: 'bold',  
+                                            fontSize: '12px'                                    
+                                        }
+                                    }              
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Avance (%)',                                                            
+                                        style: {
+                                            fontWeight: 'bold',  
+                                            fontSize: '13px'                                    
+                                        }                                                                
+                                    },
+                                    labels: {
+                                        format: '{value}'
+                                    }
+                                },
+
+                                colors: [
+                                    '#FF9655',
+                                    '#FFF263',
+                                    '#24CBE5',
+                                    '#64E572'                           
+                                ],                                                        
+                                tooltip: {
+                                    valueSuffix: ' %'
+                                },
+                                plotOptions: {
+                                    column: {
+                                        dataLabels: {
+                                            //rotation: -90,
+                                            //x: 2,
+                                            //y: 25,
+                                            enabled: true,
+                                            style: {
+                                                color: '#000000',
+                                                fontSize: '12px',
+                                                fontFamily: 'Verdana, sans-serif',
+                                                fontWeight: 'bold'                                                            
+                                            }                             
+                                            //rotation: -90
+                                        } 
+                                    }
+                                },                        
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'top',
+                                    x: -40,
+                                    y: 100,
+                                    floating: true,
+                                    borderWidth: 1,
+                                    backgroundColor: '#FFFFFF',
+                                    enabled: false
+                                },
+                                credits: {
+                                    enabled: false
+                                },
+        //                        series: [{
+        //                                name: 'Programados',
+        //                                data: recurPro,                                                   
+        //                            },
+        //                            {
+        //                                name: 'Ejecutados',
+        //                                data: recurPro,                                
+        //                            }]                                                
+                                series: [{
+                                    name: 'Avance',
+                                    data: semaFin                  
+                                }]
+                            });
+
+    }

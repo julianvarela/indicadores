@@ -93,6 +93,25 @@ tbody > tr.datos-tabla > td.dato-tabla-nivel{
 .invisible_menu > a, .invisible_menu:hover > a{
     color:#8e9eae !important; 
     cursor: default;
-
 }
 
+
+
+tr.datos-tabla td hr{
+    margin: 5px;    
+}
+
+#panelAcordeonMeta a b{
+    color: #5191D1;
+}
+
+#panelAcordeonMeta footer{
+    text-align: right;
+}
+
+#panelAcordeonMeta textarea{
+    width: 200px;
+    height: 100px;
+    overflow: auto;
+    resize: none;
+}

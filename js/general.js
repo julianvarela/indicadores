@@ -226,9 +226,6 @@ function isLocalStorageAvailable() {
  * @returns {String}
  */
 function construirNav(inicio,fin1,actual){
-    
-
-
 
     actual=parseInt(actual.trim());
     
@@ -271,10 +268,41 @@ function construirNav(inicio,fin1,actual){
 
 
 
+/**construirNavUsuario
+ * construye el html de navegacion
+ * @param {int} inicio el año de inicio YYYY
+ * @param {int} fin el año de fin YYYY
+ * @param {int} actual el año actual a resalta YYYY
+ * @returns {String}
+ */
+function construirNavUsuario(inicio,fin1,actual){
+
+    actual=parseInt(actual.trim());
+    
+    var html=" <ul class='nav' data-spy='affix' data-offset-top='50'> "
+            +"  <li  class='"+("0"==actual?" active ":"")+"' ><a href='noticias.html'><i class='fa fa-home fa-lg'></i><span>Noticias</span></a></li>";
+      
+    for(var i=0 ;  localStorage.getItem("year"+i); i++){        
+
+        var valores= localStorage.getItem("year"+i).split("_");
+        var yearAux=valores[0];
+        var activo =valores[1];
+
+        html+="<li class='"+(yearAux==actual?" active ":"")+"'>"
+            +"   <a href='ProgramasUsuario.html'><i class='fa fa-th fa-lg'></i><span>yearAux<br/><span class='badge bg-primary'>10</span></span></a>";            
+    }    
+   
+    
+
+ return html; 
+
+} 
+
+
 
 /**
- * genere le htm de las opciones del select
- * @param {array} del  forma id , nombre con los datos de opcion
+ * genere el html de las opciones del select
+ * @param {array} de  forma id , nombre con los datos de opcion
  *  @return {String} html de los option
  * */
 

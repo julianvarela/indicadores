@@ -44,15 +44,15 @@ class consultasSecretariasDependencias {
     
 
     /*
-     * Funcion que consulta la lista de las Secretaria existentes
-     * @param integer $nombre_secretaria_dependencia ID del tipo de semaforo a consultar (2 - Secretaria o 3- Dependencias)
+     * Funcion que consulta la lista de las Secretarias o Dependencias existentes
+     * @param string $tipo cadena de texto que especifica el tipo de semaforo a consultar (2 - Secretaria o 3- Dependencia)
      * @returns array La funcion retorna un array con las secretarias inscritas
      */    
-    public function listaSemaforo($id_vigencia,$nombre_secretaria_dependencia){
+    public function listaDependecias($id_vigencia,$tipo){
         $sql="SELECT d.id as id , d.nombre  as nombre
             FROM  dependencias d, tipos_semaforo ts, vigencias v, municipios mu, departamentos de
             WHERE v.id='{$id_vigencia}'
-                AND ts.nombre like '%{$nombre_secretaria_dependencia}%'
+                AND ts.nombre like '%{$tipo}%'
                 AND ts.id = d.tipos_semaforo_id
                 AND d.activo = '1'
                 AND ts.activo = '1'
@@ -67,7 +67,19 @@ class consultasSecretariasDependencias {
     }
     
     
-    
+    /*
+     * Funcion que consulta todas las Dependencias existentes
+     * @returns array La funcion retorna un array con las dependencias y secretarias inscritas
+     */    
+    public function listaTodaDependecia(){
+        $sql="SELECT id, UPPER(nombre) nombre FROM dependencias d
+              WHERE d.activo ='1'
+                ";
+        $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+        $conexion->consultaSQL($sql);       
+        return $conexion->_datosRegistros;         
+
+    }    
     
     
     
