@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Lista de Metas</title>
+  <title>Lista de Programas</title>
   <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="shortcut icon" href="imagenes/favicon.png">  
@@ -68,7 +68,7 @@
               <div class="panel mi_acordeon" id="panelAcordeonMeta">
                 <div class="panel-heading">
                   <a class="accordion-toggle" data-toggle="collapse" href="#AgregarEditarMeta">
-                      <b>Ingresar Nueva Meta</b>
+                      <b>Ingresar Nuevo Programa</b>
                   </a>
                 </div>
                 <div id="AgregarEditarMeta" class="panel-collapse collapse">  <!-- collapse ->oculta / in -> muestra -->
@@ -77,6 +77,8 @@
                           <table class="table table-striped m-b-none" data-ride="datatables">
                             <thead>
                               <tr>
+                                <th>Codigo Nivel PDM</th>
+                                <th>Nivel PDM</th>
                                 <th>Meta</th>
                                 <th>Linea Base</th>
                                 <th>Valor Esperado Productos</th>
@@ -95,8 +97,19 @@
                                 <th>Fecha de Corte <span class="my_year">2014</span></th>                    
                               </tr>
                             </thead>
-                            <tbody id="TablaDatosMetas">
+                            <tbody id="TablaDatosProgramas">
                                 <tr>                     
+                                    <td>
+                                        <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">
+                                    </td>
+                                    <td>
+                                        <select name="programas" class="input-sm form-control">
+                                          <option value="0">Programa 1</option>
+                                          <option value="1">Programa 2</option>
+                                          <option value="0">Programa 3</option>
+                                          <option value="1">Programa 4</option>
+                                        </select>                                      
+                                    </td>
                                     <td>
                                         <textarea placeholder="Descripcion de la Meta" rows="5" class="input-sm form-control parsley-validated" data-trigger="keyup" data-rangelength="[20,200]"></textarea>
                                     </td>

@@ -101,15 +101,15 @@ tr.datos-tabla td hr{
     margin: 5px;    
 }
 
-#panelAcordeonMeta a b{
+.mi_acordeon a b{
     color: #5191D1;
 }
 
-#panelAcordeonMeta footer{
+.mi_acordeon footer{
     text-align: right;
 }
 
-#panelAcordeonMeta textarea{
+.mi_acordeon textarea{
     width: 200px;
     height: 100px;
     overflow: auto;
