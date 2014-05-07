@@ -47,7 +47,7 @@
           <li><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2012<br/><span class="badge bg-primary">10</span></span></a></li>          
           <li><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2013<br/><span class="badge bg-primary ">14</span></span></a></li>          
           <li class="active"><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2014<br/><span class="badge bg-primary">6</span></span></a></li>          
-          <li><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2015<br/><span class="badge bg-primary">0</span></span></a></li>
+          <li><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>203<br/><span class="badge bg-primary">0</span></span></a></li>
       </ul>      
   </nav>  
   <!-- / nav -->
@@ -65,69 +65,251 @@
           <div class="col-lg-12">
 
             <!-- acordeon ingresar/editar usuarios -->          
-              <div class="panel mi_acordeon" id="panelAcordeonUsuario">
-                <div class="panel-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" href="#AgregarEditarUsuario">
-                      <b>Ingresar Nuevo Usuario</b>
-                  </a>
-                </div>
+            <section class="panel mi_acordeon" id="panelAcordeonUsuario">
+                <a class="accordion-toggle list-group-item bg bg-focus" data-toggle="collapse" href="#AgregarEditarUsuario">
+                    <b>Ingresar Nuevo Usuario</b>
+                </a>                
                 <div id="AgregarEditarUsuario" class="panel-collapse collapse">  <!-- collapse ->oculta / in -> muestra -->
-                      <div class="table-responsive" style="overflow-x:auto">
-                          <table class="table table-striped m-b-none" data-ride="datatables">
-                            <thead>
-                              <tr>                                
-                                <th>Nombre</th>
-                                <th>Usuario</th>
-                                <th>Correo</th>                    
-                                <th>Contraseña</th>
-                                <th>Telefono</th>                    
-                                <th>Oficina Principal</th>          
-                                <th>Tipo de Usuario</th>                
-                                <th>Estado</th>
+                    <div class="table-responsive" style="overflow-x:auto">
+                        <table class="table table-striped m-b-none" data-ride="datatables">
+                          <thead>
+                            <tr>                                
+                              <th>Nombre</th>
+                              <th>Usuario</th>
+                              <th>Correo</th>                    
+                              <th>Contraseña</th>
+                              <th>Telefono</th>                    
+                              <th>Oficina Principal</th>          
+                              <th>Tipo de Usuario</th>                
+                              <th>Estado</th>
+                            </tr>
+                          </thead>
+                          <tbody id="TablaDatosUsuario">
+                              <tr>                     
+                                  <td>
+                                      <input name="nombreU" data-required="true" class="input-sm form-control parsley-validated" type="text">
+                                  </td>
+                                  <td>
+                                      <input name="usuarioU" data-required="true" class="input-sm form-control parsley-validated" type="text">
+                                  </td>
+                                  <td>
+                                      <input name="correoU" data-required="true" class="input-sm form-control parsley-validated" type="">
+                                  </td>
+                                  <td>
+                                      <input name="claveU" data-required="true" class="input-sm form-control parsley-validated" type="">
+                                  </td>                                    
+                                  <td>
+                                      <input name="telefonoU" data-required="true" class="input-sm form-control parsley-validated" type="text">
+                                  </td>                                     
+                                  <td>
+                                      <input name="oficinaU" data-required="true" class="input-sm form-control parsley-validated" type="text">
+                                  </td>
+                                  <td>
+                                      <select name="tipoU" class="input-sm form-control">
+                                        <option value="1">Administrador</option>
+                                        <option value="2">Funcionario</option>
+                                      </select>                                      
+                                  </td>                                    
+                                  <td>
+                                      <select name="estadoU" class="input-sm form-control">
+                                        <option value="1">Activo</option>
+                                        <option value="2">Inactivo</option>
+                                      </select>                                      
+                                  </td>
                               </tr>
-                            </thead>
-                            <tbody id="TablaDatosUsuario">
-                                <tr>                     
-                                    <td>
-                                        <input name="nombreU" data-required="true" class="input-sm form-control parsley-validated" type="text">
-                                    </td>
-                                    <td>
-                                        <input name="usuarioU" data-required="true" class="input-sm form-control parsley-validated" type="text">
-                                    </td>
-                                    <td>
-                                        <input name="correoU" data-required="true" class="input-sm form-control parsley-validated" type="">
-                                    </td>
-                                    <td>
-                                        <input name="claveU" data-required="true" class="input-sm form-control parsley-validated" type="">
-                                    </td>                                    
-                                    <td>
-                                        <input name="telefonoU" data-required="true" class="input-sm form-control parsley-validated" type="text">
-                                    </td>                                     
-                                    <td>
-                                        <input name="oficinaU" data-required="true" class="input-sm form-control parsley-validated" type="text">
-                                    </td>
-                                    <td>
-                                        <select name="tipoU" class="input-sm form-control">
-                                          <option value="1">Administrador</option>
-                                          <option value="2">Funcionario</option>
-                                        </select>                                      
-                                    </td>                                    
-                                    <td>
-                                        <select name="estadoU" class="input-sm form-control">
-                                          <option value="1">Activo</option>
-                                          <option value="2">Inactivo</option>
-                                        </select>                                      
-                                    </td>
-                                </tr>
-                            </tbody>
-                          </table>
+                          </tbody>
+                        </table>
+                    </div>
+                    <footer class="panel-footer">
+                        <a href="#" class="btn btn-success">Guardar</a>
+                        <a href="#" class="btn btn-danger">Cancelar</a>
+                    </footer>
+
+                    <section class="panel">                                              
+                      <a class="accordion-toggle list-group-item bg bg-focus" data-toggle="collapse" href="#listaProgramas">
+                        <b>Conseder permisos sobre subprogramas</b>
+                      </a>                      
+                      <div id="listaProgramas" class="panel-collapse collapse list-group">
+                          <a class="list-group-item accordion-toggle bg bg-light" data-toggle="collapse" href="#subprogramas1">
+                            <i class="fa fa-chevron-right"></i>
+                            <span class="badge bg-info">3</span>
+                            <i class="fa fa-fw fa-star"></i> Programa 1
+                          </a>      
+                              <div id="subprogramas1" class="panel-collapse in mis_subprogramas">                    
+                                <div class="table-responsive" style="overflow-x:auto">
+                                    <table class="table table-striped m-b-none" data-ride="datatables">
+                                      <thead>
+                                        <tr>                                
+                                          <th width="5%"><input type="checkbox" checked='true' onclick=''></th>   
+                                          <th>Subprograma</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody id="">
+                                          <tr>
+                                            <td>
+                                                <input type="checkbox" checked='true' onclick=''>
+                                            </td>                                  
+                                            <td>
+                                                Subprograma 1.1
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td>
+                                                <input type="checkbox" checked='true' onclick=''>
+                                            </td>                                  
+                                            <td>
+                                                Subprograma 1.2
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td>
+                                                <input type="checkbox" checked='true' onclick=''>
+                                            </td>                                  
+                                            <td>
+                                                Subprograma 1.3
+                                            </td>
+                                          </tr>
+                                      </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                          <a class="list-group-item accordion-toggle bg bg-light" data-toggle="collapse" href="#subprogramas2">
+                            <i class="fa fa-chevron-right"></i>
+                            <span class="badge bg-info">3</span>
+                            <i class="fa fa-fw fa-star"></i> Programa 2
+                          </a>      
+                              <div id="subprogramas2" class="panel-collapse collapse mis_subprogramas">                    
+                                <div class="table-responsive" style="overflow-x:auto">
+                                    <table class="table table-striped m-b-none" data-ride="datatables">
+                                      <thead>
+                                        <tr>                                
+                                          <th width="5%"><input type="checkbox" checked='true' onclick=''></th>   
+                                          <th>Subprograma</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody id="">
+                                          <tr>
+                                            <td>
+                                                <input type="checkbox" checked='true' onclick=''>
+                                            </td>                                  
+                                            <td>
+                                                Subprograma 2.1
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td>
+                                                <input type="checkbox" checked='true' onclick=''>
+                                            </td>                                  
+                                            <td>
+                                                Subprograma 2.2
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td>
+                                                <input type="checkbox" checked='true' onclick=''>
+                                            </td>                                  
+                                            <td>
+                                                Subprograma 2.3
+                                            </td>
+                                          </tr>
+                                      </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                          <a class="list-group-item accordion-toggle bg bg-light" data-toggle="collapse" href="#subprogramas3">
+                            <i class="fa fa-chevron-right"></i>
+                            <span class="badge bg-info">3</span>
+                            <i class="fa fa-fw fa-star"></i> Programa 3
+                          </a>      
+                              <div id="subprogramas3" class="panel-collapse collapse mis_subprogramas">                    
+                                <div class="table-responsive" style="overflow-x:auto">
+                                    <table class="table table-striped m-b-none" data-ride="datatables">
+                                      <thead>
+                                        <tr>                                
+                                          <th width="5%"><input type="checkbox" checked='true' onclick=''></th>   
+                                          <th>Subprograma</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody id="">
+                                          <tr>
+                                            <td>
+                                                <input type="checkbox" checked='true' onclick=''>
+                                            </td>                                  
+                                            <td>
+                                                Subprograma 3.1
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td>
+                                                <input type="checkbox" checked='true' onclick=''>
+                                            </td>                                  
+                                            <td>
+                                                Subprograma 3.2
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td>
+                                                <input type="checkbox" checked='true' onclick=''>
+                                            </td>                                  
+                                            <td>
+                                                Subprograma 3.4
+                                            </td>
+                                          </tr>
+                                      </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                          <a class="list-group-item accordion-toggle bg bg-light" data-toggle="collapse" href="#subprogramas4">
+                            <i class="fa fa-chevron-right"></i>
+                            <span class="badge bg-info">3</span>
+                            <i class="fa fa-fw fa-star"></i> Programa 4
+                          </a>      
+                              <div id="subprogramas4" class="panel-collapse collapse mis_subprogramas">                    
+                                <div class="table-responsive" style="overflow-x:auto">
+                                    <table class="table table-striped m-b-none" data-ride="datatables">
+                                      <thead>
+                                        <tr>                                
+                                          <th width="5%"><input type="checkbox" checked='true' onclick=''></th>   
+                                          <th>Subprograma</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody id="">
+                                          <tr>
+                                            <td>
+                                                <input type="checkbox" checked='true' onclick=''>
+                                            </td>                                  
+                                            <td>
+                                                Subprograma 4.1
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td>
+                                                <input type="checkbox" checked='true' onclick=''>
+                                            </td>                                  
+                                            <td>
+                                                Subprograma 4.2
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td>
+                                                <input type="checkbox" checked='true' onclick=''>
+                                            </td>                                  
+                                            <td>
+                                                Subprograma 4.3
+                                            </td>
+                                          </tr>
+                                      </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                        <footer class="panel-footer">
+                            <a href="#" class="btn btn-success">Guardar</a>
+                            <a href="#" class="btn btn-danger">Cancelar</a>
+                        </footer>                          
                       </div>
-                      <footer class="panel-footer">
-                          <a href="#" class="btn btn-success">Guardar</a>
-                          <a href="#" class="btn btn-danger">Cancelar</a>
-                      </footer>
+                    </section>                    
                 </div>
-              </div>          
+            </section>          
             <!-- acordeon ingresar/editar -->            
 
             <section class="panel">
