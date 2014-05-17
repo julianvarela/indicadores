@@ -78,9 +78,10 @@
                                 filas +=" </tr>";
 
                                 if($("#TablaAvanceSecretarias").length>0){
-                                    metas[i]= data[i]['nombre'].split(" ");
+                                    metas[i]= data[i]['nombre'].trim().split(" ");
                                     metas[i]=  metas[i][metas[i].length-1];
 
+                          
                                 }else{//para dependencias 
                                     metas[i]=(i+1);
                                     

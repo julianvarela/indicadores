@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Lista de Programas</title>
+  <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="imagenes/favicon.png">  
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/plugin.css">
+  <link rel="stylesheet" href="css/font.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mi_estilo.css">  
+  <!--[if lt IE 9]>
+    <script src="js/ie/respond.min.js"></script>
+    <script src="js/ie/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <!-- header -->
+  <header id="header" class="navbar">
+    <ul class="nav navbar-nav navbar-avatar pull-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
+          <span class="hidden-xs-only my_usuario">Mika Sokeil</span>
+          <span class="thumb-small avatar inline"><img src="imagenes/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
+          <b class="caret hidden-xs-only"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Settings</a></li>
+          <li><a href="perfil.html">Profile</a></li>
+          <li class="divider"></li>
+          <li><a href="index.html">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+   <a class="navbar-brand" href="#" style="font-size: 16px">SISMEP</a>
+    <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
+      <i class="fa fa-bars fa-lg text-default"></i>
+    </button>
+  </header>
+  <!-- / header -->
+  <!-- nav -->
+  <nav id="nav" class="nav-primary hidden-xs nav-vertical">
+      <ul class="nav affix-top" data-spy="affix" data-offset-top="50">
+          <li><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2012<br/><span class="badge bg-primary">10</span></span></a></li>          
+          <li><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2013<br/><span class="badge bg-primary ">14</span></span></a></li>          
+          <li class="active"><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2014<br/><span class="badge bg-primary">6</span></span></a></li>          
+          <li><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2015<br/><span class="badge bg-primary">0</span></span></a></li>
+      </ul>      
+  </nav>  
+  <!-- / nav -->
+  
+  <section id="content">
+    <section class="main padder">
+        
+        <ul class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Seguimiento</a></li>
+            <li><a href="#" class="my_year">2014</a></li>
+            <li class="active">Metas</li>
+        </ul>        
+        
+        <div class="row">
+          <div class="col-lg-12">
+
+            <!-- acordeon ingresar/editar -->          
+              <div class="panel mi_acordeon" id="panelAcordeonMeta">
+                <div class="panel-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" href="#AgregarEditarMeta">
+                      <b>Ingresar Nuevo Programa</b>
+                  </a>
+                </div>
+                <div id="AgregarEditarMeta" class="panel-collapse collapse">  <!-- collapse ->oculta / in -> muestra -->
+                  <!--<div class="panel-body text-small">-->
+                      <div class="table-responsive" style="overflow-x:auto">
+                          <table class="table table-striped m-b-none" data-ride="datatables">
+                            <thead>
+                              <tr>
+                                <th>Codigo Nivel PDM</th>
+                                <th>Nivel PDM</th>
+                                <th>Meta</th>
+                                <th>Linea Base</th>
+                                <th>Valor Esperado Productos</th>
+                                <th>Dependecia Responsable</th>                    
+                                <th>Nombre del Sector</th>                    
+
+                                <th>Valor Esperado Meta Producto <span class="my_year">2014</span></th>
+                                <th>Valor Logrado Meta Producto <span class="my_year">2014</span></th>
+                                <th>Ponderado <span class="my_year">2014</span></th>
+                                <th>Avance Ponderado <span class="my_year">2014</span></th>
+                                <th>Avance Semaforo Seguimiento Fisico <span class="my_year">2014</span></th>
+
+                                <th>Recursos Programados <span class="my_year">2014</span></th>
+                                <th>Recursos Ejecutados <span class="my_year">2014</span></th>
+                                <th>Semaforo Seguimiento Financiero <span class="my_year">2014</span></th>
+                                <th>Fecha de Corte <span class="my_year">2014</span></th>                    
+                              </tr>
+                            </thead>
+                            <tbody id="TablaDatosProgramas">
+                                <tr>                     
+                                    <td>
+                                        <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">
+                                    </td>
+                                    <td>
+                                        <select name="programas" class="input-sm form-control">
+                                          <option value="0">Programa 1</option>
+                                          <option value="1">Programa 2</option>
+                                          <option value="0">Programa 3</option>
+                                          <option value="1">Programa 4</option>
+                                        </select>                                      
+                                    </td>
+                                    <td>
+                                        <textarea placeholder="Descripcion de la Meta" rows="5" class="input-sm form-control parsley-validated" data-trigger="keyup" data-rangelength="[20,200]"></textarea>
+                                    </td>
+                                    <td>0</td>
+                                    <td>
+                                        <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">
+                                    </td>
+                                    <td>
+                                        <select id="selectDependencias" name="selectDependencias" class="input-sm form-control">
+                                          <option value="0">dependencias 1</option>
+                                          <option value="1">dependencias 2</option>
+                                          <option value="2">dependencias 3</option>
+                                          <option value="3">dependencias 4</option>
+                                          <option value="4">dependencias 5</option>
+                                          <option value="5">dependencias 6</option>
+                                          <option value="6">dependencias 7</option>
+                                          <option value="7">dependencias 8</option>                                        
+                                        </select>                                      
+                                    </td>
+                                    <td>
+                                        <select id="selectSectorBasico" name="selectSectorBasico" class="input-sm form-control">
+                                          <option value="0">sectorBasico 1</option>
+                                          <option value="1">sectorBasico 2</option>
+                                          <option value="2">sectorBasico 3</option>
+                                          <option value="3">sectorBasico 4</option>
+                                          <option value="4">sectorBasico 5</option>
+                                          <option value="5">sectorBasico 6</option>
+                                          <option value="6">sectorBasico 7</option>
+                                          <option value="7">sectorBasico 8</option>                                        
+                                        </select>                                       
+                                    </td>
+                                    <td>
+                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
+                                    </td>
+                                    <td>
+                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
+                                    </td>
+                                    <td>
+                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
+                                    </td>
+                                    <td>
+                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
+                                    </td>
+                                    <td>
+                                      <input name="codigoM" placeholder="80%" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
+                                    </td>
+                                    <td>
+                                      <input name="codigoM" placeholder="20.000.000.000" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
+                                    </td>
+                                    <td>
+                                      <input name="codigoM" placeholder="20.000.000.000" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
+                                    </td>
+                                    <td>
+                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
+                                    </td>
+                                    <td>
+                                      <input class="input-sm form-control datepicker" size="16" value="12-02-2013" data-date-format="dd-mm-yyyy" type="text">
+                                    </td>                                  
+                                </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                      <footer class="panel-footer">
+                          <a href="#" class="btn btn-success">Guardar</a>
+                          <a href="#" class="btn btn-danger">Cancelar</a>
+                      </footer>
+                  <!--</div>-->
+                </div>
+              </div>          
+            <!-- acordeon ingresar/editar -->            
+
+            <section class="panel">
+              <header class="panel-heading">            
+                  <div class="row">
+                      <div class="col-sm-6 text-center-sm">
+                          <h4><b>Metas ingresadas en la vigencia <span class="my_year">2014</span></b></h4>
+                      </div>
+                      <div class="col-sm-offset-3 col-lg-offset-3 col-sm-3  col-lg-2 text-center">
+                          <label>Mostrar
+                              <select size="1" id="select_my_table">
+                                  <option value="2" selected="selected">2</option>
+                                  <option value="5">5</option>
+                                  <option value="10">10</option>
+                                  <option value="100">100</option>
+                              </select> 
+                              filas</label>
+                      </div>
+                  </div>
+              </header>                                                     
+
+              <div class="table-responsive" style="overflow-x:auto">
+                <table class="table table-striped m-b-none" data-ride="datatables">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Codigo Nivel PDM</th>
+                      <th>Nivel PDM</th>
+                      <th>Meta</th>
+                      <th>Linea Base</th>
+                      <th>Valor Esperado Productos</th>
+                      <th>Dependecia Responsable</th>                    
+                      <th>Nombre del Sector</th>                    
+
+                      <th>Valor Esperado Meta Producto <span class="my_year">2014</span></th>
+                      <th>Valor Logrado Meta Producto <span class="my_year">2014</span></th>
+                      <th>Ponderado <span class="my_year">2014</span></th>
+                      <th>Avance Ponderado <span class="my_year">2014</span></th>
+                      <th>Avance Semaforo Seguimiento Fisico <span class="my_year">2014</span></th>
+
+                      <th>Recursos Programados <span class="my_year">2014</span></th>
+                      <th>Recursos Ejecutados <span class="my_year">2014</span></th>
+                      <th>Semaforo Seguimiento Financiero <span class="my_year">2014</span></th>
+                      <th>Fecha de Corte <span class="my_year">2014</span></th>                    
+                    </tr>
+                  </thead>
+                  <tbody id="TablaAvanceProgramas">
+                      <tr class="datos-tabla">
+                          
+                        
+                          <td>
+                              <a data-original-title="Editar Meta" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-pencil"></i></a><hr />
+                              <a data-original-title="Eliminar Meta" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-trash-o"></i></a>
+                          </td>                        
+                          <td>1.1.1</td>
+                          <td class="dato-tabla-nivel">Poblacion Desplazada  y activa compromiso de todo</td>
+                          <td class="dato-tabla-nivel">Jornada de validacion semestral de informacion del RUPD</td>
+                          <td>0</td>
+                          <td>8,00</td>
+                          <td>Secretaria de Gobierno</td>
+                          <td>Grupos Vulnerables</td>
+                          <td>2,00</td>
+                          <td>0,00</td>
+                          <td>18,0</td>
+                          <td>0,0</td>
+                          <td>0,00%</td>
+                          <td>2.000.000,00</td>
+                          <td>0,00</td>
+                          <td>0,00</td>
+                          <td>12/31/2012</td>
+                      </tr>
+                      <tr class="datos-tabla">
+                          <td>
+                              <a data-original-title="Editar Meta" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-pencil"></i></a><hr />
+                              <a data-original-title="Eliminar Meta" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-trash-o"></i></a>
+                          </td>                        
+                          <td>1.1.1</td>
+                          <td class="dato-tabla-nivel">Poblacion Desplazada  y activa compromiso de todo</td>
+                          <td class="dato-tabla-nivel">Jornada de validacion semestral de informacion del RUPD</td>
+                          <td>0</td>
+                          <td>8,00</td>
+                          <td>Secretaria de Gobierno</td>
+                          <td>Grupos Vulnerables</td>
+                          <td>2,00</td>
+                          <td>0,00</td>
+                          <td>18,0</td>
+                          <td>0,0</td>
+                          <td>0,00%</td>
+                          <td>2.000.000,00</td>
+                          <td>0,00</td>
+                          <td>0,00</td>
+                          <td>12/31/2012</td>
+                      </tr>                    
+                  </tbody>
+                </table>
+              </div>
+              <footer class="panel-footer">
+                  <div class="row" id="my_footer_table"></div>
+              </footer>
+            </section>
+          </div>
+        </div>
+        
+    </section>
+      
+      
+    <!-- preload -->
+    <div class="body-preload">
+      <div class="img-preload">     
+          <img src="imagenes/preloader_large.gif" alt="preload">
+      </div>  
+    </div>        
+    <!-- preload -->        
+  </section>  
+  
+  <!-- footer -->
+   <footer id="footer">
+    <div class="text-center inferior">
+        <div class="row m-b-large">
+            <div class="col-lg-3 col-lg-offset-1 m-t">
+                <img src="imagenes/logo_vive_digital_40.png" alt="San Jose del Guaviare Vive Digital">
+            </div>                    
+            <div class="col-lg-2 m-t">
+                <img src="imagenes/logo_min_tic_40.png" alt="Ministerio de Tecnologias de la Informacion y las Comunicaciones">            
+            </div>                
+            <div class="col-lg-2 m-t">
+                <img src="imagenes/logo_colciencias_40.png" alt="Colciencias">            
+            </div>                
+            <div class="col-lg-1 m-t">
+                <img src="imagenes/logo_san_jose_40.png" alt="San Jose del Guaviare">            
+            </div>                        
+            <div class="col-lg-2 m-t">
+                <img src="imagenes/logo_parquesoft_meta_40.png" alt="ParqueSoft Meta">            
+            </div>                      
+        </div>
+    </div>
+  </footer>
+  <!-- / footer -->
+	
+  <script src="js/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="js/bootstrap.js"></script>
+  <!-- Sparkline Chart -->
+  
+  <!-- app -->
+  <script src="js/app.js"></script>
+  <script src="js/app.plugin.js"></script>
+  <script src="js/app.data.js"></script>
+   
+  <!-- datepicker -->
+  <script src="js/datepicker/bootstrap-datepicker.js"></script>
+  
+  <!-- Datos -->
+<!--  <script src="js/general.js"></script>  
+  <script src="js/datos/listaMetasUsuario.js"></script>-->
+  
+</body>
+</html>

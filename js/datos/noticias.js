@@ -1,24 +1,16 @@
-//$(document).ready(function(){
-    var URL="";
-    var year=null;
-    //$(document).ready(function(){
 
+        var URL="";
+        var year=null;
 
+        $("#nav").html(construirNav(2012,2015,"0"));
 
-   
-     $("#nav").html(construirNav(2012,2015,"0"));
-        
 
         ///cambiar apariencia login
         if(isLocalStorageAvailable()){
-              $(".my_usuario").html(localStorage.getItem("correo"));
-             
-       }
+            $(".my_usuario").html(localStorage.getItem("correo"));
+        }
 
 
-
-
-     
              /*
              * Hace el llamado para obtener los datos de la tabla de Avance General  y los carga en su tabla
              */    
@@ -47,19 +39,19 @@
                             {
                                 
                                 var tipoNoticias=midata.datos[mi];
-                                
-                                datos[contador]="";
-                                equitas[contador]=mi;
-                                
-                                conteo[contador]=tipoNoticias.length;
-                                //contador de noticias ...
-                                for(var i=0; i<tipoNoticias.length; i++)
-                                {
-                                   
-                                    datos[contador]+= generarHtmlNoticia(tipoNoticias[i].titulo,tipoNoticias[i].contenido,tipoNoticias[i].mes+" "+tipoNoticias[i].dia ,tipoNoticias[i].y,(contador+1));
+                                 if(tipoNoticias)   
+                                 {   datos[contador]="";
+                                    equitas[contador]=mi;
                                     
-                                }
-                                
+                                    conteo[contador]=tipoNoticias.length;
+                                    //contador de noticias ...
+                                    for(var i=0; i<tipoNoticias.length; i++)
+                                    {
+                                       
+                                        datos[contador]+= generarHtmlNoticia(tipoNoticias[i].titulo,tipoNoticias[i].contenido,tipoNoticias[i].mes+" "+tipoNoticias[i].dia ,tipoNoticias[i].y,(contador+1));
+                                        
+                                    }
+                                }    
                                 
                                 
                                 contador++;

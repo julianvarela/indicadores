@@ -37,7 +37,7 @@ switch ($opcion) {
             $colores= $consultaGeneral->rangoEstado();
             $idVigencia= $consultaGeneral->vigencia($_POST['year']);
             
-            $idClase =$consultaGeneral->getIdClase('OE');
+            $idClase =$consultaGeneral->getIdClase('EJE');
             
 
 

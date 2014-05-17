@@ -178,6 +178,7 @@
                     ,data:{
                         opcion: 'consultaDatos',
                         year:year,
+                        tipo:tipo,
                         id_sd:tipo=='dependencia'? $("#selectDependencias").val() : $('#selectSecretarias').val()
                     }
                     ,dataType:'json'  

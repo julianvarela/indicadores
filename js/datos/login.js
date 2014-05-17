@@ -54,6 +54,7 @@ function login_usuario()
                         for(var i=0 ; i< data.year.length  ; i++)
                         {
                             localStorage.setItem("year"+i, data.year[i].vigencia+"_"+data.year[i].activo);
+                            localStorage.setItem("per_year"+i, data.per[i]);
                         }// fin de for 
                      }   
 

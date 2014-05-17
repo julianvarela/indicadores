@@ -16,14 +16,19 @@ class consultasAvProgramas {
      * @returns array La funcion retorna un array con los datos a mostrar en la tabla
      */    
     public function datosTablaAvanceProgramas($id_vigencia){
-        $sql="SELECT m.codigo_nivel_pdm, m.nivel_pdm, sfis.ponderado, sfis.avance_ponderado, sfis.semaforo_seguimiento, sfis.semaforo_seguimiento, sfin.recursos_programados, sfin.recursos_ejecutados, sfin.semaforo_seguimiento_financiero,
+        $sql="SELECT pdm.codigo as codigo_nivel_pdm
+          , pdm.nivel as nivel_pdm,
+         sfis.ponderado, sfis.avance_ponderado, sfis.semaforo_seguimiento, sfis.semaforo_seguimiento, sfin.recursos_programados, sfin.recursos_ejecutados, sfin.semaforo_seguimiento_financiero,
              DATE_FORMAT(m.fecha_creacion,'%d / %m / %Y') as fecha_creacion , DATE_FORMAT(sfin.fecha_corte,'%d / %m / %Y') as fecha_corte
              ,  DATE_FORMAT(fm.fecha_modificacion ,'%d / %m / %Y') as fecha_modificacion 
             
-            FROM matriz m, seguimiento_financiero sfin, seguimiento_fisico sfis, vigencias v, fila_matriz fm, clases c
+            FROM matriz m, seguimiento_financiero sfin, seguimiento_fisico sfis, vigencias v, fila_matriz fm, clases c , pdm
             WHERE v.id='{$id_vigencia}'            
                 AND fm.id_vigencia = v.id
                 AND m.id = fm.id_matriz
+
+                AND m.pdm_id = pdm.id
+
                 AND sfis.id = fm.id_seguimiento_fisico
                 AND sfin.id = fm.id_seguimiento_financiero
                 AND m.activo = '1'

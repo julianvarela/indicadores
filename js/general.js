@@ -272,6 +272,100 @@ function construirNav(inicio,fin1,actual){
 
 
 
+
+
+
+/**construirNav
+ * construye el html de navegacion
+ * @param {int} inicio el año de inicio YYYY
+ * @param {int} fin el año de fin YYYY
+ * @param {int} actual el año actual a resalta YYYY
+ * @returns {String}
+ */
+function construirNavUsuarioS1(inicio,fin1,actual){
+    
+
+
+
+    actual=parseInt(actual.trim());
+    
+   var html="<ul class='nav affix-top' data-spy='affix' data-offset-top='50' >";
+
+    for(var i=0 ;  localStorage.getItem("year"+i); i++){
+        
+
+        var valores= localStorage.getItem("year"+i).split("_");
+        var yearAux=valores[0];
+        var activo =valores[1];
+
+        console.log(yearAux+" "+actual);
+        html+="<li class='"+(yearAux==actual?" active ":"")+"  "+(activo=="0"?" invisible_menu ":"")+"'> "
+            +" <a href='"+(yearAux==actual || activo=="0"?"#":"ProgramasUsuario.html?year="+yearAux)+"'  "+(yearAux==actual || activo=="0"?"onclick='return false;'":"")+"> " 
+            +"<i class='fa fa-th fa-lg'>          "     
+            +" </i> "
+            +"  <span>"+yearAux+"<br/> "
+            +"    <span class='badge bg-primary'>"+(localStorage.getItem("per_year"+i)? localStorage.getItem("per_year"+i):"0")+"</span> "
+            +"  </span> "
+            +"</a> "
+            +"</li>";
+    }
+    
+    html+="</ul>"
+    
+ return html; 
+
+} 
+
+
+
+
+
+/**construirNav
+ * construye el html de navegacion
+ * @param {json array } datos de los subprogaq
+
+ * @returns {String} htmll de la lista de subprogamas 
+ */
+function construirListasSub(lista,year){
+ // primero se recorre los programs
+ // 
+ // 
+ var html="";
+
+
+ 
+ $.each(lista,function(index, obj){
+
+    html+="  <a class='list-group-item accordion-toggle bg bg-light' data-toggle='collapse' href='#programas"+index+"'> "
+        +"              <i class='fa fa-chevron-right'></i> "
+        +"               <span class='badge bg-info'>"+(obj.lista && obj.lista.length? obj.lista.length :"0")+"</span> "
+        +"               <i class='fa fa-fw fa-star'></i> "+obj.nombre
+        +"             </a> ";
+
+
+
+      if(obj.lista && obj.lista.length>0)
+      {
+
+        html+="<div id='programas"+index+"' class='panel-collapse in mis_subprogramas'> ";
+          $.each(obj.lista, function (miIndex, miObj){
+           
+             html+="<a href='ListaMetasUsuario.html?year="+year+"&c="+miObj.id+"' class='list-group-item'> "
+                 +"             <i class='fa fa-fw fa-check'></i> "+miObj.codigo +" "+miObj.nombre
+                 +"           </a> "
+
+          });
+
+          html+="</div>";
+      }//fin de valicion si tiene lista
+
+  });
+
+return html;
+}
+
+
+
 /**
  * genere le htm de las opciones del select
  * @param {array} del  forma id , nombre con los datos de opcion

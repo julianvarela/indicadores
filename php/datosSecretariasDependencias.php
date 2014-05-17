@@ -17,12 +17,21 @@ include_once 'consultasSecretariasDependencias.php';
         
         case "consultaDatos":       
             
-            
-           
+            //definiendo el tipo 
+           $mitipo=$_POST['tipo'];
+           if(strcasecmp($mitipo,"secretaria")==0)
+           {
+            $mitipo= "secretarias";
+           }
+           else {
+             $mitipo= "dependencias";
+           }
+
+
 
 
             $consultas = new consultasSecretariasDependencias();
-            $datos = $consultas->datosTabla_Secretarias_Dependencias($idVigencia,$_POST['id_sd']);  
+            $datos = $consultas->datosTabla_Secretarias_Dependencias($idVigencia,$_POST['id_sd'],$mitipo);  
             $retorno = array();
 
             for($i=0; $i<count($datos); $i++){
@@ -101,7 +110,7 @@ include_once 'consultasSecretariasDependencias.php';
             
             for($i=0;$i<count($datoslistas); $i++)
             {
-                $fila = $consultas->avanceGeneral($idVigencia,$datoslistas[$i]['id']);  
+                $fila = $consultas->avanceGeneral($idVigencia,$datoslistas[$i]['id'] ,"secretarias");  
                 $fila=$fila[0];
                 
                 $fila['semaforo_seguimiento_financiero']=$fila['semaforo_seguimiento_financiero']==null?"0":$fila['semaforo_seguimiento_financiero'];

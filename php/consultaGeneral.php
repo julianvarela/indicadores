@@ -45,7 +45,7 @@ class consultaGeneral {
      */
     function listaVigencias()
     {
-        $sql="SELECT vigencia, activo FROM vigencias
+        $sql="SELECT id,vigencia, activo FROM vigencias
                WHERE  periodo='1'
                 -- and municipios_id='0'";
                 

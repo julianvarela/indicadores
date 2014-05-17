@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Avance de las Dependencias</title>
+  <title>Avance de Programas</title>
   <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="shortcut icon" href="imagenes/favicon.png">  
@@ -31,16 +31,17 @@
           <li><a href="#">Settings</a></li>
           <li><a href="perfil.html">Profile</a></li>
           <li class="divider"></li>
-          <li><a href="signin.html">Logout</a></li>
+          <li><a href="index.html">Logout</a></li>
         </ul>
       </li>
     </ul>
-    <a class="navbar-brand nombre-app" href="#">SISMEP</a>
+   <a class="navbar-brand" href="#" style="font-size: 16px">SISMEP</a>
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
       <i class="fa fa-bars fa-lg text-default"></i>
     </button>
   </header>
   <!-- / header -->
+  
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs nav-vertical">
   </nav>
@@ -52,63 +53,27 @@
         
         <ul class="breadcrumb">
             <li><a href="#"><i class="fa fa-home"></i> Seguimiento</a></li>
-            <li><a href="#" class="my_year">2013</a></li>
-            <li class="active">Dependencias Admin</li>
-            <li class="active">Avance General por Dependencias</li>
-        </ul>        
+            <li><a href="#" class="my_year">2014</a></li>
+            <li class="active">Programas</li>
+        </ul>           
         
-      <div class="row">
-        <div class="col-lg-6">
-          <section class="panel">
-            <header class="panel-heading"> <h4>Avance General por Dependencias</h4> </header>
-            <div class="table-responsive">
-              <table class="table table-striped m-b-none" data-ride="datatables">
-                <thead>
-                  <tr>
-                    <th>N</th>
-                    <th>Meta de Producto</th>
-                    <th>Semaforo Avance Fisico</th>
-                    <th>Semaforo Avance Financiero</th>
-                  </tr>
-                </thead>
-                <tbody id="TablaAvanceDependencias">
-                  <tr>
-                    <td>1</td>
-                    <td>Comisaria de Familia</td>
-                    <td><b class="badge bg-warning">73.33</b></td>
-                    <td><b class="badge bg-warning">70.00</b></td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Coordinacion de Deporte y Cultura</td>
-                    <td><b class="badge bg-warning">75.00</b></td>
-                    <td><b class="badge bg-warning">74.07</b></td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Direccion Administrativa</td>
-                    <td><b class="badge bg-warning">66.67</b></td>
-                    <td><b class="badge bg-warning">79.58</b></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-        </div>
-          
-        <!--<Grafica Secretarias>-->  
-        <div class="col-lg-6">
-            <section class="panel">
-                <header class="panel-heading"><h5><b>Semaforo de Avance Dependencias de la Administracion</b></h5></header>
-                <div class="panel-body">
-                    <div id="graficaGeneral2" style="height: 240px; padding: 0px; position: relative;"></div>
+        <div class="row">
+          <div class="col-lg-12">
+              
+              <section class="panel">
+                <header class="panel-heading bg bg-inverse">
+                  Programas a los que tiene acceso
+                </header>
+
+
+                <div class="list-group" id="listaProgramas">
                 </div>
-            </section>        
-        </div>                                      
-          
-      </div>
+              </section>
+          </div>
+        </div>
         
     </section>
+      
       
     <!-- preload -->
     <div class="body-preload">
@@ -119,9 +84,8 @@
     <!-- preload -->        
   </section>  
   
-  
   <!-- footer -->
-  <footer id="footer">
+   <footer id="footer">
     <div class="text-center inferior">
         <div class="row m-b-large">
             <div class="col-lg-3 col-lg-offset-1 m-t">
@@ -143,26 +107,22 @@
     </div>
   </footer>
   <!-- / footer -->
-  <!-- / footer -->
-  
-    <script src="js/jquery.min.js"></script>
+	
+  <script src="js/jquery.min.js"></script>
   <!-- Bootstrap -->
   <script src="js/bootstrap.js"></script>
-
+  <!-- Sparkline Chart -->
+  
   <!-- app -->
   <script src="js/app.js"></script>
   <script src="js/app.plugin.js"></script>
-  <script src="js/app.data.js"></script>
+  <!--<script src="js/app.data.js"></script>-->
 
-  <!-- datatables -->
-<!--  <script src="js/datatables/jquery.dataTables.min.js"></script>-->
+    <script src="js/general.js"></script> 
+   
+   <script src="js/datos/programas_usuario.js"></script>   
+  <!-- datos Tabla -->   
 
-  <!-- Grafica -->
-   <script src="js/graficas/highcharts.js"></script>    
-   <script src="js/graficas/graficas.js"></script>    
-   <script src="js/general.js"></script> 
-   <script src="js/datos/avanceSecretarias.js"></script>    
-
-  
+   
 </body>
 </html>

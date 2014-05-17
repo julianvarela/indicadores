@@ -6,6 +6,7 @@
 
 require_once 'consultaGeneral.php';
 require_once 'Login.php';
+require_once 'adm/permisos.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -43,6 +44,7 @@ switch ($opcion) {
 
         break;
 
+
       //LOGIN
     case "login":
         
@@ -58,9 +60,22 @@ switch ($opcion) {
         
         if(count($datos)>0)
         {
+
+            $permisos= new permisos();
             
             $_SESSION['correo']=$correo;
-            $salida=array('correcto'=>true,'datos'=>$datos, 'year'=>$vigencias);
+            $_SESSION['id']=$datos[0]['id'];
+
+
+            $contador_sub= Array();
+
+            for($i=0 ;$i<count( $vigencias); $i++)
+            {
+
+                $contador_sub[$i]= $permisos->contadorSubprogramas($vigencias[$i]['id'], $datos[0]['id']);
+            }
+
+            $salida=array('correcto'=>true,'datos'=>$datos, 'year'=>$vigencias, 'per'=>$contador_sub);
         }
             
         break;
