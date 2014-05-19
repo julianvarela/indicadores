@@ -63,42 +63,31 @@
             <section class="panel">
                 <header class="panel-heading">            
                     <div class="row">
-                        <div class="col-sm-6 text-center-sm">
+                        <div class="col-sm-5 col-lg-5 text-center-sm">
                             <h4><b>Avance Fisico y Financiero de Subprogramas</b> <b class="my_year">2013</b></h4>
                         </div>
-                        <div class="col-sm-offset-3 col-lg-offset-3 col-sm-3  col-lg-2 text-center">
+                        <div class="col-sm-3 col-lg-3 text-center">
                             <a href="#graficas" class="btn btn-info btn-block"><i class="fa fa-signal pull-right"></i>Ver Grafica</a>
                         </div>
+                        <div class="col-lg-offset-2 col-sm-4 col-lg-2 text-center">
+                              <label>Mostrar
+                                  <select size="1" id="select_my_table">
+                                      <option value="2" selected="selected">2</option>
+                                      <option value="5">5</option>
+                                      <option value="10">10</option>
+                                      <option value="100">100</option>
+                                  </select> 
+                                  filas
+                              </label>
+                        </div>                        
                     </div>
                 </header>
-            
-                <div class="dataTables_wrapper" role="grid">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="dataTables_length">
-                                <label>Show <select size="1"  id="select_my_table">
-                                        <option value="2" selected="selected">2</option>
-                                        <option value="5" >5</option>
-                                        <option value="10">10</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option></select>
-                                    entries</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <!--<div class="dataTables_filter">
-                                <label>Search: <input type="text" ></label>
-                            </div>-->
-                        </div>
-                        <div  class="dataTables_processing" style="visibility: hidden;">Processing...</div>
-                    </div>
-                </div>
                 
                 <div class="table-responsive" style="overflow-x:auto">                    
                     <table class="table table-striped m-b-none dataTable" data-ride="datatables">
                         <thead>
                           <tr>
-                              <th><input type="checkbox" checked='true' onclick='actulizarGraficaSubprogramas()'></th>    
+                            <th><input type="checkbox" checked='true' onclick='actulizarGraficaSubprogramas()'></th>    
                             <th width="5%">Codigo Nivel PDM</th>
                             <th width="15%">Nivel PDM</th>
                             <th width="8%">Ponderado Meta de Producto <p class="my_year">2013</p></th>
