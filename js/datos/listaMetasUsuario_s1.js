@@ -239,9 +239,9 @@ function tablaListaMetasUsuarios(lista){
          +" data-id_fila_matriz='"+datoF.id_fila_matriz+"' > "
             +"              <td> "
             +"                  <a onclick=\"cargarDatosEdicion('mi_fila_datos_meta"+i+"')\" data-original-title='Editar Meta' class='btn btn-info btn-sm' data-toggle='tooltip' data-placement='right' title=''><i class='fa fa-pencil'></i></a><hr /> "
-            +"                  <a data-original-title='Eliminar Meta' class='btn btn-danger btn-sm' data-toggle='tooltip' data-placement='right' title=''><i class='fa fa-trash-o'></i></a> "
+            +"                  <a onclick=\"eliminarDatos('mi_fila_datos_meta"+i+"')\"   data-original-title='Eliminar Meta' class='btn btn-danger btn-sm' data-toggle='tooltip' data-placement='right' title=''><i class='fa fa-trash-o'></i></a> "
             +"              </td>  "                      
-            +"              <td name='codigo_nivel_pdm'>"+datoF.codigo_nivel_pdm+"</td> "
+            +"              <td name='  _nivel_pdm'>"+datoF.codigo_nivel_pdm+"</td> "
             +"              <td class='dato-tabla-nivel' name='nivel_pdm'>"+datoF.nivel_pdm+"</td> "
             +"              <td class='dato-tabla-nivel' name='metas'>"+datoF.metas+"</td> "
             +"              <td name='linea_base'>"+datoF.linea_base+"</td> "
@@ -634,6 +634,81 @@ $("#edicion_bton_guardar").html("Actualizar");
   return false;
   
 }
+
+
+
+
+
+
+
+
+function eliminarDatos(id_fila){
+
+$fila=$("#"+id_fila);
+id_fila_matriz=$fila.data("id_fila_matriz");
+
+     $.ajax({
+                    url:'php/adm/datosListaMetasUsuario.php'
+                    ,type:'POST'
+                    ,dataType:'json'  
+                    ,data:{ 
+                            year: year,
+                            opcion:'elimina',
+                            id_fila_matriz : id_fila_matriz,
+                            subprograma : subprograma
+
+
+                        }
+                    ,beforeSend:function(jqXHR,settings){
+                        
+                    }    
+                    ,error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                        alert("Se presentó un problema con la conexión a Internet");
+                        
+                    }                                        
+                    ,success: function(data,textStatus,jqXHR){
+
+                            if(data && data.sesion)
+                            {
+
+
+
+                              if(data.res==false)
+                              {
+                                alert("Erro al guardar el registro");
+                              }else{
+                                 alert("Se elimino");
+                              }
+
+
+                              if(data.lista )
+                              {
+                                  $("#tabla_metas_usuario").html(tablaListaMetasUsuarios(data.lista));
+                           
+                                  $("#select_my_table").change();
+                              }
+
+
+                            }
+                            else{
+                              alert("Su sesion expiro, inicie de nuevo");
+                            }
+
+
+                             $("#edicion_ponderado").change();
+  
+                    }
+                });
+
+
+
+
+  return false;
+  
+}
+
+
+
 
 
 /*****************

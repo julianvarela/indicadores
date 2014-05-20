@@ -64,7 +64,7 @@ function login_usuario()
                 //console.log(data);   
                 
                // $(".body-preload").css({display:'none'});
-                location.href='noticias.html';
+                location.href=data.direccion;
                 
             }else{
                 alert("Datos Incorrectos");

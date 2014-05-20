@@ -53,11 +53,14 @@ switch ($opcion) {
         $login=new Login();
         $consultaGeneral= new consultaGeneral();
 
+        $menoYearActivo=0;
+
         $vigencias=  $consultaGeneral->listaVigencias();
 
 
         $datos=$login->mi_login($pass,$correo);
         
+
         if(count($datos)>0)
         {
 
@@ -73,9 +76,45 @@ switch ($opcion) {
             {
 
                 $contador_sub[$i]= $permisos->contadorSubprogramas($vigencias[$i]['id'], $datos[0]['id']);
+
             }
 
-            $salida=array('correcto'=>true,'datos'=>$datos, 'year'=>$vigencias, 'per'=>$contador_sub);
+
+            //recononece le el año activo mas cercano
+            for($i=0 ;$i<count( $vigencias); $i++)
+            {
+
+                if($vigencias[$i]['activo']=='1')
+                {
+
+                    $menoYearActivo =  $vigencias[$i]['vigencia'];
+                    break;
+                }
+
+            }
+
+
+
+            //permisos
+            $tipo_usuario =$permisos->getTipoPermiso($datos[0]['id']);
+            $direccion='';
+
+
+            if(strcasecmp($tipo_usuario[0]['tipo'],"Admin")==0 )
+                {
+                    $direccion='noticias.html';
+                }
+                else
+                    if(strcasecmp($tipo_usuario[0]['tipo'],"registro")==0)
+                    {
+                        $direccion='ProgramasUsuario.html?year='.$menoYearActivo;
+                    }
+
+
+            $salida=array('correcto'=>true,'datos'=>$datos, 'year'=>$vigencias, 
+                'per'=>$contador_sub,
+                'tipo_usuario'=>$tipo_usuario,
+                'direccion'=>$direccion);
         }
             
         break;

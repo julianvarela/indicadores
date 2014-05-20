@@ -14,14 +14,16 @@ switch ($opcion) {
 			$datos=array('sesion'=>false);	
 
 
+
 			if(isset($_SESSION['id']))
 			{
 
 
-			$year= $_POST['year'];
+			$year = $_POST['year'];
 			$lista_subprogramas= $permisos->subprogramas ($_SESSION['id'], $year);
 			$lista_programa=array();
 		
+
 			for($i=0 ; $i< count($lista_subprogramas); $i++)
 				{
 

@@ -16,6 +16,7 @@
 		var $_registros;
 		var $_datosRegistros;
 		var $_ultimoID;
+		var $cantidad_alterados=-1;//cantidad de afectados
 
 		function conectarBD($servidor, $usuario, $pass, $bd){
 			$this->_servidor = $servidor;
@@ -72,6 +73,7 @@
 			
 			$this->calcularRegistros();
 			$this->_ultimoID = @mysql_insert_id();
+			$this->cantidad_alterados= @mysql_affected_rows();
 			
 			return $this->Consulta_ID;
 		}

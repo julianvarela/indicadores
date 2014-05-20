@@ -27,9 +27,10 @@
 						 AND fm.id_vigencia =v.id
 						 AND v.vigencia='$year'
 						 AND m.activo='1'
-						 AND fm.activo='1'
 						 AND p.usuarios_id='$id_usuario'
 						order by pdm.codigo";
+
+
 
 
 	        $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
@@ -127,7 +128,6 @@
 						AND c.nombre like 'SPR'
 						AND fm.id_vigencia='$idVigencia'
 						AND m.activo='1'
-						AND fm.activo='1'
 						AND fm.id_matriz = m.id
 						AND m.clases_id= c.id
 						AND p.usuarios_id='$idUsuario' ";
@@ -194,7 +194,9 @@
 	    	$sql="SELECT *
 					FROM  fila_matriz fm 
 					WHERE  fm.id='{$id_fila_matriz}'
-					       and fm.activo ='1'";
+					       ";
+
+		
 
 				$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
 		        $conexion->consultaSQL($sql);
@@ -211,7 +213,8 @@
 	    	$sql="SELECT  fm.* , 
 					sfin.recursos_ejecutados , 
 					sfin.recursos_programados ,
-				    sfis.avance_ponderado
+				    sfis.avance_ponderado,
+				    sfis.ponderado
 
 				FROM fila_matriz fm, seguimiento_financiero sfin, seguimiento_fisico sfis, matriz m
 				WHERE
@@ -226,7 +229,6 @@
 		        $conexion->consultaSQL($sql);
 		        
 		        return  $conexion->_datosRegistros;
-
 
 	    }
 

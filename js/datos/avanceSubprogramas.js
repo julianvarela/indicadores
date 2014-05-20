@@ -125,7 +125,6 @@ var semaFin = Array();
 
 
   $.each($misCheckbox, function( index, value ) {
-            console.log(value);
             
             if(value.checked)
             {

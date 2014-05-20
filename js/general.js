@@ -273,6 +273,31 @@ function construirNav(inicio,fin1,actual){
 
 
 
+/****************
+* retorna el año menor activo
+* 
+**/
+
+function getYearActivoMenor(){
+
+  var miYearMenor=0;
+      
+    for(var i=0 ;  localStorage.getItem("year"+i); i++){
+        
+
+        var valores= localStorage.getItem("year"+i).split("_");
+        var yearAux=valores[0];
+        var activo =valores[1];
+
+        if(activo==1)
+          return yearAux;
+    }
+
+    return miYearMenor;
+
+}
+
+
 
 
 /**construirNav

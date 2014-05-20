@@ -1,3 +1,4 @@
+
 <?php
 @session_start();
 
@@ -18,6 +19,63 @@ $idVigencia= $consultaGeneral->vigencia($year);
 
 
 switch ($opcion) {
+
+
+	case "elimina":
+
+
+		$res=true;
+		$datos=array('sesion'=>false, 'res'=>true);//error es true si no hay error	
+	
+		$id_fila_Matriz = $_POST['id_fila_matriz'];
+		$id_subprograma = $_POST['subprograma'];
+
+
+		$permisos = new permisos();
+
+		if(isset($_SESSION['id']) && $permisos->getTienePermisos($_SESSION['id'],$id_subprograma))
+		{
+		
+			$id_datos= $permisos->getFilaMatriz($id_fila_Matriz);
+
+			//actualizacion ....
+			$_fin = $consulta->actualizarActivoSeguimientoFinaciero($id_datos[0]['id_seguimiento_financiero'],'0');
+			
+			$_fis = $consulta->actualizarActivoSegFis($id_datos[0]['id_seguimiento_fisico'],'0');
+			
+			$_matriz = $consulta->actualizarActivoMatriz($id_datos[0]['id_matriz'], '0');
+
+
+			if( $_fin == -1 ||
+				$_fis == -1 ||
+				$_matriz == -1)
+				{
+
+					$res = false;
+				}	
+
+						
+
+
+			///cargar los nuevo datos
+				$miDatos=$consulta->listaMetas($id_subprograma, $idVigencia);
+
+			$datos=array('sesion'=>true,
+			 'res'=>$res
+			 ,'lista'=>$miDatos);//
+
+
+		}
+		
+
+
+		echo json_encode($datos);
+
+	break;
+
+
+
+
 
 	case 'lista_metas':
 			$datos=array('sesion'=>false);	
@@ -204,10 +262,13 @@ switch ($opcion) {
 						$res=true;	
 
 						/// generara los nuevos datos de las tablas
-						$miDatos=$consulta->listaMetas($id_subprograma, $idVigencia);
+						$miDatos= $consulta->listaMetas($id_subprograma, $idVigencia);
 						
 						$actualizacionPadres->ActualizaPadresSuma($id_subprograma
 						, $idVigencia);//actualiza los padres en suma
+
+						$actualizacionPadres->actualizaPadresPonderados($id_subprograma, $idVigencia);
+
 					}
 
 

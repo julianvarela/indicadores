@@ -185,10 +185,13 @@ UNION (
    * retorna los recurso y los datos de la matriz
    **/
    public function getRecursosProgramados($id_matriz, $id_vigencia){
-   	$sql="select sfin.recursos_programados ,
+   	$sql="SELECT sfin.recursos_programados ,
    				s_f.semaforo_seguimiento as semaforo_seguimiento_fis,
+   				fm.id_seguimiento_fisico as   id_seguimiento_fisico,
+				fm.id_seguimiento_financiero as   id_seguimiento_financiero,
+				fm.id  as  id_fila_matriz,
    			 m.*
-			From matriz m, fila_matriz fm , seguimiento_financiero sfin, seguimiento_fisico s_f
+		FROM matriz m, fila_matriz fm , seguimiento_financiero sfin, seguimiento_fisico s_f
 			WHERE m.activo='1'
 			 and sfin.activo='1'
 			 and m.id='{$id_matriz}'
@@ -398,7 +401,7 @@ public function actualizSeguimientoFinanciero(
 	    $conexion->consultaSQL($sql);
 	    
 
-	      if($conexion->Error!="")
+	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
 	      		{
 
 	      			
@@ -440,7 +443,7 @@ public function actualizSeguimientoFinanciero(
 	    $conexion->consultaSQL($sql);
 	    
 
-	      if($conexion->Error!="")
+	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
 	      		{
 	      			
 	      			$this->guardarError($conexion,$sql);
@@ -496,7 +499,7 @@ public function actualizarMatriz(
 	    
    
 
-	      if($conexion->Error!="")
+	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
 	      		{
 	      			
 	      			$this->guardarError($conexion,$sql);
@@ -527,7 +530,7 @@ public function actualizarMatriz(
 	    
    
 
-	      if($conexion->Error!="")
+	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
 	      		{
 	      			
 	      			$this->guardarError($conexion,$sql);
@@ -579,7 +582,7 @@ public function actualizarMatriz(
 	    $conexion->consultaSQL($sql);
 	    
 
-	      if($conexion->Error!="")
+	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
 	      		{
 	      			
 	      			$this->guardarError($conexion,$sql);
@@ -617,7 +620,7 @@ public function actualizarMatriz(
 		    $conexion->consultaSQL($sql);
 		    
 
-		      if($conexion->Error!="")
+		      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
 		      		{
 
 		      			
@@ -641,8 +644,7 @@ public function actualizarMatriz(
 		$sql="SELECT * 
 			FROM matriz
 			WHERE id='{$_idMatriz}'
-				and m.actividad='1'
-			";
+				";
 		$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
 	    $conexion->consultaSQL($sql);
 	    
@@ -662,6 +664,135 @@ public function actualizarMatriz(
 
 
 	}
+
+
+
+	/***************
+	*  SE UTILIA PARA ACTUALIZ DE PADRE PASO 2
+	*/
+	public function actualizaPoderado_SeguimientoFis($id_s_fis, $ponderado, $avance_ponderado
+		)
+	{
+
+		$sql="UPDATE seguimiento_fisico
+			SET  ponderado='{$ponderado}'
+				, avance_ponderado='{$avance_ponderado}'
+				WHERE id='{$id_s_fis}' " ;
+
+
+
+		$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+	    $conexion->consultaSQL($sql);
+	    
+
+	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
+	      		{
+
+	      			
+	      			$this->guardarError($conexion,$sql);
+
+	      			return -1;
+	      		}
+	      else{
+
+	      	return $conexion->_ultimoID;
+	      }
+
+	}
+
+
+
+
+
+	public function actualizarActivoSegFis($_id_fisico, $activo)
+	{
+
+		$sql="UPDATE seguimiento_fisico
+			SET  activo='{$activo}'				
+				WHERE id='{$_id_fisico}'";
+
+		$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+	    $conexion->consultaSQL($sql);
+	    
+
+	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
+	      		{
+
+	      			
+	      			$this->guardarError($conexion,$sql);
+
+	      			return -1;
+	      		}
+	      else{
+
+	      	return $conexion->_ultimoID;
+	      }
+
+	}
+
+
+
+
+public function actualizarActivoMatriz($_id_matriz, $activo)
+	{
+
+		$sql="UPDATE matriz
+			SET activo='{$activo}'				
+				WHERE id='{$_id_matriz}' ";
+
+		$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+	    $conexion->consultaSQL($sql);
+	    
+
+	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
+	      		{
+
+	      			
+	      			$this->guardarError($conexion,$sql);
+
+	      			return -1;
+	      		}
+	      else{
+
+	      	return $conexion->_ultimoID;
+	      }
+
+
+	}
+
+
+
+
+public function actualizarActivoSeguimientoFinaciero($_id_finaciero, $activo)
+	{
+
+		$sql="UPDATE seguimiento_financiero
+			SET activo='{$activo}'				
+				WHERE id='{$_id_finaciero}' ";
+
+			
+
+		$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+	    $conexion->consultaSQL($sql);
+	   
+
+	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
+	      		{
+
+	      			
+	      			$this->guardarError($conexion,$sql);
+
+	      			return -1;
+	      		}
+	      else{
+
+	      	return $conexion->_ultimoID;
+	      }
+
+
+	}
+
+
 
 }
 
