@@ -9,6 +9,8 @@
 
 	
 
+
+
 		/****************************
 		* retorna lista de subprogramas activos 
 		* de los cuales el usuario tiene permiso
@@ -16,6 +18,7 @@
 		* @return array de listado nombre , codigo ,id de lso subprgrama a los que tieen permis
 		**/
 		public function subprogramas ($id_usuario, $year){
+	      
 	        $sql="SELECT  m.id ,pdm.codigo , pdm.nivel  as nombre , m.id_padre 
 					FROM  matriz m, permisos p , pdm ,fila_matriz fm, vigencias v
 					WHERE p.id_subprograma = m.id
@@ -24,6 +27,7 @@
 						 AND fm.id_vigencia =v.id
 						 AND v.vigencia='$year'
 						 AND m.activo='1'
+						 AND fm.activo='1'
 						 AND p.usuarios_id='$id_usuario'
 						order by pdm.codigo";
 
@@ -123,6 +127,7 @@
 						AND c.nombre like 'SPR'
 						AND fm.id_vigencia='$idVigencia'
 						AND m.activo='1'
+						AND fm.activo='1'
 						AND fm.id_matriz = m.id
 						AND m.clases_id= c.id
 						AND p.usuarios_id='$idUsuario' ";
@@ -133,6 +138,125 @@
 
 
     }
+
+
+
+
+    public function getIdClase($nombre){
+
+    	$sql="SELECT id
+			FROM clases c
+			WHERE c.nombre like '$nombre'";
+
+			$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+	        $conexion->consultaSQL($sql);
+	        return  $conexion->_datosRegistros[0]['id'];
+    }
+
+
+
+
+
+    public function getMetas(){
+
+    	$sql="SELECT id , nombre
+			FROM tipos_meta";
+			
+			$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+	        $conexion->consultaSQL($sql);
+	        return  $conexion->_datosRegistros;
+    }
+
+
+
+
+
+    public function datosMatriz($id_matriz){
+
+
+	    	$sql="SELECT * FROM matriz
+					WHERE id='{$id_matriz}'
+					and activo='1'";
+
+				$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+		        $conexion->consultaSQL($sql);
+		        
+		        return  $conexion->_datosRegistros;
+    }
+
+
+
+
+
+
+    public function getFilaMatriz($id_fila_matriz){
+    	
+	    	$sql="SELECT *
+					FROM  fila_matriz fm 
+					WHERE  fm.id='{$id_fila_matriz}'
+					       and fm.activo ='1'";
+
+				$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+		        $conexion->consultaSQL($sql);
+		        
+		        return  $conexion->_datosRegistros;
+    }
+
+
+
+
+
+	    public function getFilasRegistros($id_padre, $id_vigencia){
+	    	
+	    	$sql="SELECT  fm.* , 
+					sfin.recursos_ejecutados , 
+					sfin.recursos_programados ,
+				    sfis.avance_ponderado
+
+				FROM fila_matriz fm, seguimiento_financiero sfin, seguimiento_fisico sfis, matriz m
+				WHERE
+							fm.id_matriz = m.id
+					AND		fm.id_seguimiento_financiero = sfin.id
+					AND 	fm.id_seguimiento_fisico = sfis.id
+					AND 	m.id_padre='{$id_padre}'
+					AND 	fm.id_vigencia='{$id_vigencia}'";
+
+
+				$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+		        $conexion->consultaSQL($sql);
+		        
+		        return  $conexion->_datosRegistros;
+
+
+	    }
+
+
+
+
+  public function getDatosFilaMR_to_idFila($id_matriz, $id_vigencia){
+	    	
+	    	$sql="SELECT  fm.* ,
+	    			m.id_padre, 
+					sfin.recursos_ejecutados , 
+					sfin.recursos_programados ,
+				    sfis.avance_ponderado
+
+				FROM fila_matriz fm, seguimiento_financiero sfin, seguimiento_fisico sfis, matriz m
+				WHERE
+							fm.id_matriz = m.id
+					AND		fm.id_seguimiento_financiero = sfin.id
+					AND 	fm.id_seguimiento_fisico = sfis.id
+					AND 	m.id='{$id_matriz}'
+					AND 	fm.id_vigencia='{$id_vigencia}'";
+
+
+				$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+		        $conexion->consultaSQL($sql);
+		        
+		        return  $conexion->_datosRegistros;
+
+
+	    }
 
 
 	}

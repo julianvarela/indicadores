@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="css/font.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/mi_estilo.css">  
+   <link rel="stylesheet" href="css/validationEngine.jquery.css">  
+ 
   <!--[if lt IE 9]>
     <script src="js/ie/respond.min.js"></script>
     <script src="js/ie/html5.js"></script>
@@ -62,106 +64,146 @@
             <!-- acordeon ingresar/editar -->          
               <div class="panel mi_acordeon" >                
                 <a class="accordion-toggle list-group-item bg bg-focus" data-toggle="collapse" 
+                href="#bton_ingresar_meta"
                 style="cursor: pointer !important"
                 onclick="return false;"
                 id="bton_ingresar_meta"
                 >
                   
-                  <b>Ingresar Nueva Meta</b>
+                  <b >Ingresar Nueva Meta</b>
                 </a>                                       
                 <div id="AgregarEditarMeta" class="panel-collapse collapse">  <!-- collapse ->oculta / in -> muestra -->
                   <!--<div class="panel-body text-small">-->
                       <div class="table-responsive" style="overflow-x:auto">
-                          <table class="table table-striped m-b-none" data-ride="datatables">
-                            <thead>
-                              <tr>
-                                <th>Meta</th>
-                                <th>Linea Base</th>
-                                <th>Valor Esperado Productos</th>
-                                <th>Dependecia Responsable</th>                    
-                                <th>Nombre del Sector</th>                    
+                          <form id="mi_edicion_form">
+                            <table class="table table-striped m-b-none" data-ride="datatables">
+                              <thead>
+                                <tr>
+                                  <th>Meta</th>
+                                  <th>Linea Base</th>
+                                  <th>Valor Esperado Productos</th>
+                                  <th>Dependecia Responsable</th>                    
+                                  <th>Nombre del Sector</th> 
+                                  <th>Tipo Meta</th>                    
 
-                                <th>Valor Esperado Meta Producto <span class="my_year">2014</span></th>
-                                <th>Valor Logrado Meta Producto <span class="my_year">2014</span></th>
-                                <th>Ponderado <span class="my_year">2014</span></th>
-                                <th>Avance Ponderado <span class="my_year">2014</span></th>
-                                <th>Avance Semaforo Seguimiento Fisico <span class="my_year">2014</span></th>
+                                  <th>Valor Esperado Meta Producto <span class="my_year">2014</span></th>
+                                  <th>Valor Logrado Meta Producto <span class="my_year">2014</span></th>
+                                  <th>Ponderado <span class="my_year">2014</span></th>
+                                  <th>Avance Ponderado <span class="my_year">2014</span></th>
+                                  <th>Avance Semaforo Seguimiento Fisico <span class="my_year">2014</span></th>
 
-                                <th>Recursos Programados <span class="my_year">2014</span></th>
-                                <th>Recursos Ejecutados <span class="my_year">2014</span></th>
-                                <th>Semaforo Seguimiento Financiero <span class="my_year">2014</span></th>
-                                <th>Fecha de Corte <span class="my_year">2014</span></th>                    
-                              </tr>
-                            </thead>
-                            <tbody id="TablaDatosMetas">
-                                <tr>                     
-                                    <td>
-                                        <textarea placeholder="Descripcion de la Meta" rows="5" class="input-sm form-control parsley-validated" data-trigger="keyup" data-rangelength="[20,200]"></textarea>
-                                    </td>
-                                    <td>0</td>
-                                    <td>
-                                        <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">
-                                    </td>
-                                    <td>
-                                        <select id="selectDependencias" name="selectDependencias" class="input-sm form-control">
-                                          <option value="0">dependencias 1</option>
-                                          <option value="1">dependencias 2</option>
-                                          <option value="2">dependencias 3</option>
-                                          <option value="3">dependencias 4</option>
-                                          <option value="4">dependencias 5</option>
-                                          <option value="5">dependencias 6</option>
-                                          <option value="6">dependencias 7</option>
-                                          <option value="7">dependencias 8</option>                                        
-                                        </select>                                      
-                                    </td>
-                                    <td>
-                                        <select id="selectSectorBasico" name="selectSectorBasico" class="input-sm form-control">
-                                          <option value="0">sectorBasico 1</option>
-                                          <option value="1">sectorBasico 2</option>
-                                          <option value="2">sectorBasico 3</option>
-                                          <option value="3">sectorBasico 4</option>
-                                          <option value="4">sectorBasico 5</option>
-                                          <option value="5">sectorBasico 6</option>
-                                          <option value="6">sectorBasico 7</option>
-                                          <option value="7">sectorBasico 8</option>                                        
-                                        </select>                                       
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="80%" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="20.000.000.000" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="20.000.000.000" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input id="editor_fecha" class="input-sm form-control datepicker"  readonly size="16" value="12-02-2013" data-date-format="dd-mm-yyyy" type="text"
-                                          style="cursor: pointer;width: 100px"
-                                      >
-                                    </td>                                  
+                                  <th>Recursos Programados <span class="my_year">2014</span></th>
+                                  <th>Recursos Ejecutados <span class="my_year">2014</span></th>
+                                  <th>Semaforo Seguimiento Financiero <span class="my_year">2014</span></th>
+                                  <th>Fecha de Corte <span class="my_year">2014</span></th>                    
                                 </tr>
-                            </tbody>
-                          </table>
+                              </thead>
+
+                              <tbody id="TablaDatosMetas">
+                                  <tr>                     
+                                      <td>
+                                          <textarea  id="edicion_meta"  placeholder="Descripcion de la Meta" rows="5" class="input-sm form-control parsley-validated 
+                                          validate[required,custom[mitextarea]]"
+                                           data-trigger="keyup" data-rangelength="[20,200]"
+                                          class=""    
+                                          ></textarea>
+                                      </td>
+
+                                      <td>
+                                        <input id="edicion_linea_base" placeholder="1" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[integer]]" type="text">
+                                      </td>
+                                      
+                                      <td>
+                                          <input id="edicion_valor_esperado_productos" placeholder="1" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" type="text"
+                                          >
+                                      </td>
+
+                                      <td>
+                                          <select id="selectDependencias" name="selectDependencias" class="input-sm form-control"
+                                          style="width:115px;"
+                                          >                                                                               
+                                          </select>                                      
+                                      </td>
+                                      <td>
+                                          <select id="selectSectorBasico" name="selectSectorBasico" class="input-sm form-control "
+
+                                          style="width:145px;">
+                                                                                   
+                                          </select>                                       
+                                      </td>
+
+
+                                      <td>
+                                          <select id="selecTipoMeta" class="input-sm form-control "
+                                          style="width:145px;"
+                                          >
+                                                                                   
+                                          </select>                                       
+                                      </td>
+
+                                      <td>
+                                        <input id="dicion_valor_esperado_meta_producto" placeholder="1" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" type="text">                                      
+                                      </td>
+
+                                      <td>
+                                        <input id="dicion_valor_logrado_meta_producto"  placeholder="1.0" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" 
+                                        type="text">                                      
+                                      </td>
+
+                                      <td>
+                                        <input id="edicion_ponderado" placeholder="1" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]"
+                                         type="text"
+
+                                         readonly
+                                         >                                      
+                                      </td>
+                                      <td>
+                                       
+
+                                         <input id="edicion_avance_ponderado" placeholder="80%" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" 
+                                        type="text"
+                                        readonly
+
+                                        >                                    
+                                      </td>
+
+                                      <td>
+                                        <input id="edicion_avance_semaforo_seg_fis" placeholder="80%" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" 
+                                        type="text"
+                                        readonly
+
+                                        >                                      
+                                      </td>
+
+                                      <td>
+                                        <input id="edicion_recurso_programado" placeholder="20.000.000.000" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" type="text">                                      
+                                      </td>
+                                      <td>
+                                        <input id="edicion_recursos_ejecutados" placeholder="20.000.000.000" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" type="text">                                      
+                                      </td>
+
+                                      <td>
+                                        <input id="edicion_semaforo_seguimiento_fina"  placeholder="1.0" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" 
+                                        type="text"
+
+                                        readonly
+                                        >                                      
+                                      </td>
+                                      <td>
+                                        <input id="editor_fecha" class="input-sm form-control datepicker"  readonly size="16" value="12-02-2013" data-date-format="dd/mm/yyyy" type="text"
+                                            style="cursor: pointer;width: 100px"
+                                        >
+                                      </td>                                  
+                                  </tr>
+                              </tbody>
+                            </table>
+                          </form>
                       </div>
                       <footer class="panel-footer">
-                          <a href="#" class="btn btn-success">Guardar</a>
-                          <a href="#" class="btn btn-danger">Cancelar</a>
+                          <a href="#" id="edicion_bton_guardar" onclick="return false"   
+                          class="btn btn-success">Guardar</a>
+
+                          <a href="#" id="edicion_bton_cancelar" onclick="return false" class="btn btn-danger">Cancelar</a>
                       </footer>
                   <!--</div>-->
                 </div>
@@ -198,7 +240,8 @@
                       <th>Linea Base</th>
                       <th>Valor Esperado Productos</th>
                       <th>Dependecia Responsable</th>                    
-                      <th>Nombre del Sector</th>                    
+                      <th>Nombre del Sector</th>
+                      <th>Tipo Meta</th>                     
 
                       <th>Valor Esperado Meta Producto <span class="my_year">2014</span></th>
                       <th>Valor Logrado Meta Producto <span class="my_year">2014</span></th>
@@ -272,7 +315,12 @@
    
   <!-- datepicker -->
   <script src="js/datepicker/bootstrap-datepicker.js"></script>
-  
+
+
+  <script src="js/languages/jquery.validationEngine-es.js"></script>
+  <script src="js/jquery.validationEngine.js"></script>
+
+ 
   <!-- Datos -->
  <script src="js/general.js"></script>  
   <script src="js/datos/listaMetasUsuario_s1.js"></script>

@@ -1,0 +1,12 @@
+
+*****************************************
+fecha: 2014-05-19 11:43:22
+ usuario:2
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE id='9'' at line 6
+ SQL: UPDATE  seguimiento_financiero
+				   SET recursos_programados = '0', 
+					   	recursos_ejecutados = '0', 
+					   	semaforo_seguimiento_financiero = '0',
+					   	
+				WHERE id='9' 
+ 
