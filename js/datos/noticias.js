@@ -86,12 +86,9 @@
                   
                   
            /***
-            * 
-            * generar un noticias con html
-            * 
+            * genera el HTML de las noticias            * 
             */
            function generarHtmlNoticia(titulo,contenido,mes,miyear,tipo){
-               
                
                var html=" <div class='line pull-in'></div> "
                    +" <article class='media'> "
@@ -109,9 +106,36 @@
                    +"      <a href='#' class='h4 text-success'>"+titulo+"</a> "
                    +"      <small class='block'>"+contenido+"</small> "
                    +"    </div> "
-                   +"  </article>";
-               
+                   +"  </article>";               
                
                return html;
                
            }
+           
+           
+           /***
+            * genera el HTML de las noticias para ser editadas
+            */
+           function generarHtmlNoticiaAdmin(titulo,contenido,mes,miyear,tipo){
+               
+               var html=" <div class='line pull-in'></div> "
+                   +" <article class='media'> "
+                   +"    <div class='pull-left thumb-small'> "
+                   +"      <span class='fa-stack fa-lg'> "
+                   +"        <i class='fa fa-circle fa-stack-2x "+(tipo%2==0?" text-warning ":" text-success ")+" '></i> "
+                   +"        <i class='fa fa-quote-left fa-stack-1x text-white'></i> "
+                   +"      </span> "
+                   +"    </div> "
+                   +"    <div class='media-body'> "
+                   +"      <div class='pull-right media-mini text-center text-muted'> "
+                   +"        <strong class='h6'>"+mes+"</strong><br> "
+                   +"        <small class='label bg-light'>"+miyear+"</small> "
+                   +"      </div> "
+                   +"      <a href='#' class='h4 text-success'>"+titulo+"</a> "
+                   +"      <small class='block'>"+contenido+"</small> "
+                   +"    </div> "
+                   +"  </article>";               
+               
+               return html;
+               
+           }           

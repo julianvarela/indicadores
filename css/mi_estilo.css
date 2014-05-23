@@ -116,6 +116,13 @@ tr.datos-tabla td hr{
     resize: none;
 }
 
+.mi_acordeon form textarea{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    resize: none;    
+}
+
 .mis_subprogramas{
     padding-left: 2%;
 }

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Lista de Noticias</title>
+  <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="imagenes/favicon.png">  
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/plugin.css">
+  <link rel="stylesheet" href="css/font.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mi_estilo.css">  
+  <!--[if lt IE 9]>
+    <script src="js/ie/respond.min.js"></script>
+    <script src="js/ie/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <!-- header -->
+  <header id="header" class="navbar">
+    <ul class="nav navbar-nav navbar-avatar pull-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
+          <span class="hidden-xs-only my_usuario">Mika Sokeil</span>
+          <span class="thumb-small avatar inline"><img src="imagenes/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
+          <b class="caret hidden-xs-only"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Settings</a></li>
+          <li><a href="perfil.html">Profile</a></li>
+          <li class="divider"></li>
+          <li><a href="index.html">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+   <a class="navbar-brand" href="#" style="font-size: 16px">SISMEP</a>
+    <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
+      <i class="fa fa-bars fa-lg text-default"></i>
+    </button>
+  </header>
+  <!-- / header -->
+  <!-- nav -->
+  <nav id="nav" class="nav-primary hidden-xs nav-vertical">
+      <ul class="nav affix-top" data-spy="affix" data-offset-top="50">
+          <li class="active"><a href="ListaNoticias.html"><i class="fa fa-home fa-lg"></i><span>Noticias</span></a></li>          
+          <li><a href="ListaProgramas.html"><i class="fa fa-th fa-lg"></i><span>Programas</span></a></li>
+          <li><a href="ListaUsuarios.html"><i class="fa fa-users fa-lg"></i><span>Usuarios</span></a></li>          
+      </ul>      
+  </nav>  
+  <!-- / nav -->
+  
+  <section id="content">
+    <section class="main padder">
+        
+        <ul class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Noticias</a></li>
+        </ul>        
+        
+        <div class="row">
+          <div class="col-lg-12">
+
+            <!-- acordeon ingresar/editar -->          
+              <div class="panel mi_acordeon" id="panelAcordeonNoticias">                
+                <a class="accordion-toggle list-group-item bg bg-focus" data-toggle="collapse" href="#AgregarEditarNoticias">
+                  <b>Ingresar Nueva Noticia</b>
+                </a>                                       
+                <div id="AgregarEditarNoticias" class="panel-collapse collapse">  <!-- collapse ->oculta / in -> muestra -->
+                  <div class="panel-body">
+                    <form class="form-horizontal" method="get" data-validate="parsley">      
+                      <div class="form-group">
+                        <label class="col-lg-3 control-label">Titulo</label>
+                        <div class="col-lg-8">
+                          <input type="text" name="username" placeholder="Titulo de la noticia" data-required="true" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-lg-3 control-label">Articulo</label>
+                        <div class="col-lg-8">
+                          <textarea placeholder="Contenido de la noticia" rows="5" class="form-control" data-trigger="keyup"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-lg-3 control-label">Categoria</label>
+                        <div class="col-lg-3">
+                          <select name="account" class="form-control">
+                            <option value="1">Institucional</option>
+                            <option value="0">Comercial</option>
+                          </select>
+                        </div>
+                      </div>                        
+                      <div class="form-group">
+                        <div class="col-lg-9 col-lg-offset-3">                      
+                          <button class="btn btn-danger">Cancelar</button>
+                          <button class="btn btn-success">Guardar</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>          
+            <!-- acordeon ingresar/editar -->            
+
+          </div>
+        </div>
+        
+      <div class="row">
+        <div class="col-lg-6">
+          <!-- .scrollable -->
+          <section class="panel">
+            <header class="panel-heading">
+              <span class="label bg-info pull-right">8</span>
+              <b>Institucional</b>
+            </header>
+            <section class="panel-body noticias">
+              <article class="media">
+                <div class="pull-left thumb-small">
+                  <span class="fa-stack fa-lg">
+                    <a data-original-title="Editar Noticia" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-pencil"></i></a>
+                    <a data-original-title="Eliminar Noticia" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-trash-o"></i></a>                
+                  </span>
+                </div>
+                <div class="media-body">
+                  <div class="pull-right media-mini text-center text-muted">
+                    <strong class="h6">Marzo 10</strong><br>
+                    <small class="label bg-light">2014</small>
+                  </div>
+                  <a href="#" class="h4 text-success">San José del Guaviare, Capital de la Esperanza Colombiana</a>
+                  <small class="block">En esta página el Municipio de San José Del Guaviare, abre sus puertas al mundo mostrando su diversidad cultural y sus riquezas hídricas, de flora y fauna proyectándose al mundo como un destino turístico indiscutible donde el contacto con la naturaleza, la tranquilidad, la belleza de sus paisajes y la amabilidad de su gente hace de este municipio uno de los lugares más bellos e interesantes del mundo. También puede encontrar en esta página toda la información estadística, realizar consultas sobre todas las diferentes dependencias que componen la administración del Municipio además de enterarse de nuestros programas, contratos, obras y servicios.</small>
+                </div>
+              </article>
+              <div class="line pull-in"></div>
+              <article class="media">
+                <div class="pull-left thumb-small">
+                  <span class="fa-stack fa-lg">
+                    <a data-original-title="Editar Noticia" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-pencil"></i></a>
+                    <a data-original-title="Eliminar Noticia" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-trash-o"></i></a>                
+                  </span>
+                </div>
+                <div class="media-body">
+                  <div class="pull-right media-mini text-center text-muted">
+                    <strong class="h6">Febrero 3</strong><br>
+                    <small class="label bg-light">2014</small>
+                  </div>
+                  <a href="#" class="h4 text-success">Acerca del Sistema General de Regalías</a>
+                  <small class="block">Conforme al referido Acto Legislativo el Gobierno Nacional tenía la obligación de hacer operativo el Sistema General de Regalías (SGR) a partir del 1 de enero de 2012, razón por la cual expidió el Decreto Ley transitorio 4923-2011, el cual determina la distribución, objetivos, fines, administración, ejecución, control, el uso eficiente y la destinación de los ingresos provenientes de la explotación de los recursos naturales no renovables precisando las condiciones de participación de sus beneficiarios.
+                En desarrollo de este Acto Legislativo 05-2011, el Gobierno Nacional presentó a consideración del Congreso de la República el proyecto de ley que regula el Sistema General de Regalías, el cual fue aprobado en su cuarto y último debate el pasado 16 de diciembre de 2011; faltándole solo para convertirse en ley de la República, la aprobación de la conciliación constitucional.</small>
+                </div>
+              </article>
+              <div class="line pull-in"></div>
+              <article class="media">
+                <div class="pull-left thumb-small">
+                  <span class="fa-stack fa-lg">
+                    <a data-original-title="Editar Noticia" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-pencil"></i></a>
+                    <a data-original-title="Eliminar Noticia" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-trash-o"></i></a>                
+                  </span>
+                </div>
+                <div class="media-body">
+                  <div class="pull-right media-mini text-center text-muted">
+                    <strong class="h6">Noviembre 3</strong><br>
+                    <small class="label bg-light">2013</small>
+                  </div>
+                  <a href="#" class="h4 text-success">Legislación de las Regalías</a>
+                  <small class="block">El marco constitucional y legal de las regalías ha evolucionado de constituir una simple compensación por la explotación de los recursos naturales ...</small>
+                </div>
+              </article>
+              <div class="line pull-in"></div>
+              <article class="media">
+                <div class="pull-left thumb-small">
+                  <span class="fa-stack fa-lg">
+                    <a data-original-title="Editar Noticia" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-pencil"></i></a>
+                    <a data-original-title="Eliminar Noticia" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-trash-o"></i></a>                
+                  </span>
+                </div>
+                <div class="media-body">
+                  <div class="pull-right media-mini text-center text-muted">
+                    <strong class="h6">Marzo 10</strong><br>
+                    <small class="label bg-light">2014</small>
+                  </div>
+                  <a href="#" class="h4 text-success">San José del Guaviare, Capital de la Esperanza Colombiana</a>
+                  <small class="block">En esta página el Municipio de San José Del Guaviare, abre sus puertas al mundo mostrando su diversidad cultural y sus riquezas hídricas, de flora y fauna proyectándose al mundo como un destino turístico indiscutible donde el contacto con la naturaleza...</small>
+                </div>
+              </article>
+            </section>
+          </section>
+          <!-- / scrollable -->
+        </div>
+        <div class="col-lg-6">
+          <section class="panel">
+            <header class="panel-heading">
+              <span class="label bg-info pull-right">10</span>
+              <b>Comercial</b>
+            </header>
+            <section class="panel-body noticias">
+              <article class="media">
+                <div class="pull-left thumb-small">
+                  <span class="fa-stack fa-lg">
+                    <a data-original-title="Editar Noticia" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-pencil"></i></a>
+                    <a data-original-title="Eliminar Noticia" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-trash-o"></i></a>                
+                  </span>
+                </div>
+                <div class="media-body">
+                  <div class="pull-right media-mini text-center text-muted">
+                    <strong class="h6">Marzo 10</strong><br>
+                    <small class="label bg-light">2014</small>
+                  </div>
+                  <a href="#" class="h4 text-success">San José del Guaviare, Capital de la Esperanza Colombiana</a>
+                  <small class="block">En esta página el Municipio de San José Del Guaviare, abre sus puertas al mundo mostrando su diversidad cultural y sus riquezas hídricas, de flora y fauna proyectándose al mundo como un destino turístico indiscutible donde el contacto con la naturaleza...</small>
+                </div>
+              </article>
+              <div class="line pull-in"></div>
+              <article class="media">
+                <div class="pull-left thumb-small">
+                  <span class="fa-stack fa-lg">
+                    <a data-original-title="Editar Noticia" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-pencil"></i></a>
+                    <a data-original-title="Eliminar Noticia" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-trash-o"></i></a>                
+                  </span>
+                </div>
+                <div class="media-body">
+                  <div class="pull-right media-mini text-center text-muted">
+                    <strong class="h6">Febrero 3</strong><br>
+                    <small class="label bg-light">2014</small>
+                  </div>
+                  <a href="#" class="h4 text-success">Acerca del Sistema General de Regalías</a>
+                  <small class="block">Conforme al referido Acto Legislativo el Gobierno Nacional tenía la obligación de hacer operativo el Sistema General de Regalías (SGR) a partir del 1 de enero de 2012, razón por la cual expidió el Decreto Ley transitorio 4923-2011...</small>
+                </div>
+              </article>
+              <div class="line pull-in"></div>
+              <article class="media">
+                <div class="pull-left thumb-small">
+                  <span class="fa-stack fa-lg">
+                    <a data-original-title="Editar Noticia" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-pencil"></i></a>
+                    <a data-original-title="Eliminar Noticia" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-trash-o"></i></a>                
+                  </span>
+                </div>
+                <div class="media-body">
+                  <div class="pull-right media-mini text-center text-muted">
+                    <strong class="h6">Noviembre 3</strong><br>
+                    <small class="label bg-light">2013</small>
+                  </div>
+                  <a href="#" class="h4 text-success">Legislación de las Regalías</a>
+                  <small class="block">El marco constitucional y legal de las regalías ha evolucionado de constituir una simple compensación por la explotación de los recursos naturales ...</small>
+                </div>
+              </article>
+              <div class="line pull-in"></div>
+              <article class="media">
+                <div class="pull-left thumb-small">
+                  <span class="fa-stack fa-lg">
+                    <a data-original-title="Editar Noticia" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-pencil"></i></a>
+                    <a data-original-title="Eliminar Noticia" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-trash-o"></i></a>                
+                  </span>
+                </div>
+                <div class="media-body">
+                  <div class="pull-right media-mini text-center text-muted">
+                    <strong class="h6">Febrero 3</strong><br>
+                    <small class="label bg-light">2014</small>
+                  </div>
+                  <a href="#" class="h4 text-success">Acerca del Sistema General de Regalías</a>
+                  <small class="block">Conforme al referido Acto Legislativo el Gobierno Nacional tenía la obligación de hacer operativo el Sistema General de Regalías (SGR) a partir del 1 de enero de 2012, razón por la cual expidió el Decreto Ley transitorio 4923-2011, el cual determina la distribución, objetivos, fines, administración, ejecución, control, el uso eficiente y la destinación de los ingresos provenientes de la explotación de los recursos naturales no renovables precisando las condiciones de participación de sus beneficiarios.
+                En desarrollo de este Acto Legislativo 05-2011, el Gobierno Nacional presentó a consideración del Congreso de la República el proyecto de ley que regula el Sistema General de Regalías, el cual fue aprobado en su cuarto y último debate el pasado 16 de diciembre de 2011; faltándole solo para convertirse en ley de la República, la aprobación de la conciliación constitucional.</small>
+                </div>
+              </article>
+            </section>
+          </section>
+        </div>
+      </div>        
+        
+    </section>
+      
+      
+    <!-- preload -->
+    <div class="body-preload">
+      <div class="img-preload">     
+          <img src="imagenes/preloader_large.gif" alt="preload">
+      </div>  
+    </div>        
+    <!-- preload -->        
+  </section>  
+  
+  <!-- footer -->
+   <footer id="footer">
+    <div class="text-center inferior">
+        <div class="row m-b-large">
+            <div class="col-lg-3 col-lg-offset-1 m-t">
+                <img src="imagenes/logo_vive_digital_40.png" alt="San Jose del Guaviare Vive Digital">
+            </div>                    
+            <div class="col-lg-2 m-t">
+                <img src="imagenes/logo_min_tic_40.png" alt="Ministerio de Tecnologias de la Informacion y las Comunicaciones">            
+            </div>                
+            <div class="col-lg-2 m-t">
+                <img src="imagenes/logo_colciencias_40.png" alt="Colciencias">            
+            </div>                
+            <div class="col-lg-1 m-t">
+                <img src="imagenes/logo_san_jose_40.png" alt="San Jose del Guaviare">            
+            </div>                        
+            <div class="col-lg-2 m-t">
+                <img src="imagenes/logo_parquesoft_meta_40.png" alt="ParqueSoft Meta">            
+            </div>                      
+        </div>
+    </div>
+  </footer>
+  <!-- / footer -->
+	
+  <script src="js/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="js/bootstrap.js"></script>
+  <!-- Sparkline Chart -->
+  
+  <!-- app -->
+  <script src="js/app.js"></script>
+  <script src="js/app.plugin.js"></script>
+  <script src="js/app.data.js"></script>
+   
+  <!-- datepicker -->
+  <script src="js/datepicker/bootstrap-datepicker.js"></script>
+  
+  <!-- Datos -->
+<!--  <script src="js/general.js"></script>  
+  <script src="js/datos/listaMetasUsuario.js"></script>-->
+  
+</body>
+</html>
