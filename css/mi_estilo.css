@@ -123,3 +123,10 @@ tr.datos-tabla td hr{
     color: #5191d1;
 }
 
+/**Calendario**/
+.datepicker:after{
+    left:80%;
+}
+.datepicker:before{
+    left:79.5%;
+}

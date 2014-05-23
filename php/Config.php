@@ -2,7 +2,7 @@
 	
 	date_default_timezone_set("America/Bogota");	
         
-	$servidor     = "localhost";//"192.81.208.30";
+	$servidor     = "localhost";///"192.81.208.30";
 	$db_usuario   = "root";
 	$db_pass      = "";//"gisoft1121_base";
 	$db           = "indicadores";

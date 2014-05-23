@@ -148,7 +148,7 @@ $("#edicion_bton_cancelar").click(function(){
 
 ///carga la lista 
             $.ajax({
-                    url:'php/adm/datosListaMetasUsuario.php'
+                    url:URL+'php/adm/datosListaMetasUsuario.php'
                     ,type:'POST'
                     ,dataType:'json'  
                     ,data:{ 
@@ -257,7 +257,7 @@ function tablaListaMetasUsuarios(lista){
             +"              <td>"+formaterNumeros(datoF.recursos_programados)+"</td> "
             +"              <td>"+formaterNumeros(datoF.recursos_ejecutados)+"</td> "
             +"              <td name='semaforo_seguimiento_financiero'>"+datoF.semaforo_seguimiento_financiero+"</td> "
-            +"              <td name='fecha_corte'>"+datoF.fecha_corte+"</td> "
+            +"              <td name='fecha_corte'>"+(datoF.fecha_corte==null?"sin definir": datoF.fecha_corte)+"</td> "
             +"        </tr>";
 
     }
@@ -560,13 +560,20 @@ function guardarMeta(){
                         console.log(data);
                         if(data && data.sesion)
                         {
+
+
+                          try{
+                              $("#tabla_metas_usuario").html(tablaListaMetasUsuarios(data.lista));
+                              $("#select_my_table").change();
+                         }
+                         catch(e){}
+
+
                           if(data.res)
                             {
                               //recostruir con los nuevos datos
                               //
-                              $("#tabla_metas_usuario").html(tablaListaMetasUsuarios(data.lista));
-                              $("#select_my_table").change();
-                            }
+                             }
                             else{
                                alert("Error No se guardo los datos");
                             }

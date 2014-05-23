@@ -404,8 +404,10 @@ public function actualizSeguimientoFinanciero(
 	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
 	      		{
 
-	      			
-	      			$this->guardarError($conexion,$sql);
+	      			if($conexion->Error!="")
+	      				$this->guardarError($conexion,$sql);
+	      			else
+	      				$this->guardarNoActualizo($conexion,$sql);
 
 	      			return -1;
 	      		}
@@ -446,7 +448,10 @@ public function actualizSeguimientoFinanciero(
 	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
 	      		{
 	      			
-	      			$this->guardarError($conexion,$sql);
+	      			if($conexion->Error!="")
+	      				$this->guardarError($conexion,$sql);
+	      			else
+	      				$this->guardarNoActualizo($conexion,$sql);
 
 	      			return -1;
 	      		}
@@ -502,7 +507,10 @@ public function actualizarMatriz(
 	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
 	      		{
 	      			
-	      			$this->guardarError($conexion,$sql);
+	      			if($conexion->Error!="")
+	      				$this->guardarError($conexion,$sql);
+	      			else
+	      				$this->guardarNoActualizo($conexion,$sql);
 	      			return -1;
 	      		}
 	      else{
@@ -533,7 +541,12 @@ public function actualizarMatriz(
 	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
 	      		{
 	      			
-	      			$this->guardarError($conexion,$sql);
+
+	      			if($conexion->Error!="")
+	      				$this->guardarError($conexion,$sql);
+	      			else
+	      				$this->guardarNoActualizo($conexion,$sql);
+	      				
 	      			return -1;
 	      		}
 	      else{
@@ -553,6 +566,20 @@ public function actualizarMatriz(
 		$conexion->guardarArchivo3(
 			      				"\n*****************************************\nfecha: ".date("Y-m-d h:i:s")."\n usuario:".$_SESSION
 			      				['id']."\n ".$conexion->Error."\n SQL: $sql \n ","a","log_registros.txt");
+
+
+
+		
+	}
+
+
+
+
+
+	public  function guardarNoActualizo($conexion,$sql){
+		$conexion->guardarArchivo3(
+			      				"\n*****************************************\nfecha: ".date("Y-m-d h:i:s")."\n usuario:".$_SESSION
+			      				['id']."\n ".$conexion->Error."\n SQL: $sql \n ","a","log_no_actualizacion.txt");
 
 
 
@@ -585,7 +612,10 @@ public function actualizarMatriz(
 	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
 	      		{
 	      			
-	      			$this->guardarError($conexion,$sql);
+	      			if($conexion->Error!="")
+	      				$this->guardarError($conexion,$sql);
+	      			else
+	      				$this->guardarNoActualizo($conexion,$sql);
 
 	      			return -1;
 	      		}
@@ -623,8 +653,10 @@ public function actualizarMatriz(
 		      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
 		      		{
 
-		      			
-		      			$this->guardarError($conexion,$sql);
+	      			if($conexion->Error!="")
+	      				$this->guardarError($conexion,$sql);
+	      			else
+	      				$this->guardarNoActualizo($conexion,$sql);
 
 		      			return -1;
 		      		}
@@ -689,7 +721,10 @@ public function actualizarMatriz(
 	      		{
 
 	      			
-	      			$this->guardarError($conexion,$sql);
+	      			if($conexion->Error!="")
+	      				$this->guardarError($conexion,$sql);
+	      			else
+	      				$this->guardarNoActualizo($conexion,$sql);
 
 	      			return -1;
 	      		}
@@ -719,8 +754,10 @@ public function actualizarMatriz(
 	      		{
 
 	      			
-	      			$this->guardarError($conexion,$sql);
-
+	      			if($conexion->Error!="")
+	      				$this->guardarError($conexion,$sql);
+	      			else
+	      				$this->guardarNoActualizo($conexion,$sql);
 	      			return -1;
 	      		}
 	      else{
@@ -748,7 +785,10 @@ public function actualizarActivoMatriz($_id_matriz, $activo)
 	      		{
 
 	      			
-	      			$this->guardarError($conexion,$sql);
+	      			if($conexion->Error!="")
+	      				$this->guardarError($conexion,$sql);
+	      			else
+	      				$this->guardarNoActualizo($conexion,$sql);
 
 	      			return -1;
 	      		}
@@ -779,8 +819,10 @@ public function actualizarActivoSeguimientoFinaciero($_id_finaciero, $activo)
 	      if($conexion->Error!="" || $conexion->cantidad_alterados<=0)
 	      		{
 
-	      			
-	      			$this->guardarError($conexion,$sql);
+	      			if($conexion->Error!="")
+	      				$this->guardarError($conexion,$sql);
+	      			else
+	      				$this->guardarNoActualizo($conexion,$sql);
 
 	      			return -1;
 	      		}

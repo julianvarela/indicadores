@@ -36,25 +36,33 @@ switch ($opcion) {
 		if(isset($_SESSION['id']) && $permisos->getTienePermisos($_SESSION['id'],$id_subprograma))
 		{
 		
-			$id_datos= $permisos->getFilaMatriz($id_fila_Matriz);
-
-			//actualizacion ....
-			$_fin = $consulta->actualizarActivoSeguimientoFinaciero($id_datos[0]['id_seguimiento_financiero'],'0');
+			$id_datos_matriz1= $permisos->getFilaMatriz($id_fila_Matriz);
+			$id_datos = $permisos->getFilaMatriz_by_idMatriz($id_datos_matriz1[0]['id_matriz']);/// guarda los ide de contendide en fila matriz de todas las filas y
 			
-			$_fis = $consulta->actualizarActivoSegFis($id_datos[0]['id_seguimiento_fisico'],'0');
-			
-			$_matriz = $consulta->actualizarActivoMatriz($id_datos[0]['id_matriz'], '0');
+
+				$_matriz = $consulta->actualizarActivoMatriz($id_datos_matriz1[0]['id_matriz'], '0');
 
 
-			if( $_fin == -1 ||
-				$_fis == -1 ||
-				$_matriz == -1)
+			for($m=0 ; $m <count($id_datos) ; $m++)
 				{
 
-					$res = false;
-				}	
+					//actualizacion ....
+					$_fin = $consulta->actualizarActivoSeguimientoFinaciero($id_datos[$m]['id_seguimiento_financiero'],'0');
+					
+					$_fis = $consulta->actualizarActivoSegFis($id_datos[$m]['id_seguimiento_fisico'],'0');
 
-						
+
+					if( $_fin == -1 ||
+						$_fis == -1 ||
+						$_matriz == -1)
+						{
+
+							$res = false;
+						}	
+
+				}
+
+
 
 
 			///cargar los nuevo datos
@@ -72,6 +80,7 @@ switch ($opcion) {
 		echo json_encode($datos);
 
 	break;
+
 
 
 
@@ -110,6 +119,8 @@ switch ($opcion) {
 		# code...
 		break;
 	
+
+
 
 
 		case "lista_recursos_programados":
@@ -250,6 +261,9 @@ switch ($opcion) {
 					$idVigencia);
 
 
+
+
+
 				$res=false; //si hubo un error sera false
 				$miDatos=array();
 
@@ -259,8 +273,54 @@ switch ($opcion) {
 					$idFila!=-1
 					)
 					{
-						$res=true;	
+						$res=true;
 
+						///luego de generado el registor principal se crearano los registros de las demas Vigencias para esa meta
+					    $mis_vigencias = $consultaGeneral->getMisVigencia();
+
+						for($i=0; $i < count($mis_vigencias) ; $i++)
+							{
+
+								if($idVigencia==$mis_vigencias[$i]["id"])
+									{
+
+									}
+									else{
+
+										$id_seguimiento_financiero=  $consulta->addSeguimientoFinanciero(
+											"0" , 
+											"0", 
+											"0" ,
+											"NULL"); 
+
+
+											$id_seguimiento_fisico= $consulta->addSeguimientoFisico(
+										   		"0", 
+										   		"0" ,
+										   		"0" , 
+										   		"0" , 
+										   		"0");	
+
+											$idFila = $consulta->addFilaMatriz(
+													$id_matriz, 
+													$id_seguimiento_fisico, 
+													$id_seguimiento_financiero,
+													$mis_vigencias[$i]['id']);
+											
+											//valida si hay error
+											if($id_matriz ==-1 || 
+												$id_seguimiento_fisico ==-1 ||
+												$id_seguimiento_financiero ==-1 || 
+												$idFila==-1
+												){
+
+												$res=false;	
+
+											}
+
+									}//fin if de valicion si la vigencia esta repetida
+							}//fin del for de vigencias
+						
 						/// generara los nuevos datos de las tablas
 						$miDatos= $consulta->listaMetas($id_subprograma, $idVigencia);
 						
@@ -402,10 +462,16 @@ switch ($opcion) {
 					{
 						$res=true;	
 
-						/// generara los nuevos datos de las tablas
-						$miDatos=$consulta->listaMetas($id_subprograma, $idVigencia);
-						
+
+						$actualizacionPadres->ActualizaPadresSuma($id_subprograma
+						, $idVigencia);//actualiza los padres en suma
+
+						$actualizacionPadres->actualizaPadresPonderados($id_subprograma, $idVigencia);
+			
 					}
+
+				/// generara los nuevos datos de las tablas
+				$miDatos=$consulta->listaMetas($id_subprograma, $idVigencia);
 
 
 				$datos =array(

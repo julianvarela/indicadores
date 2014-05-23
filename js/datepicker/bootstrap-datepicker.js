@@ -151,10 +151,26 @@
 		
 		place: function(){
 			var offset = this.component ? this.component.offset() : this.element.offset();
+			
+			if( window.innerWidth < 767 ){		
+				this.picker.css({
+					top: offset.top + this.height,
+					left: offset.left-80
+				});
+			}
+			else if( (160 + offset.left) > 767 ){
+				this.picker.css({
+					top: offset.top + this.height,
+					left: offset.left-160
+				});			
+			}
+			
+			/*
 			this.picker.css({
 				top: offset.top + this.height,
 				left: offset.left
 			});
+			*/
 		},
 		
 		update: function(newDate){

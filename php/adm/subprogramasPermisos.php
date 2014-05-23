@@ -21,6 +21,7 @@ switch ($opcion) {
 
 			$year = $_POST['year'];
 			$lista_subprogramas= $permisos->subprogramas ($_SESSION['id'], $year);
+			
 			$lista_programa=array();
 		
 

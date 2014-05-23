@@ -9,7 +9,9 @@
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/plugin.css">
-  <link rel="stylesheet" href="css/font.css">
+  <link rel="stylesheet" href="css/font.css"> 
+  <link rel="stylesheet" href="css/validationEngine.jquery.css">  
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/mi_estilo.css">  
   <!--[if lt IE 9]>
@@ -51,33 +53,42 @@
       </ul>      
   </nav>  
   <!-- / nav -->
+
+
+
   
   <section id="content">
     <section class="main padder">
         
         <ul class="breadcrumb">
             <li><a href="#"><i class="fa fa-home"></i> Seguimiento</a></li>
-            <li><a href="#" class="my_year">2014</a></li>
             <li class="active">Usuarios</li>
         </ul>        
         
         <div class="row">
           <div class="col-lg-12">
 
+            <A style="display: none" id="ir_edicion" HREF="#bton_ingresar_usuarios"></A>
+
+
+
             <!-- acordeon ingresar/editar usuarios -->          
             <section class="panel mi_acordeon" id="panelAcordeonUsuario">
-                <a class="accordion-toggle list-group-item bg bg-focus" data-toggle="collapse" href="#AgregarEditarUsuario">
+                <a class="accordion-toggle list-group-item bg bg-focus" data-toggle="collapse" href="#" id="bton_ingresar_usuarios"
+
+                onclick="return false;">
                     <b>Ingresar Nuevo Usuario</b>
                 </a>                
                 <div id="AgregarEditarUsuario" class="panel-collapse collapse">  <!-- collapse ->oculta / in -> muestra -->
                     <div class="table-responsive" style="overflow-x:auto">
+                      <form id="tabla_edicion_1">
                         <table class="table table-striped m-b-none" data-ride="datatables">
                           <thead>
                             <tr>                                
                               <th>Nombre</th>
                               <th>Usuario</th>
                               <th>Correo</th>                    
-                              <th>Contraseña</th>
+                             
                               <th>Telefono</th>                    
                               <th>Oficina Principal</th>          
                               <th>Tipo de Usuario</th>                
@@ -87,46 +98,76 @@
                           <tbody id="TablaDatosUsuario">
                               <tr>                     
                                   <td>
-                                      <input name="nombreU" data-required="true" class="input-sm form-control parsley-validated" type="text">
+                                      <input id="edicion_nombre" data-required="true" class="input-sm form-control parsley-validated
+                                      validate[required,custom[mi_letras],maxSize[45]] "
+
+                                       type="text">
                                   </td>
                                   <td>
-                                      <input name="usuarioU" data-required="true" class="input-sm form-control parsley-validated" type="text">
+                                      <input id="edicion_usuario" data-required="true" class="input-sm form-control parsley-validated 
+                                      validate[required,custom[mi_letras],maxSize[45]] " 
+                                      type="text">
                                   </td>
                                   <td>
-                                      <input name="correoU" data-required="true" class="input-sm form-control parsley-validated" type="">
+                                      <input id="edicon_correo" data-required="true" class="input-sm form-control parsley-validated
+                                      validate[required,custom[email],maxSize[50]] "
+                                       type="">
                                   </td>
+                                                                     
                                   <td>
-                                      <input name="claveU" data-required="true" class="input-sm form-control parsley-validated" type="">
-                                  </td>                                    
-                                  <td>
-                                      <input name="telefonoU" data-required="true" class="input-sm form-control parsley-validated" type="text">
+                                      <input id="edicion_telefono" data-required="true" class=" input-sm form-control parsley-validated 
+                                      validate[required,custom[phone],maxSize[45]] "
+
+                                       data-validate="validate(required, number )"
+                                      type="text">
                                   </td>                                     
                                   <td>
-                                      <input name="oficinaU" data-required="true" class="input-sm form-control parsley-validated" type="text">
+                                      <input id="edicion_oficina" data-required="true" class="input-sm form-control parsley-validated 
+                                      validate[required,custom[integer],maxSize[11]] " type="text">
                                   </td>
                                   <td>
-                                      <select name="tipoU" class="input-sm form-control">
-                                        <option value="1">Administrador</option>
-                                        <option value="2">Funcionario</option>
+                                      <select id="selectTipoUsuario" class="input-sm form-control">                                       
                                       </select>                                      
                                   </td>                                    
                                   <td>
-                                      <select name="estadoU" class="input-sm form-control">
+                                    <select id="edicion_estado" class="input-sm form-control">
                                         <option value="1">Activo</option>
-                                        <option value="2">Inactivo</option>
+                                        <option value="0">Inactivo</option>
                                       </select>                                      
                                   </td>
                               </tr>
                           </tbody>
                         </table>
+                      </form>
+
+                    <table class="table table-striped m-b-none" data-ride="datatables">
+                          <thead>
+                            <tr>                                
+                              <th style="width: 100px">Contraseña:</th>
+                              <th style="width: 100px"><input id="edicion_pass1" type="PASSWORD" value="-@@##@@-"></th>
+                              <th style="width: 100px"> Confirmacion:</th>                    
+                             
+                              <th style="width: 100px">
+                                <input id="edicion_pass2" type="password" value="-@@##@@-">
+                              </th>                    
+                              
+                              <th></th>          
+                              <th></th>                
+                              <th></th>
+                            </tr>
+                          </thead>
+                      </table>    
+                      
                     </div>
                     <footer class="panel-footer">
-                        <a href="#" class="btn btn-success">Guardar</a>
+                        <a href="#" id="bton_guardado_usuario" onclick="return false" class="btn btn-success">Guardar</a>
                         <a href="#" class="btn btn-danger">Cancelar</a>
                     </footer>
 
                     <section class="panel">                                              
-                      <a class="accordion-toggle list-group-item bg bg-focus" data-toggle="collapse" href="#listaProgramas">
+                      <a class="accordion-toggle list-group-item bg bg-focus" data-toggle="collapse"
+                        id="bton_permisos_add"
+                       href="#listaProgramas">
                         <b>Conseder permisos sobre subprogramas</b>
                       </a>                      
                       <div id="listaProgramas" class="panel-collapse collapse list-group">
@@ -338,7 +379,6 @@
                       <th>Nombre</th>
                       <th>Usuario</th>
                       <th>Correo</th>                    
-                      <th>Contraseña</th>
                       <th>Estado</th>                                
                       <th>Telefono</th>                    
                       <th>Oficiona Principal</th>                    
@@ -346,23 +386,10 @@
                       <th>Fecha de Creacion</th>                                       
                     </tr>
                   </thead>
-                  <tbody id="TablaAvanceProgramas">
-                      <tr class="datos-tabla">
-                          <td>
-                              <a data-original-title="Editar Usuario" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-pencil"></i></a><hr />
-                              <a data-original-title="Eliminar Usuario" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-trash-o"></i></a>
-                          </td>                        
-                          <td>Jhon Charles Aponte</td>
-                          <td>Jhon Charles Aponte</td>
-                          <td>jhon7aponte@gmail.com</td>
-                          <td>gatito</td>
-                          <td>Pasivo</td>
-                          <td>6 666 666</td>
-                          <td>Casa de Miguel</td>
-                          <td>Funcionario</td>
-                          <td>06/05/2014</td>
-                      </tr>                  
+
+                  <tbody id="TablaAvanceProgramas">                                       
                   </tbody>
+
                 </table>
               </div>
               <footer class="panel-footer">
@@ -420,10 +447,14 @@
    
   <!-- datepicker -->
   <script src="js/datepicker/bootstrap-datepicker.js"></script>
-  
+
+
+  <script src="js/languages/jquery.validationEngine-es.js"></script>
+  <script src="js/jquery.validationEngine.js"></script>
+    
   <!-- Datos -->
-<!--  <script src="js/general.js"></script>  
-  <script src="js/datos/listaMetasUsuario.js"></script>-->
+ <script src="js/general.js"></script>  
+  <script src="js/datos/ListaUsuarios.js"></script>-->
   
 </body>
 </html>

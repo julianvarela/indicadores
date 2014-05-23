@@ -80,7 +80,8 @@
 		* 
 		**/
 		public function getTipoPermiso($id_usuario){
-	        $sql="SELECT tu.nombre_tipo  tipo , tu.id 
+	        $sql="SELECT tu.nombre_tipo  as  tipo 
+	        			, tu.id 
 					FROM tipos_usuarios tu ,usuarios u
 					WHERE u.tipos_usuarios_id= tu.id
 							AND u.id='$id_usuario'";
@@ -208,6 +209,23 @@
 
 
 
+ public function getFilaMatriz_by_idMatriz($id_matriz){
+    	
+	    	$sql="SELECT *
+					FROM  fila_matriz fm 
+					WHERE  fm.id_matriz='{$id_matriz}'
+					       ";
+
+		
+
+				$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+		        $conexion->consultaSQL($sql);
+		        
+		        return  $conexion->_datosRegistros;
+    }
+
+
+
 	    public function getFilasRegistros($id_padre, $id_vigencia){
 	    	
 	    	$sql="SELECT  fm.* , 
@@ -260,6 +278,39 @@
 
 	    }
 
+
+
+
+
+
+	    /********************************
+	    *
+	    * se genera la lista de subprgramas y programas 
+	    *
+	    *@param $tipo String de las pueed ser SPR -->suprograma y PR -->programa ,EJE -->ejes
+	    *                    
+	    * 
+	    ********************************/
+	    public function getListaProgramas_Subprogramas($tipo){
+	    	$sql="SELECT  DISTINCT
+						pdm.codigo  as codigo
+						,pdm.nivel as nombre
+						,m.id  as id
+						,m.id_padre as  id_padre
+
+				FROM  matriz m  , pdm , clases c
+				WHERE pdm.id= m.pdm_id
+					AND m.clases_id = c.id
+					AND c.nombre like '{$tipo}' ";
+
+
+
+				$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+		        $conexion->consultaSQL($sql);
+		        
+		        return  $conexion->_datosRegistros;
+
+	    }
 
 	}
 

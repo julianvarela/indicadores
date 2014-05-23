@@ -1,0 +1,11 @@
+
+*****************************************
+fecha: 2014-05-23 01:34:20
+ usuario:1
+ Unknown column 'tipo_usuarios_id' in 'field list'
+ SQL: INSERT INTO usuarios
+			(nombre,usuario, pass, activo, fecha_creacion, id_usuario_creador, correo, telefonos, oficina_principal, tipo_usuarios_id)
+			
+			VALUES
+					('eee','eee', md5('123'), '0', NOW(), '1', 'e@ss.d', '122', '1', '1')  
+ 
