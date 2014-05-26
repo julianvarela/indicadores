@@ -1,4 +1,5 @@
 
+
 /***
  * @param {year} año en formato YYYY
  * @param {String} incialse de de la clase puede ser .OG ,OE ,PR ,SPR
@@ -557,3 +558,35 @@ function redoarMayor(n1){
    });
 
 //});
+
+
+
+function getHtmlNavAdmin(opcion){
+
+  var html =" <ul class='nav affix-top' data-spy='affix' data-offset-top='50'> "
+            +"      <li   "+(opcion==1? "class='active'":"")+"><a href='ListaNoticias.html'><i class='fa fa-home fa-lg'></i><span>Noticias</span></a></li>  "         
+            +"      <li   "+(opcion==2? "class='active   dropdown-submenu '":"class=' dropdown-submenu '")+"><a href='#' onclick='return false'><i class='fa fa-th fa-lg'></i><span>Programas</span></a>";
+            
+           html +="<ul class='dropdown-menu'> ";
+             for(var i=0 ;  localStorage.getItem("year"+i); i++){
+        
+
+                var valores= localStorage.getItem("year"+i).split("_");
+                var yearAux=valores[0];
+                var activo =valores[1];
+                html+="<li> "
+                    +"    <a href='ListaProgramas.html?year="+yearAux+"' > "
+                    +"       "+yearAux
+                    +"    </a> "
+                    +" </li>";
+
+              }
+
+
+          html +="</ul>  </li> ";
+
+          html +="      <li   "+(opcion==3? "class='active'":"")+"><a href='ListaUsuarios.html'><i class='fa fa-users fa-lg'></i><span>Usuarios</span></a></li> "          
+            +"  </ul>";
+
+      return html;
+}

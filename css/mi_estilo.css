@@ -130,3 +130,15 @@ tr.datos-tabla td hr{
 .datepicker:before{
     left:79.5%;
 }
+
+
+.mi_hover:hover   {
+
+    background-color:rgba(35, 52, 69, 0.3) !important;
+    color:#233445 !important;
+}
+
+
+#TablaDatosUsuario td{
+    position: relative;
+}

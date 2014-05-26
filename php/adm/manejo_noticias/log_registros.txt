@@ -1,0 +1,150 @@
+
+*****************************************
+fecha: 2014-05-25 02:34:43
+ usuario:1
+ Unknown column 'tipo_noticias_id' in 'field list'
+ SQL: INSERT INTO noticias
+                (titulo, contenido, activo , fecha_creacion, tipo_noticias_id, usuarios_id)
+
+                VALUES 
+                ('fdaf', 'fdsa', '1' , '22/05/2014', STR_TO_DATE('1','%d/%m/%Y'), '1') 
+ 
+*****************************************
+fecha: 2014-05-25 02:35:32
+ usuario:1
+ Unknown column 'tipo_noticias_id' in 'field list'
+ SQL: INSERT INTO noticias
+                (titulo, contenido, activo , fecha_creacion, tipo_noticias_id, usuarios_id)
+
+                VALUES 
+                ('', '', '1' , '', STR_TO_DATE('1','%d/%m/%Y'), '1') 
+ 
+*****************************************
+fecha: 2014-05-25 02:35:46
+ usuario:1
+ Unknown column 'tipo_noticias_id' in 'field list'
+ SQL: INSERT INTO noticias
+                (titulo, contenido, activo , fecha_creacion, tipo_noticias_id, usuarios_id)
+
+                VALUES 
+                ('dsd', 'fdsaf', '1' , '24/05/2014', STR_TO_DATE('2','%d/%m/%Y'), '1') 
+ 
+*****************************************
+fecha: 2014-05-25 02:36:58
+ usuario:1
+ Unknown column 'tipo_noticias_id' in 'field list'
+ SQL: INSERT INTO noticias
+                (titulo, contenido, activo , fecha_creacion, tipo_noticias_id, usuarios_id)
+
+                VALUES 
+                ('yy', 'n', '1' , '23/05/2014', STR_TO_DATE('2','%d/%m/%Y'), '1') 
+ 
+*****************************************
+fecha: 2014-05-25 02:38:18
+ usuario:1
+ Unknown column 'tipo_noticias_id' in 'field list'
+ SQL: INSERT INTO noticias
+                (titulo, contenido, activo , fecha_creacion, tipo_noticias_id, usuarios_id)
+
+                VALUES 
+                ('yy', 'n', '1' , '23/05/2014', STR_TO_DATE('','%d/%m/%Y'), '1') 
+ 
+*****************************************
+fecha: 2014-05-25 02:50:54
+ usuario:1
+ Cannot add or update a child row: a foreign key constraint fails (`indicadores`.`noticias`, CONSTRAINT `fk_noticias_tipos_noticias1` FOREIGN KEY (`tipos_noticias_id`) REFERENCES `tipos_noticias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+ SQL: INSERT INTO noticias
+                (titulo, contenido, activo , fecha_creacion, tipos_noticias_id, usuarios_id)
+
+                VALUES 
+                ('', '', '1' , '', STR_TO_DATE('','%d/%m/%Y'), '1') 
+ 
+*****************************************
+fecha: 2014-05-25 03:14:10
+ usuario:1
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':  'dsad----------------------------------------------fdsf',
+                  ' at line 3
+ SQL: UPDATE noticias
+              SET   
+                   titulo:  'dsad----------------------------------------------fdsf',
+                   contenido:  'sd',
+                   activo:  '1' , 
+                   fecha_creacion:  STR_TO_DATE('','%d/%m/%Y'),
+                   tipos_noticias_id:  '1', 
+                   usuarios_id:  '1')
+
+                WHERE 
+                   id='mi_noticia_10'  
+ 
+*****************************************
+fecha: 2014-05-25 03:14:40
+ usuario:1
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':  'dsad----------------------------------------------fdsf',
+                  ' at line 3
+ SQL: UPDATE noticias
+              SET   
+                   titulo:  'dsad----------------------------------------------fdsf',
+                   contenido:  'sd',
+                   activo:  '1' , 
+                   fecha_creacion:  STR_TO_DATE('1','%d/%m/%Y'),
+                   tipos_noticias_id:  '1', 
+                   usuarios_id:  '1')
+
+                WHERE 
+                   id='mi_noticia_10'  
+ 
+*****************************************
+fecha: 2014-05-25 03:15:29
+ usuario:1
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+
+                WHERE 
+                   id='mi_noticia_10'' at line 8
+ SQL: UPDATE noticias
+              SET   
+                   titulo=  'dsad----------------------------------------------fdsf',
+                   contenido= 'sd',
+                   activo=  '1' , 
+                   fecha_creacion=  STR_TO_DATE('1','%d/%m/%Y'),
+                   tipos_noticias_id=  '1', 
+                   usuarios_id=  '1')
+
+                WHERE 
+                   id='mi_noticia_10'  
+ 
+*****************************************
+fecha: 2014-05-25 03:15:40
+ usuario:1
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+
+                WHERE 
+                   id='mi_noticia_10'' at line 8
+ SQL: UPDATE noticias
+              SET   
+                   titulo=  'dsad----------------------------------------------fdsf',
+                   contenido= 'sd',
+                   activo=  '1' , 
+                   fecha_creacion=  STR_TO_DATE('1','%d/%m/%Y'),
+                   tipos_noticias_id=  '1', 
+                   usuarios_id=  '1')
+
+                WHERE 
+                   id='mi_noticia_10'  
+ 
+*****************************************
+fecha: 2014-05-25 03:36:31
+ usuario:1
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE 
+                   id='4'' at line 10
+ SQL: UPDATE noticias
+              SET   
+                   titulo=  'sa99999999999999999999999999999999999999999',
+                   contenido= 'fdsafdsafdsafdaf fsaf fasf',
+                   activo=  '1' , 
+                   fecha_creacion=  STR_TO_DATE('2','%d/%m/%Y'),
+                   tipos_noticias_id=  '2', 
+                  
+
+                WHERE 
+                   id='4'  
+ 

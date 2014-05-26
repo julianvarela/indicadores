@@ -43,12 +43,7 @@
   <!-- / header -->
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs nav-vertical">
-      <ul class="nav affix-top" data-spy="affix" data-offset-top="50">
-          <li><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2012<br/><span class="badge bg-primary">10</span></span></a></li>          
-          <li><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2013<br/><span class="badge bg-primary ">14</span></span></a></li>          
-          <li class="active"><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2014<br/><span class="badge bg-primary">6</span></span></a></li>          
-          <li><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2015<br/><span class="badge bg-primary">0</span></span></a></li>
-      </ul>      
+           
   </nav>  
   <!-- / nav -->
   
@@ -56,118 +51,74 @@
     <section class="main padder">
         
         <ul class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i> Seguimiento</a></li>
-            <li><a href="#" class="my_year">2014</a></li>
-            <li class="active">Metas</li>
+            <li><a href="#"><i class="fa fa-th"></i> Programas</a></li>
         </ul>        
         
         <div class="row">
           <div class="col-lg-12">
 
+            <div class="panel">
+              <table class="table table-striped m-b-none" data-ride="datatables"> 
+                <thead>
+                  <tr>
+                    <th style="width:50px">tipo :</th>
+                    <th style="width:30%"> 
+                          <select  class="input-sm form-control">
+                          <option value="0">Programa 1</option>
+                          <option value="1">Programa 2</option>
+                          <option value="0">Programa 3</option>
+                          <option value="1">Programa 4</option>
+                        </select></th>
+                    <th></th>                                           
+                  </tr>
+                </thead>
+              </table>             
+            </div>
+
+
             <!-- acordeon ingresar/editar -->          
               <div class="panel mi_acordeon" id="panelAcordeonMeta">
-                <div class="panel-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" href="#AgregarEditarMeta">
-                      <b>Ingresar Nuevo Programa</b>
-                  </a>
-                </div>
+                <a class="accordion-toggle list-group-item bg bg-focus" data-toggle="collapse" href="#"
+                 onclick="return false;"
+                 id="bton_guardar_programa" 
+                >
+                  <b>Ingresar Nuevo Programa</b>
+                </a>                       
                 <div id="AgregarEditarMeta" class="panel-collapse collapse">  <!-- collapse ->oculta / in -> muestra -->
                   <!--<div class="panel-body text-small">-->
                       <div class="table-responsive" style="overflow-x:auto">
                           <table class="table table-striped m-b-none" data-ride="datatables">
                             <thead>
                               <tr>
+                                <th>Elemento contenedor </th>
                                 <th>Codigo Nivel PDM</th>
-                                <th>Nivel PDM</th>
-                                <th>Meta</th>
-                                <th>Linea Base</th>
-                                <th>Valor Esperado Productos</th>
-                                <th>Dependecia Responsable</th>                    
-                                <th>Nombre del Sector</th>                    
-
-                                <th>Valor Esperado Meta Producto <span class="my_year">2014</span></th>
-                                <th>Valor Logrado Meta Producto <span class="my_year">2014</span></th>
-                                <th>Ponderado <span class="my_year">2014</span></th>
-                                <th>Avance Ponderado <span class="my_year">2014</span></th>
-                                <th>Avance Semaforo Seguimiento Fisico <span class="my_year">2014</span></th>
-
-                                <th>Recursos Programados <span class="my_year">2014</span></th>
-                                <th>Recursos Ejecutados <span class="my_year">2014</span></th>
-                                <th>Semaforo Seguimiento Financiero <span class="my_year">2014</span></th>
-                                <th>Fecha de Corte <span class="my_year">2014</span></th>                    
+                                <th>Nivel PDM</th>                                           
                               </tr>
                             </thead>
                             <tbody id="TablaDatosProgramas">
-                                <tr>                     
-                                    <td>
-                                        <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">
+                                <tr>  
+                                    <td id="edicion_pertenece">
+                                      <select  class="input-sm form-control">
+                                        <option value="0">Programa 1</option>
+                                        <option value="1">Programa 2</option>
+                                        <option value="0">Programa 3</option>
+                                        <option value="1">Programa 4</option>
+                                      </select>
                                     </td>
+
                                     <td>
-                                        <select name="programas" class="input-sm form-control">
+                                        <input id="edicion_codigo" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">
+                                    </td>
+
+                                    <td>
+                                        <select id="edicion_nivel" class="input-sm form-control">
                                           <option value="0">Programa 1</option>
                                           <option value="1">Programa 2</option>
                                           <option value="0">Programa 3</option>
                                           <option value="1">Programa 4</option>
                                         </select>                                      
                                     </td>
-                                    <td>
-                                        <textarea placeholder="Descripcion de la Meta" rows="5" class="input-sm form-control parsley-validated" data-trigger="keyup" data-rangelength="[20,200]"></textarea>
-                                    </td>
-                                    <td>0</td>
-                                    <td>
-                                        <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">
-                                    </td>
-                                    <td>
-                                        <select id="selectDependencias" name="selectDependencias" class="input-sm form-control">
-                                          <option value="0">dependencias 1</option>
-                                          <option value="1">dependencias 2</option>
-                                          <option value="2">dependencias 3</option>
-                                          <option value="3">dependencias 4</option>
-                                          <option value="4">dependencias 5</option>
-                                          <option value="5">dependencias 6</option>
-                                          <option value="6">dependencias 7</option>
-                                          <option value="7">dependencias 8</option>                                        
-                                        </select>                                      
-                                    </td>
-                                    <td>
-                                        <select id="selectSectorBasico" name="selectSectorBasico" class="input-sm form-control">
-                                          <option value="0">sectorBasico 1</option>
-                                          <option value="1">sectorBasico 2</option>
-                                          <option value="2">sectorBasico 3</option>
-                                          <option value="3">sectorBasico 4</option>
-                                          <option value="4">sectorBasico 5</option>
-                                          <option value="5">sectorBasico 6</option>
-                                          <option value="6">sectorBasico 7</option>
-                                          <option value="7">sectorBasico 8</option>                                        
-                                        </select>                                       
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="80%" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="20.000.000.000" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="20.000.000.000" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input name="codigoM" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">                                      
-                                    </td>
-                                    <td>
-                                      <input class="input-sm form-control datepicker" size="16" value="12-02-2013" data-date-format="dd-mm-yyyy" type="text">
-                                    </td>                                  
+                                                                      
                                 </tr>
                             </tbody>
                           </table>
@@ -185,7 +136,8 @@
               <header class="panel-heading">            
                   <div class="row">
                       <div class="col-sm-6 text-center-sm">
-                          <h4><b>Metas ingresadas en la vigencia <span class="my_year">2014</span></b></h4>
+
+                          <h4><b>Vigencia <span class="my_year">2014</span></b></h4>
                       </div>
                       <div class="col-sm-offset-3 col-lg-offset-3 col-sm-3  col-lg-2 text-center">
                           <label>Mostrar
@@ -205,72 +157,35 @@
                   <thead>
                     <tr>
                       <th></th>
+                      <th>Clase</th>
                       <th>Codigo Nivel PDM</th>
                       <th>Nivel PDM</th>
-                      <th>Meta</th>
-                      <th>Linea Base</th>
-                      <th>Valor Esperado Productos</th>
-                      <th>Dependecia Responsable</th>                    
-                      <th>Nombre del Sector</th>                    
-
-                      <th>Valor Esperado Meta Producto <span class="my_year">2014</span></th>
-                      <th>Valor Logrado Meta Producto <span class="my_year">2014</span></th>
-                      <th>Ponderado <span class="my_year">2014</span></th>
-                      <th>Avance Ponderado <span class="my_year">2014</span></th>
-                      <th>Avance Semaforo Seguimiento Fisico <span class="my_year">2014</span></th>
-
-                      <th>Recursos Programados <span class="my_year">2014</span></th>
-                      <th>Recursos Ejecutados <span class="my_year">2014</span></th>
-                      <th>Semaforo Seguimiento Financiero <span class="my_year">2014</span></th>
-                      <th>Fecha de Corte <span class="my_year">2014</span></th>                    
+                                          
                     </tr>
                   </thead>
                   <tbody id="TablaAvanceProgramas">
                       <tr class="datos-tabla">
-                          
-                        
                           <td>
                               <a data-original-title="Editar Meta" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-pencil"></i></a><hr />
                               <a data-original-title="Eliminar Meta" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-trash-o"></i></a>
-                          </td>                        
+                          </td>
+
+                          <td>SPR</td>
+
                           <td>1.1.1</td>
-                          <td class="dato-tabla-nivel">Poblacion Desplazada  y activa compromiso de todo</td>
-                          <td class="dato-tabla-nivel">Jornada de validacion semestral de informacion del RUPD</td>
-                          <td>0</td>
-                          <td>8,00</td>
-                          <td>Secretaria de Gobierno</td>
-                          <td>Grupos Vulnerables</td>
-                          <td>2,00</td>
-                          <td>0,00</td>
-                          <td>18,0</td>
-                          <td>0,0</td>
-                          <td>0,00%</td>
-                          <td>2.000.000,00</td>
-                          <td>0,00</td>
-                          <td>0,00</td>
-                          <td>12/31/2012</td>
+
+                           <td>Mi delkfdsak jdksal fdsa fdsa scrioa jlsjafk jkljdsf kjkdlsjafl3wmflnalsndfkln knfdaskln fklnsdfklnsdaklfnklsanfkdnfklnsa knfdklsan lfkdnsa lfnsdalkfn eda</td>                          
                       </tr>
+                      
                       <tr class="datos-tabla">
                           <td>
                               <a data-original-title="Editar Meta" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-pencil"></i></a><hr />
                               <a data-original-title="Eliminar Meta" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title=""><i class="fa fa-trash-o"></i></a>
-                          </td>                        
+                          </td> 
+                           <td>SPR</td>                       
                           <td>1.1.1</td>
                           <td class="dato-tabla-nivel">Poblacion Desplazada  y activa compromiso de todo</td>
-                          <td class="dato-tabla-nivel">Jornada de validacion semestral de informacion del RUPD</td>
-                          <td>0</td>
-                          <td>8,00</td>
-                          <td>Secretaria de Gobierno</td>
-                          <td>Grupos Vulnerables</td>
-                          <td>2,00</td>
-                          <td>0,00</td>
-                          <td>18,0</td>
-                          <td>0,0</td>
-                          <td>0,00%</td>
-                          <td>2.000.000,00</td>
-                          <td>0,00</td>
-                          <td>0,00</td>
-                          <td>12/31/2012</td>
+                          
                       </tr>                    
                   </tbody>
                 </table>
@@ -332,8 +247,8 @@
   <script src="js/datepicker/bootstrap-datepicker.js"></script>
   
   <!-- Datos -->
-<!--  <script src="js/general.js"></script>  
-  <script src="js/datos/listaMetasUsuario.js"></script>-->
+ <script src="js/general.js"></script>  
+  <script src="js/datos/ListaProgramas.js"></script>
   
 </body>
 </html>

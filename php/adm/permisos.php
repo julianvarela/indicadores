@@ -19,7 +19,7 @@
 		**/
 		public function subprogramas ($id_usuario, $year){
 	      
-	        $sql="SELECT  m.id ,pdm.codigo , pdm.nivel  as nombre , m.id_padre 
+	        $sql="SELECT DISTINCT m.id ,pdm.codigo , pdm.nivel  as nombre , m.id_padre 
 					FROM  matriz m, permisos p , pdm ,fila_matriz fm, vigencias v
 					WHERE p.id_subprograma = m.id
 						 AND m.pdm_id = pdm.id
@@ -312,6 +312,61 @@
 
 	    }
 
+
+
+	    /***************
+	    ** Perimisos por usuario
+	    **/
+	    public function getPermisos_to_usuario($id_usuario){
+
+	    	$sql="SELECT DISTINCT * 
+				FROM  permisos  p
+				WHERE p.usuarios_id='{$id_usuario}'";
+
+
+				$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+		        $conexion->consultaSQL($sql);
+		        
+		        return  $conexion->_datosRegistros;
+
+	    }
+
+
+
+	    /*****************
+		*	 elimina todos los permisos de un usuario
+	    **********/
+	    public function borrarPermisosAll_by_usuario($id_usuario){
+
+		    $sql="delete FROM permisos
+					WHERE usuarios_id='{$id_usuario}";
+
+				$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+		        $conexion->consultaSQL($sql);
+		        
+		        return  $conexion->_datosRegistros;
+
+
+	    }
+
+
+	    /**************************************
+	    * añade nuevos permisos 
+	    **/
+	    public function addPermiso($id_subprograma, $usuarios_id){
+
+	    	$sql="INSERT INTO permisos 
+				(id_subprograma, usuarios_id)
+				VALUES ('{$id_subprograma}', '{$usuarios_id}')";
+
+
+
+				$conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+		        $conexion->consultaSQL($sql);
+		        
+		        return  $conexion->_datosRegistros;
+
+	    }
 	}
 
 ?>

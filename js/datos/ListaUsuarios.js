@@ -12,14 +12,18 @@ var year=null;
       ///cambiar apariencia login
       if(isLocalStorageAvailable()){
           $(".my_usuario").html(localStorage.getItem("correo"));
- 	}
+    	}
 
  	cargarDatos1();
 
-   $("#tabla_edicion_1").validationEngine();
+   $("#tabla_edicion_1").validationEngine( {promptPosition : "bottomLeft"});
 
    $(document).data("edicion","nuevo");
    $(document).data("id_usuario_edicion","no");
+
+
+
+   $("#nav").html(getHtmlNavAdmin(3));
 
 
 
@@ -43,7 +47,7 @@ $("#bton_permisos_add").click(function(event) {
 	$("#AgregarEditarUsuario").fadeOut();
  	$("#bton_ingresar_usuarios").click(function() {
 
-   
+        clearEdicionUsuario();
 
  			if($("#AgregarEditarUsuario").css("display")=="none")
 	 			{
@@ -53,6 +57,14 @@ $("#bton_permisos_add").click(function(event) {
 	 				$("#AgregarEditarUsuario").fadeOut();
 	 			}
  	});
+
+
+  ///bton cancelar
+  $("#bton_cancelar_usuario").click(function(){
+        clearEdicionUsuario();
+        $("#AgregarEditarUsuario").fadeOut();
+      });
+
 
 
     $("#select_my_table").change(function(){
@@ -109,15 +121,18 @@ $("#edicion_pass2").change(function(){
                     }                                        
                     ,success: function(data,textStatus,jqXHR){
 
+                       $(".body-preload").css({display:'none'});
 
                         if(data && data.sesion)
                         {
                        		if(data.usuario)
                          		{
-
+                                    $("#listaProgramas").html(generarHtmlSubProgramasAll(data.lista_programas)) ;                                  
+                                
                              $("#selectTipoUsuario").html( htmlTipoUsuario(data.permisos));
                          			$("#TablaAvanceProgramas").html(crearTablaUsuarios(data.lista));
                                $("#select_my_table").change();
+                               $("#selectTipoUsuario").change();
                          		}
                          
                          		else{
@@ -162,12 +177,13 @@ $("#edicion_pass2").change(function(){
  				html+="<tr class='datos-tabla' data-tipo='"+obj.id_tipo+"' id='mifila_"+i+"' "
                   +"  data-idactivo='"+obj.activo+"' "
                   +"  data-id_usuario_edicion='"+obj.id+"' "
+                  +"  data-mis_permisos='"+obj.mis_permisos+"' "
                   +" > "
                     +"      <td> "
                     +"         <a  "
                     +"              onclick=\"cargarMiEdicion('mifila_"+i+"' )\" " 
                     +"            data-original-title='Editar Usuario' class='btn btn-info btn-sm' data-toggle='tooltip' data-placement='right' title=''><i class='fa fa-pencil'></i></a><hr />  "
-                    +"         <a data-original-title='Eliminar Usuario' class='btn btn-danger btn-sm' data-toggle='tooltip' data-placement='right' title=''><i class='fa fa-trash-o'></i></a> "
+                  //  +"         <a data-original-title='Eliminar Usuario' class='btn btn-danger btn-sm' data-toggle='tooltip' data-placement='right' title=''><i class='fa fa-trash-o'></i></a> "
                     +"      </td>                         "
                     +"      <td name='nombre'>"+obj.nombre+"</td> "
                     +"      <td name='usuario'>"+obj.usuario+"</td> "
@@ -215,10 +231,31 @@ $("#edicion_pass2").change(function(){
   function cargarMiEdicion(elemento){
   
 
+      $("#listaProgramas [type='checkbox']").attr("checked",false);
+
       $fila = $("#"+elemento);
          $(document).data("edicion","edicion");
          $(document).data("id_usuario_edicion", $fila.data("id_usuario_edicion") );
-     
+         $(document).data("mis_permisos",$fila.data("mis_permisos")); 
+
+
+ 
+         //permisos
+         var mis_permisos=$fila.data("mis_permisos");
+         mis_permisos= mis_permisos.split(",");
+
+
+         for(var i=0;i< mis_permisos.length ; i++)
+         {
+          try{
+            $("[data-mi_subprograma='"+mis_permisos[i]+"'] [name='checkbox']")[0].checked=true;
+              }catch(e){}
+
+ 
+         }
+
+
+
       $("#edicion_nombre").val($fila.find("[name='nombre']").html());
       $("#edicion_usuario").val($fila.find("[name='usuario']").html());
       $("#edicon_correo").val($fila.find("[name='correo']").html());
@@ -228,12 +265,12 @@ $("#edicion_pass2").change(function(){
 
       $("#selectTipoUsuario option[value="+ $fila.data("id_tipo") +"]").attr("selected",true);
       $("#edicion_estado option[value="+ $fila.data("activo") +"]").attr("selected",true);
-   
       
-
-
       $("#ir_edicion").click();
       $("#AgregarEditarUsuario").fadeIn();
+
+      $("#selectTipoUsuario").change();
+
 
     return false;
 
@@ -301,13 +338,23 @@ $("#edicion_pass2").change(function(){
       var telefonos =$("#edicion_telefono").val();
       var oficina_principal =$("#edicion_oficina").val();
       var tipo_usuarios_id =$("#selectTipoUsuario").val();
+      var id_usuario = $(document).data("id_usuario_edicion");
+      var opcion='guardar_usuario';
+
+        if(id_usuario=="no")
+        {
+          opcion='guardar_usuario';
+        }
+        else{
+          opcion='editar_usuario';
+        }
 
       $.ajax({
                     url:URL+'php/adm/manejo_usuarios/datosListaUsuarios.php'
                     ,type:'POST'
                     ,dataType:'json'  
                     ,data:{ 
-                            opcion:'guardar_usuario',
+                            opcion:  opcion,
                             nombre  : nombre ,
                             usuario : usuario ,
                             pass : pass ,
@@ -315,17 +362,25 @@ $("#edicion_pass2").change(function(){
                             correo : correo ,
                             telefonos : telefonos ,
                             oficina_principal : oficina_principal ,
-                            tipo_usuarios_id  :  tipo_usuarios_id 
+                            tipo_usuarios_id  :  tipo_usuarios_id ,
+
+                            mis_permisos : getStringPermisos(),
+                            id_usuario : id_usuario
 
                         }
                     ,beforeSend:function(jqXHR,settings){
+                        $(".body-preload").css({display:'inline'});
+
                         
                     }    
                     ,error: function(XMLHttpRequest, textStatus, errorThrown) { 
                         alert("Se presentó un problema con la conexión a Internet");
+                        $(".body-preload").css({display:'none'});
                         
                     }                                        
                     ,success: function(data,textStatus,jqXHR){
+
+                         $(".body-preload").css({display:'none'});
 
                             if(data && data.sesion)
                             {
@@ -338,6 +393,7 @@ $("#edicion_pass2").change(function(){
                                     //recostruir con los nuevos datos
                                     //
                                     //
+
                                       $("#TablaAvanceProgramas").html(crearTablaUsuarios(data.lista));
                                       $("#select_my_table").change();
                                       alert("Guardado Usuario");
@@ -377,8 +433,45 @@ $("#edicion_pass2").change(function(){
   {
     var html="";
 
-     $.each(lista,function(index, obj){
-      {
+    $.each(lista,function(index, obj){
+
+        html+="<a class='list-group-item accordion-toggle bg bg-light' data-toggle='collapse' href='#subprogramas_mi_lista"+obj.id+"'> "
+            +"                <i class='fa fa-chevron-right'></i> "
+            +"                <span class='badge bg-info'>"+((obj.lista && obj.lista.length)? obj.lista.length:"0" )+"</span> "
+            +"                <i class='fa fa-fw fa-star'></i>"+obj.codigo+" "+obj.nombre
+            +"              </a> ";
+
+            html+="<div id='subprogramas_mi_lista"+obj.id+"' class='panel-collapse in mis_subprogramas'>   "                  
+                +"    <div class='table-responsive' style='overflow-x:auto'> "
+                +"                     <table class='table table-striped m-b-none' data-ride='datatables'> "
+                +"                      <thead> "
+                +"      <th width='5%'><input type='checkbox'  onclick=''></th>    "
+                +"                          <th>Subprograma</th> "
+                +"                        </tr> "
+                +"                      </thead> "
+                +"                        <tbody> "
+                +" ";
+
+            if(obj.lista)
+            {
+
+              $.each(obj.lista, function(mi_index, mi_obj){
+                  html+="<tr  data-mi_subprograma='"+mi_obj.id+"'  >"
+                        +"                    <td> "
+                        +"                        <input type='checkbox' data-id_subprograma='"+mi_obj.id+"'   name='checkbox'  onclick=''> "
+                        +"                    </td>     " 
+                        +"                    <td name='nombre' > "
+                        +"                         "+mi_obj.codigo +" " + mi_obj.nombre
+                        +"                    </td> "
+                        +"                  </tr>";
+
+                });
+            }
+
+            html+="                     </tbody> "
+                  +"                  </table>  "
+                  +"              </div> "
+                  +"            </div>"
 
       });
 
@@ -386,3 +479,57 @@ $("#edicion_pass2").change(function(){
   }
 
 
+
+
+/****************
+** genera la la cadena de permisos 
+**/
+function getStringPermisos(){
+
+  var lista=$("[data-mi_subprograma] [name='checkbox']:checked");
+  var salida="";
+
+  for(var i=0 ; i< lista.length ; i++)
+  {
+
+    salida+= $(lista[i]).data("id_subprograma")+",";    
+  }
+
+  if(salida.length>0)
+  {
+    salida= salida.substring(0, salida.length-1);
+  }
+
+  return salida;
+
+}
+
+
+
+/********************
+* limipia la edicon para un nuevo usuario
+**/
+
+function clearEdicionUsuario(){
+
+      var lista=$("#listaProgramas [type='checkbox']").attr("checked",false);
+      for(var i=0; i< lista.length ; i++)
+        {
+          try{
+            lista[i].checked=false;
+          }catch(e){}
+        }
+
+         $(document).data("edicion","nuevo");
+         $(document).data("id_usuario_edicion", "no" );
+         $(document).data("mis_permisos",""); 
+
+      $("#edicion_nombre").val("");
+      $("#edicion_usuario").val("");
+      $("#edicon_correo").val("");
+      $("#edicion_telefono").val("");
+      $("#edicion_oficina").val("");
+     
+    
+
+}

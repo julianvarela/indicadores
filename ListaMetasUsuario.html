@@ -12,7 +12,8 @@
   <link rel="stylesheet" href="css/font.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/mi_estilo.css">  
-   <link rel="stylesheet" href="css/validationEngine.jquery.css">  
+   <link rel="stylesheet" href="css/validationEngine.jquery.css"> 
+   <link rel="stylesheet" href="css/datapicker.css">   
  
   <!--[if lt IE 9]>
     <script src="js/ie/respond.min.js"></script>
@@ -109,20 +110,27 @@
                               <tbody id="TablaDatosMetas">
                                   <tr>                     
                                       <td>
+                                        <div style="position: relative">
                                           <textarea  id="edicion_meta"  placeholder="Descripcion de la Meta" rows="5" class="input-sm form-control parsley-validated 
                                           validate[required,custom[mitextarea]]"
                                            data-trigger="keyup" data-rangelength="[20,200]"
                                           class=""    
                                           ></textarea>
+                                        </div>
                                       </td>
 
                                       <td>
-                                        <input id="edicion_linea_base" placeholder="1" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[integer]]" type="text">
+                                        <div style="position: relative">
+                                          <input id="edicion_linea_base" placeholder="1" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[integer]]" type="text">
+                                        </div>  
                                       </td>
                                       
                                       <td>
-                                          <input id="edicion_valor_esperado_productos" placeholder="1" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" type="text"
+                                         <div style="position: relative">
+                                       
+                                            <input id="edicion_valor_esperado_productos" placeholder="1" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" type="text"
                                           >
+                                        </div>
                                       </td>
 
                                       <td>
@@ -149,57 +157,86 @@
                                       </td>
 
                                       <td>
-                                        <input id="dicion_valor_esperado_meta_producto" placeholder="1" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" type="text">                                      
+                                         <div style="position: relative">
+                                       
+                                         <input id="dicion_valor_esperado_meta_producto" placeholder="1" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" type="text">
+                                         </div>                                      
                                       </td>
 
                                       <td>
+                                         <div style="position: relative">
+                                       
                                         <input id="dicion_valor_logrado_meta_producto"  placeholder="1.0" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" 
-                                        type="text">                                      
+                                        type="text"> 
+                                        </div>                                     
                                       </td>
 
                                       <td>
+                                         <div style="position: relative">
+                                       
                                         <input id="edicion_ponderado" placeholder="1" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]"
                                          type="text"
 
                                          readonly
-                                         >                                      
+                                         >     
+                                         </div>                                
                                       </td>
                                       <td>
+                                        <div style="position: relative">
                                        
 
                                          <input id="edicion_avance_ponderado" placeholder="80%" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" 
                                         type="text"
                                         readonly
 
-                                        >                                    
+                                        >       
+                                        </div>                             
                                       </td>
 
                                       <td>
+                                         <div style="position: relative">
+                                       
                                         <input id="edicion_avance_semaforo_seg_fis" placeholder="80%" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" 
                                         type="text"
                                         readonly
 
-                                        >                                      
+                                        >   
+                                        </div>                                   
                                       </td>
 
                                       <td>
-                                        <input id="edicion_recurso_programado" placeholder="20.000.000.000" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" type="text">                                      
-                                      </td>
-                                      <td>
-                                        <input id="edicion_recursos_ejecutados" placeholder="20.000.000.000" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" type="text">                                      
+                                         <div style="position: relative">
+                                       
+                                        <input id="edicion_recurso_programado" placeholder="20.000.000.000" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" type="text">     
+                                      </div>                                 
                                       </td>
 
                                       <td>
+                                         <div style="position: relative">
+                                       
+                                        <input id="edicion_recursos_ejecutados" placeholder="20.000.000.000" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" type="text">  
+                                      </div>                                  
+                                      </td>
+
+                                      <td>
+
+                                         <div style="position: relative">
+                                       
                                         <input id="edicion_semaforo_seguimiento_fina"  placeholder="1.0" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_float]]" 
                                         type="text"
 
                                         readonly
-                                        >                                      
+                                        >     
+                                        </div>                                 
                                       </td>
+
                                       <td>
+                                         <div style="position: relative">
+                                       
                                         <input id="editor_fecha" class="input-sm form-control datepicker"  readonly size="16" value="12-02-2013" data-date-format="dd/mm/yyyy" type="text"
                                             style="cursor: pointer;width: 100px"
                                         >
+                                      </div>
                                       </td>                                  
                                   </tr>
                               </tbody>

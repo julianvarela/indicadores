@@ -24,6 +24,9 @@ class consultaNoticias{
         
     
         $sql="SELECT 
+        id,
+        tipos_noticias_id,
+        DATE_FORMAT(fecha_creacion,'%d/%m/%Y') as fecha_creacion,
 		titulo,
 		contenido,
 		DATE_FORMAT(fecha_creacion,'%m') mes ,
@@ -39,7 +42,6 @@ class consultaNoticias{
     
                         
                        
-                
        $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
        $conexion->consultaSQL($sql);       
          return $conexion->_datosRegistros;           
@@ -69,6 +71,6 @@ class consultaNoticias{
          return $conexion->_datosRegistros;           
                 
     }
-    
+
     
 }

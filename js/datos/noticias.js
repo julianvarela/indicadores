@@ -24,6 +24,9 @@
                         }    
                         ,error: function(XMLHttpRequest, textStatus, errorThrown) { 
                             alert("Se presentó un problema con la conexión a Internet");
+                             $(".body-preload").css({display:'none'});
+
+                            
                         }                                        
                         ,success: function(midata,textStatus,jqXHR){
                             

@@ -681,18 +681,9 @@ public function actualizarMatriz(
 	    $conexion->consultaSQL($sql);
 	    
 
-	      if($conexion->Error!="")
-	      		{
-
-	      			
-	      			$this->guardarError($conexion,$sql);
-
-	      			return -1;
-	      		}
-	      else{
-
-	      	return $conexion->_ultimoID;
-	      }
+	      $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
+	      $conexion->consultaSQL($sql);
+	        return $conexion->_datosRegistros;
 
 
 	}

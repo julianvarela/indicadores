@@ -117,9 +117,12 @@
 
 
                 ,"mi_letras": {
-                    "regex": /^[a-zA-Z0-9#-&?áóéúíAÚÍÓÉñÑ]+$/,
+                    "regex": /^[a-zA-Z0-9#-&?áóéúíAÚÍÓÉñÑ ,._:;]+$/,
                     "alertText": "solo letras"
                 }
+
+
+                
 
                 ,"onlyLetterNumber": {
                     "regex": /^[0-9a-zA-Z]+$/,

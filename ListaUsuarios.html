@@ -45,12 +45,7 @@
   <!-- / header -->
   <!-- nav -->
   <nav id="nav" class="nav-primary hidden-xs nav-vertical">
-      <ul class="nav affix-top" data-spy="affix" data-offset-top="50">
-          <li><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2012<br/><span class="badge bg-primary">10</span></span></a></li>          
-          <li><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2013<br/><span class="badge bg-primary ">14</span></span></a></li>          
-          <li class="active"><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>2014<br/><span class="badge bg-primary">6</span></span></a></li>          
-          <li><a href="ProgramasUsuario.html"><i class="fa fa-th fa-lg"></i><span>203<br/><span class="badge bg-primary">0</span></span></a></li>
-      </ul>      
+        
   </nav>  
   <!-- / nav -->
 
@@ -61,9 +56,8 @@
     <section class="main padder">
         
         <ul class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i> Seguimiento</a></li>
-            <li class="active">Usuarios</li>
-        </ul>        
+            <li><a href="#"><i class="fa fa-users"></i> Usuarios</a></li>
+        </ul>       
         
         <div class="row">
           <div class="col-lg-12">
@@ -74,7 +68,7 @@
 
             <!-- acordeon ingresar/editar usuarios -->          
             <section class="panel mi_acordeon" id="panelAcordeonUsuario">
-                <a class="accordion-toggle list-group-item bg bg-focus" data-toggle="collapse" href="#" id="bton_ingresar_usuarios"
+                <a class="accordion-toggle list-group-item bg bg-focus  mi_hover" data-toggle="collapse" href="#" id="bton_ingresar_usuarios"
 
                 onclick="return false;">
                     <b>Ingresar Nuevo Usuario</b>
@@ -98,32 +92,48 @@
                           <tbody id="TablaDatosUsuario">
                               <tr>                     
                                   <td>
+                                     <div style="position: relative">
+                                       
                                       <input id="edicion_nombre" data-required="true" class="input-sm form-control parsley-validated
                                       validate[required,custom[mi_letras],maxSize[45]] "
 
                                        type="text">
+                                       </<div>
+                                         
                                   </td>
                                   <td>
+                                     <div style="position: relative">
+                                       
                                       <input id="edicion_usuario" data-required="true" class="input-sm form-control parsley-validated 
                                       validate[required,custom[mi_letras],maxSize[45]] " 
                                       type="text">
+                                    </div>
                                   </td>
                                   <td>
+                                     <div style="position: relative">
+                                       
                                       <input id="edicon_correo" data-required="true" class="input-sm form-control parsley-validated
                                       validate[required,custom[email],maxSize[50]] "
                                        type="">
+                                     </div>
                                   </td>
                                                                      
                                   <td>
+                                     <div style="position: relative">
+                                       
                                       <input id="edicion_telefono" data-required="true" class=" input-sm form-control parsley-validated 
                                       validate[required,custom[phone],maxSize[45]] "
 
                                        data-validate="validate(required, number )"
                                       type="text">
+                                    </div>
                                   </td>                                     
                                   <td>
+                                     <div style="position: relative">
+                                       
                                       <input id="edicion_oficina" data-required="true" class="input-sm form-control parsley-validated 
                                       validate[required,custom[integer],maxSize[11]] " type="text">
+                                    </div>
                                   </td>
                                   <td>
                                       <select id="selectTipoUsuario" class="input-sm form-control">                                       
@@ -161,21 +171,27 @@
                     </div>
                     <footer class="panel-footer">
                         <a href="#" id="bton_guardado_usuario" onclick="return false" class="btn btn-success">Guardar</a>
-                        <a href="#" class="btn btn-danger">Cancelar</a>
+                        <a href="#"  id="bton_cancelar_usuario" class="btn btn-danger">Cancelar</a>
                     </footer>
 
                     <section class="panel">                                              
-                      <a class="accordion-toggle list-group-item bg bg-focus" data-toggle="collapse"
+                      <a class="accordion-toggle list-group-item bg bg-focus mi_hover" data-toggle="collapse"
                         id="bton_permisos_add"
                        href="#listaProgramas">
                         <b>Conseder permisos sobre subprogramas</b>
-                      </a>                      
+                      </a> 
+
+
+
                       <div id="listaProgramas" class="panel-collapse collapse list-group">
+
                           <a class="list-group-item accordion-toggle bg bg-light" data-toggle="collapse" href="#subprogramas1">
                             <i class="fa fa-chevron-right"></i>
                             <span class="badge bg-info">3</span>
                             <i class="fa fa-fw fa-star"></i> Programa 1
-                          </a>      
+                          </a> 
+
+
                               <div id="subprogramas1" class="panel-collapse in mis_subprogramas">                    
                                 <div class="table-responsive" style="overflow-x:auto">
                                     <table class="table table-striped m-b-none" data-ride="datatables">
@@ -214,6 +230,8 @@
                                     </table>
                                 </div>
                               </div>
+
+                              
                           <a class="list-group-item accordion-toggle bg bg-light" data-toggle="collapse" href="#subprogramas2">
                             <i class="fa fa-chevron-right"></i>
                             <span class="badge bg-info">3</span>

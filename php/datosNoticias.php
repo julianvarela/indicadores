@@ -5,6 +5,7 @@
 require_once 'consultaNoticias.php';
  
         $mesArray = array( 
+            0=>"sin asignar",
                        1 => "Enero",
                        2 => "Febrero",
                        3 => "Marzo",
@@ -33,8 +34,11 @@ require_once 'consultaNoticias.php';
        
            for($f=0;$f < count($fila); $f++)
            {
-             
+             if(isset($fila[$f]['mes']))
               $fila[$f]['mes']= $mesArray[((int)$fila[$f]['mes'])]; 
+            else{
+              $fila[$f]['mes']= "sin asignar";
+            }
                
            }
         

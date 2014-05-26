@@ -107,7 +107,7 @@ $("#mi_edicion_form").validationEngine();
 
 
       // MUESTRA INGRESAR ...
-      $("#bton_ingresar_meta").click(function(){
+      $("#bton_guardar_programa").click(function(){
 
         $("#edicion_bton_guardar").html("Guardar");
          $(document).data("id_edicion","nuevo");
@@ -126,6 +126,7 @@ $("#mi_edicion_form").validationEngine();
 
          
       });
+      
         ///cambiar apariencia login
         if(isLocalStorageAvailable()){
             $(".my_usuario").html(localStorage.getItem("correo"));
