@@ -123,6 +123,11 @@
 
 
                 
+                ,"mi_codigo": {
+                     "regex": /^([0-9]+(.)?[0-9]*)+$/,
+                    "alertText": "solo numeros y puntos"
+                }
+            
 
                 ,"onlyLetterNumber": {
                     "regex": /^[0-9a-zA-Z]+$/,

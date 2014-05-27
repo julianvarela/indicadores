@@ -142,3 +142,9 @@ tr.datos-tabla td hr{
 #TablaDatosUsuario td{
     position: relative;
 }
+
+
+.fondo_comercial{
+    background-image: url('../imagenes/guaviare.png');
+    background-size: 100% 100%;
+}

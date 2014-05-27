@@ -152,11 +152,20 @@
 		place: function(){
 			var offset = this.component ? this.component.offset() : this.element.offset();
 			
+                        var pos_x;
 			if( window.innerWidth < 767 ){		
-				this.picker.css({
-					top: offset.top + this.height,
-					left: offset.left-80
-				});
+                            
+                            if( (offset.left-80) > 0){
+                                pos_x = offset.left-80;                                
+                            }
+                            else{
+                                pos_x = offset.left;                                
+                            }
+                            
+                            this.picker.css({
+                                    top: offset.top + this.height,
+                                    left: pos_x
+                            });
 			}
 			else if( (160 + offset.left) > 767 ){
 				this.picker.css({
@@ -164,13 +173,15 @@
 					left: offset.left-160
 				});			
 			}
+			else{
+                            this.picker.css({
+                                    top: offset.top + this.height,
+                                    left: offset.left
+                            });                            
+                        }
 			
-			/*
-			this.picker.css({
-				top: offset.top + this.height,
-				left: offset.left
-			});
-			*/
+
+			
 		},
 		
 		update: function(newDate){

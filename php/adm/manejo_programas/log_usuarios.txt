@@ -1,0 +1,57 @@
+
+*****************************************
+fecha: 2014-05-27 12:27:06
+ usuario:1
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'nivel='ALGO ooooooo'
+				     WHERE
+				     	id='177'' at line 3
+ SQL: UPDATE pdm 
+					SET codigo='1.2'
+						nivel='ALGO ooooooo'
+				     WHERE
+				     	id='177'  
+ 
+*****************************************
+fecha: 2014-05-27 12:27:06
+ usuario:1
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE 
+					  	 id=''' at line 3
+ SQL: UPDATE matriz
+					    SET id_padre='1',
+					  WHERE 
+					  	 id=''  
+ 
+*****************************************
+fecha: 2014-05-27 12:27:58
+ usuario:1
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'nivel='ALGO ooooooo'
+				     WHERE
+				     	id='177'' at line 3
+ SQL: UPDATE pdm 
+					SET codigo='1.2'
+						nivel='ALGO ooooooo'
+				     WHERE
+				     	id='177'  
+ 
+*****************************************
+fecha: 2014-05-27 12:27:58
+ usuario:1
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE 
+					  	 id='84'' at line 3
+ SQL: UPDATE matriz
+					    SET id_padre='1',
+					  WHERE 
+					  	 id='84'  
+ 
+*****************************************
+fecha: 2014-05-27 12:30:28
+ usuario:1
+ You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'nivel='ALGO ooooooo'
+				     WHERE
+				     	id='177'' at line 3
+ SQL: UPDATE pdm 
+					SET codigo='1.2'
+						nivel='ALGO ooooooo'
+				     WHERE
+				     	id='177'  
+ 

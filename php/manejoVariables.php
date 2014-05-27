@@ -102,12 +102,17 @@ switch ($opcion) {
 
             if(strcasecmp($tipo_usuario[0]['tipo'],"Admin")==0 )
                 {
-                    $direccion='noticias.html';
+                    $direccion='ListaNoticias.html';
                 }
                 else
                     if(strcasecmp($tipo_usuario[0]['tipo'],"registro")==0)
                     {
                         $direccion='ProgramasUsuario.html?year='.$menoYearActivo;
+                    }
+                    else
+                    if(strcasecmp($tipo_usuario[0]['tipo'],"publico")==0)
+                    {
+                        $direccion='noticias.html';
                     }
 
 

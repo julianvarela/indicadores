@@ -1,7 +1,7 @@
 <?php
 
-include_once '../Config.php';
-include_once '../ConectarBD.php';
+@include_once '../Config.php';
+@include_once '../ConectarBD.php';
 
 class consultaListaMetasUsuario{
 

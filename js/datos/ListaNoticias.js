@@ -22,10 +22,11 @@ var year=null;
           $(".my_usuario").html(localStorage.getItem("correo"));
     	}
 
- $("#AgregarEditarNoticias").fadeIn();
+   $("#AgregarEditarNoticias").fadeIn();
 
-$("#mi_form_edicion_noticias").validationEngine();
-$("#bton_ingresar_nueva_noticia").click(function(event) {
+   $("#mi_form_edicion_noticias").validationEngine();
+
+   $("#bton_ingresar_nueva_noticia").click(function(event) {
 	/* Act on the event */
 
 	

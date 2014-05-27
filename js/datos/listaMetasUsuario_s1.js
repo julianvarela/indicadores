@@ -31,24 +31,23 @@
 
 /************ manejo de evento en edicon************/
 
-$("#edicion_semaforo_seguimiento_fina").change(function(){
-  $("#edicion_meta").validationEngine('validate');
+  $("#edicion_semaforo_seguimiento_fina").change(function(){
+    $("#edicion_meta").validationEngine('validate');
+
+  });
 
 
-});
+  $("#edicion_recurso_programado").change(function(){
 
+    if( !$("#edicion_recurso_programado").validationEngine('validate'))
+    {
+      actualizarPonderadoEdicion();
+    }
+    else{
+      $("#edicion_ponderado").val("0");
+    }
 
-$("#edicion_recurso_programado").change(function(){
-
-  if( !$("#edicion_recurso_programado").validationEngine('validate'))
-  {
-    actualizarPonderadoEdicion();
-  }
-  else{
-    $("#edicion_ponderado").val("0");
-  }
-
-});
+  });
 
 
 $("#dicion_valor_esperado_meta_producto , #dicion_valor_logrado_meta_producto").change(function(){
@@ -107,7 +106,7 @@ $("#mi_edicion_form").validationEngine();
 
 
       // MUESTRA INGRESAR ...
-      $("#bton_guardar_programa").click(function(){
+      $("#bton_ingresar_meta").click(function(){
 
         $("#edicion_bton_guardar").html("Guardar");
          $(document).data("id_edicion","nuevo");
@@ -126,7 +125,7 @@ $("#mi_edicion_form").validationEngine();
 
          
       });
-      
+
         ///cambiar apariencia login
         if(isLocalStorageAvailable()){
             $(".my_usuario").html(localStorage.getItem("correo"));

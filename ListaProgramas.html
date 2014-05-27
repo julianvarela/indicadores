@@ -10,7 +10,9 @@
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/plugin.css">
   <link rel="stylesheet" href="css/font.css">
+  <link rel="stylesheet" href="css/validationEngine.jquery.css"> 
   <link rel="stylesheet" href="css/style.css">
+
   <link rel="stylesheet" href="css/mi_estilo.css">  
   <!--[if lt IE 9]>
     <script src="js/ie/respond.min.js"></script>
@@ -48,6 +50,7 @@
   <!-- / nav -->
   
   <section id="content">
+    <a href="#bton_guardar_programa" style="display:none" id="saltar_1"></a>
     <section class="main padder">
         
         <ul class="breadcrumb">
@@ -63,12 +66,10 @@
                   <tr>
                     <th style="width:50px">tipo :</th>
                     <th style="width:30%"> 
-                          <select  class="input-sm form-control">
-                          <option value="0">Programa 1</option>
-                          <option value="1">Programa 2</option>
-                          <option value="0">Programa 3</option>
-                          <option value="1">Programa 4</option>
-                        </select></th>
+                          <select id="select_clases" class="input-sm form-control">
+                       
+                        </select>
+                      </th>
                     <th></th>                                           
                   </tr>
                 </thead>
@@ -78,7 +79,7 @@
 
             <!-- acordeon ingresar/editar -->          
               <div class="panel mi_acordeon" id="panelAcordeonMeta">
-                <a class="accordion-toggle list-group-item bg bg-focus" data-toggle="collapse" href="#"
+                <a class="accordion-toggle list-group-item bg bg-focus mi_hover" data-toggle="collapse" href="#"
                  onclick="return false;"
                  id="bton_guardar_programa" 
                 >
@@ -87,6 +88,7 @@
                 <div id="AgregarEditarMeta" class="panel-collapse collapse">  <!-- collapse ->oculta / in -> muestra -->
                   <!--<div class="panel-body text-small">-->
                       <div class="table-responsive" style="overflow-x:auto">
+                        <form id="edicon_form1_prg">
                           <table class="table table-striped m-b-none" data-ride="datatables">
                             <thead>
                               <tr>
@@ -97,35 +99,29 @@
                             </thead>
                             <tbody id="TablaDatosProgramas">
                                 <tr>  
-                                    <td id="edicion_pertenece">
-                                      <select  class="input-sm form-control">
-                                        <option value="0">Programa 1</option>
-                                        <option value="1">Programa 2</option>
-                                        <option value="0">Programa 3</option>
-                                        <option value="1">Programa 4</option>
-                                      </select>
+                                    <td >
+                                      <select  id="edicion_pertenece" class="input-sm form-control">
+                                       </select>
                                     </td>
 
                                     <td>
-                                        <input id="edicion_codigo" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated" type="text">
+                                        <input id="edicion_codigo" placeholder="1.1.1" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_codigo],maxSize[20]]" type="text">
                                     </td>
 
                                     <td>
-                                        <select id="edicion_nivel" class="input-sm form-control">
-                                          <option value="0">Programa 1</option>
-                                          <option value="1">Programa 2</option>
-                                          <option value="0">Programa 3</option>
-                                          <option value="1">Programa 4</option>
-                                        </select>                                      
+                                         <input id="edicion_nivel" placeholder="" data-required="true" class="input-sm form-control parsley-validated validate[required,custom[mi_letras],maxSize[100]]" type="text">
+                                     
                                     </td>
                                                                       
                                 </tr>
                             </tbody>
                           </table>
+                        </form>
                       </div>
                       <footer class="panel-footer">
-                          <a href="#" class="btn btn-success">Guardar</a>
-                          <a href="#" class="btn btn-danger">Cancelar</a>
+                          <a href="#"  id="bton_guardar"  onclick="return false " class="btn btn-success">Guardar</a>
+
+                          <a href="#"  id="bton_cancelar" onclick="return false "  class="btn btn-danger">Cancelar</a>
                       </footer>
                   <!--</div>-->
                 </div>
@@ -142,8 +138,8 @@
                       <div class="col-sm-offset-3 col-lg-offset-3 col-sm-3  col-lg-2 text-center">
                           <label>Mostrar
                               <select size="1" id="select_my_table">
-                                  <option value="2" selected="selected">2</option>
-                                  <option value="5">5</option>
+                                  <option value="2" >2</option>
+                                  <option value="5" selected="selected">5</option>
                                   <option value="10">10</option>
                                   <option value="100">100</option>
                               </select> 
@@ -245,6 +241,9 @@
    
   <!-- datepicker -->
   <script src="js/datepicker/bootstrap-datepicker.js"></script>
+
+   <script src="js/languages/jquery.validationEngine-es.js"></script>
+  <script src="js/jquery.validationEngine.js"></script>
   
   <!-- Datos -->
  <script src="js/general.js"></script>  

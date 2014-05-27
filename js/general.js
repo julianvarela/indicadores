@@ -234,7 +234,7 @@ function construirNav(inicio,fin1,actual){
     actual=parseInt(actual.trim());
     
     var html=" <ul class='nav' data-spy='affix' data-offset-top='50'> "
-            +"  <li  class='"+("0"==actual?" active ":"")+"' ><a href='noticias.html'><i class='fa fa-home fa-lg'></i><span>Noticias</span></a></li>";
+            +"  <li  class='"+("0"==actual?" active ":"")+"' ><a href='noticias.html'><i class='fa fa-home fa-lg'></i><span>Inicio</span></a></li>";
       
     for(var i=0 ;  localStorage.getItem("year"+i); i++){
         
@@ -263,7 +263,7 @@ function construirNav(inicio,fin1,actual){
         }
     }
     
-    html+="  <li  class='"+("1"==actual?" active ":"")+"' ><a href='AvanceVigencia.html'><i class='fa fa-bar-chart-o fa-lg'></i><span>Ponderado</span></a></li>"
+    html+="  <li  class='"+("1"==actual?" active ":"")+"' ><a href='AvanceVigencia.html'><i class='fa fa-bar-chart-o fa-lg'></i><span>Acumulado</span></a></li>"
          +" </ul>";
     
  return html; 
@@ -565,8 +565,8 @@ function getHtmlNavAdmin(opcion){
 
   var html =" <ul class='nav affix-top' data-spy='affix' data-offset-top='50'> "
             +"      <li   "+(opcion==1? "class='active'":"")+"><a href='ListaNoticias.html'><i class='fa fa-home fa-lg'></i><span>Noticias</span></a></li>  "         
-            +"      <li   "+(opcion==2? "class='active   dropdown-submenu '":"class=' dropdown-submenu '")+"><a href='#' onclick='return false'><i class='fa fa-th fa-lg'></i><span>Programas</span></a>";
-            
+            +"      <li   "+(opcion==2? "class='active   dropdown-submenu '":"class=' dropdown-submenu '")+"><a href='ListaProgramas.html'ListaProgramas.html ><i class='fa fa-th fa-lg'></i><span>Programas</span></a>";
+           /*
            html +="<ul class='dropdown-menu'> ";
              for(var i=0 ;  localStorage.getItem("year"+i); i++){
         
@@ -583,7 +583,9 @@ function getHtmlNavAdmin(opcion){
               }
 
 
-          html +="</ul>  </li> ";
+          html +="</ul>  ";
+          */
+         html +=" </li> ";
 
           html +="      <li   "+(opcion==3? "class='active'":"")+"><a href='ListaUsuarios.html'><i class='fa fa-users fa-lg'></i><span>Usuarios</span></a></li> "          
             +"  </ul>";
