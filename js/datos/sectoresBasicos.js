@@ -7,6 +7,10 @@
 
      var datos = leerGET();
 
+
+    
+  
+
      year=datos['year'];
      
      if(year){   
@@ -101,6 +105,12 @@
    
       
       
+
+
+       $("#bton_exportar").click(function(){
+            exportarExcel();
+
+        });
       
       
       
@@ -141,6 +151,51 @@
                         var semaFis = new Array();
                         var semaFin = new Array();
 
+
+
+                         mi_excel=" <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />"
+                                +"<style> "
+                                +"    tbody > tr.datos-tabla > td.dato-tabla-nivel{ "
+                                +"            text-align: justify; "
+                                +"        } "
+                                +"    .head{background:#13C4A5;}"
+                                +"    .badge { "
+                                +"        min-width: 10px; " 
+                                +"        padding: 3px 7px; "
+                                +"        font-size: 12px; "
+                                +"        font-weight: bold;  "
+                                +"        line-height: 1; "
+                                +"        color: #272822; "
+                                +"        text-align: center; "
+                                +"        vertical-align: baseline; "
+                                +"        background-color: #999999; "
+                                +"        border-radius: 10px;}"
+
+                                +"   </style>  "
+
+                                +"      <table border='1' class='table table-striped m-b-none' data-ride='datatables' > "
+                                +"      <thead> "
+                                +"        <tr> "
+                                +"           <th class='head' width='4%'>Codigo Nivel PDM</th> "
+                                +"          <th  class='head' width='12%'>Nivel PDM</th> "
+                                +"          <th  class='head' width='12%'>Metas</th> "
+                                +"          <th  class='head' width='6%'>Valor Esperado Meta de Producto </th> "
+                                +"          <th  class='head' width='6%'>Valor Logrado Esperado Meta de Producto </th> "
+                                +"          <th  class='head' width='6%'>Ponderado Meta de Producto </th> "
+                                +"          <th  class='head' width='6%'>Avance Ponderado </th> "
+                                +"          <th  class='head' width='6%'>Semaforo Seguimiento Fisico </th> "
+                                +"          <th  class='head' width='6%'>Recursos Programados </th> "
+                                +"          <th  class='head' width='6%'>Recursos Ejecutados </th> "
+                                +"          <th  class='head' width='6%'>Semaforo seguimiento Financiero </th> "
+                                +"          <th  class='head' width='6%'>Ultima Modificación</th> "
+                                +"          <th  class='head' width='6%'>Fecha de Corte </th> "
+                                +"          <th  class='head' width='6%'>Fecha de Registro </th> "
+                                +"        </tr> "
+                                +"      </thead> "
+                                +"      <tbody id='TablaSectoresBasicos'>  " ;
+
+
+
                         for(var i=0; i<data.length; i++){
                             filas += "<tr class='datos-tabla'>\n\
                                 <td><input type='checkbox'  class='mis_checkbox' onclick='actulizarGraficaSectoresBasicos()' name='post[]' checked='true' "
@@ -164,17 +219,46 @@
                              <td>"+data[i]['fecha_creacion']+"</td>\n\
                             </tr>";
 
+
+
+                            // conversion excel
+                           mi_excel+= "<tr class='datos-tabla'> "
+                                
+                                +"  <td>"+data[i]['codigo']+"</td> "
+                                +"  <td class='dato-tabla-nivel'>"+data[i]['nivel']+"</td> "
+                                +"  <td class='dato-tabla-nivel'>"+data[i]['metas']+"</td> "
+                                +"  <td>"+data[i]['valorEsperado']+"</td> "
+                               +"   <td>"+data[i]['valorLogrado']+"</td> "
+                               +"   <td>"+data[i]['ponderado']+"</td> "
+                               +"   <td>"+data[i]['avancePonderado']+"</td> "
+                               +"   <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"<br>"+nombreRango(data[i]['semaSeguiFisico'])+"</b></td> "
+                               +"   <td>"+"$"+formaterNumeros(data[i]['recurProgramados'])+"</td> "
+                               +"   <td>"+"$"+formaterNumeros(data[i]['recurEjecutados'])+"</td> "
+                               +"   <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"<br>" +nombreRango(data[i]['semaSeguiFinanciero'])+"</b></td> "
+                               +"   <td>"+data[i]['fecha_modificacion']+"</td> "
+                              +"    <td>"+data[i]['fechaCorte']+"</td> "
+                             +"  <td>"+data[i]['fecha_creacion']+"</td> "
+                            +"  </tr>";
+
+
                             metas[i] = data[i]['codigo'];
 
                             semaFis[i] =  parseFloat(data[i]['semaSeguiFisico']);
                             semaFin[i] = parseFloat(data[i]['semaSeguiFinanciero']);  
 
+
                         }
+
+
+                         mi_excel+="     </tbody> "
+                                    +" </table>"; 
 
     //                    console.log(semaFis[1]);
     //                    console.log(semaFin[1]);
     //                    console.log(recurPro[1]);
     //                    console.log(recurEje);
+    //                    
+
 
                         $("#TablaSectoresBasicos").html(filas);                                        
                         $("input[type=checkbox]").attr("checked",true);    
@@ -239,7 +323,7 @@ function graficarSectoresBasicos( metas,
 
     $('#graficaGeneral1').highcharts({
                             chart: {
-                                type: 'column'
+                                type: 'bar'
                             },
                             title: {
                                 text: ''
@@ -291,7 +375,7 @@ function graficarSectoresBasicos( metas,
                                 valueSuffix: ' %'
                             },                        
                             plotOptions: {
-                                column: {
+                                bar: {
                                     dataLabels: {
                                         //rotation: -90,
                                         //x: 2,
@@ -342,7 +426,7 @@ function graficarSectoresBasicos( metas,
                          */
                         $('#graficaGeneral2').highcharts({
                             chart: {
-                                type: 'column'
+                                type: 'bar'
                             },
                             title: {
                                 text: ''
@@ -388,7 +472,7 @@ function graficarSectoresBasicos( metas,
                                 valueSuffix: ' %'
                             },
                             plotOptions: {
-                                column: {
+                                bar: {
                                     dataLabels: {
                                         //rotation: -90,
                                         //x: 2,
@@ -433,3 +517,7 @@ function graficarSectoresBasicos( metas,
                         });
 
 }
+
+
+
+

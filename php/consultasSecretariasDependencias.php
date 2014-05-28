@@ -99,34 +99,20 @@ class consultasSecretariasDependencias {
 
 
         $sql="SELECT s.id as id , s.nombre  as nombre
-            FROM  secretarias s, tipos_semaforo ts, vigencias v, municipios mu, departamentos de
-            WHERE v.id='{$id_vigencia}'
-                AND ts.id = s.tipos_semaforo_id
-                AND s.activo = '1'
-                AND ts.activo = '1'
-                AND ts.vigencias_id =  v.id
-                AND v.municipios_id = mu.id
-                AND mu.departamentos_id = de.id
+            FROM  secretarias s
                 ";
 
                
        }
     else {
         $sql="SELECT d.id as id , d.nombre  as nombre
-            FROM  dependencias d, tipos_semaforo ts, vigencias v, municipios mu, departamentos de
-            WHERE v.id='{$id_vigencia}'
-                AND ts.nombre like '%{$nombre_secretaria_dependencia}%'
-                AND ts.id = d.tipos_semaforo_id
-                AND d.activo = '1'
-                AND ts.activo = '1'
-                AND ts.vigencias_id =  v.id
-                AND v.municipios_id = mu.id
-                AND mu.departamentos_id = de.id
+            FROM  dependencias d
                 ";
 
     }
 
         
+
 
         $conexion = new ConectarBD(SERVIDOR, USUARIO, PASS, BD);
         $conexion->consultaSQL($sql);       

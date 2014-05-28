@@ -8,6 +8,10 @@
  */
 var URL="";
 
+  //general el exce
+  var mi_excel="";
+  var $expor_form=null;
+
 var _colores=null;
 var idTable=null;/// id de tabla donde se muestra los resultados
 
@@ -143,7 +147,7 @@ function nombreRango(valor){
 function getHtmlColor(valor){
         
    var html="<b class='badge' ";
-   var estilo=" style='background-color:white' "
+   var estilo=" style='background:white' "
     valor = parseFloat(valor);
         
     if(_colores){
@@ -151,7 +155,7 @@ function getHtmlColor(valor){
         for(var i=0;i<_colores.length; i++){
 		
             if(valor>=_colores[i].rango_min && valor<=_colores[i].rango_max){
-                estilo=" style='background-color:"+_colores[i].color+"' ";
+                estilo=" style='background:"+_colores[i].color+"' ";
                 break;   
             }
         }
@@ -592,3 +596,49 @@ function getHtmlNavAdmin(opcion){
 
       return html;
 }
+
+
+
+
+function exportarExcel(){
+
+    $expor_form = $("#mi_form_exportacion_excel");
+
+    var mi_titulo= $("#tiulo_exportar").html(); 
+    //$("#bton_exportar").attr("href","php/excel.php?titulo="+mi_titulo+"&excel="+mi_excel);
+
+
+    if($expor_form)
+    {
+        $expor_form.find("[name='titulo']").val(mi_titulo);
+        $expor_form.find("[name='excel']").val(mi_excel);
+
+    //    $expor_form.submit();
+    }
+
+}
+
+
+
+
+function getHtmlLogin(){
+
+  var html ="";
+  html +="  <li class='dropdown'> "
+       +"     <a href='#' class='dropdown-toggle' data-toggle='dropdown'>  "           
+       +"       <span class='hidden-xs-only my_usuario'>Mika Sokeil</span> "
+       +"       <span class='thumb-small avatar inline'><img src='imagenes/avatar.jpg' alt='Mika Sokeil' class='img-circle'></span> "
+       +"       <b class='caret hidden-xs-only'></b> "
+       +"     </a> "
+       +"     <ul class='dropdown-menu'> "
+             
+       +"       <li><a href='index.html'>Salir</a></li> "
+       +"     </ul> "
+       +"   </li>";
+
+       return html;
+
+}
+
+
+$("#mi_login_usuario").html(getHtmlLogin());

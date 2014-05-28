@@ -2,8 +2,12 @@
     var URL="";
     var year=null;
     //$(document).ready(function(){
+    //
+    //
+    //
 
 
+    
      var datos = leerGET();
 
      year=datos['year'];
@@ -45,6 +49,13 @@
                  $("#bton_avance_dependencias").attr("href","AvanceDependencias.html?year="+year);
              });
         
+
+
+
+        $("#bton_exportar").click(function(){
+            exportarExcel();
+
+        });
     
     
     
@@ -194,6 +205,47 @@
 
                         var filas="";     
 
+
+                        mi_excel=" <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />"
+                                +"<style> "
+                                +"    tbody > tr.datos-tabla > td.dato-tabla-nivel{ "
+                                +"            text-align: justify; "
+                                +"        } "
+                                +"    .head{background:#13C4A5;}"
+                                +" .badge { "
+                                +"        min-width: 10px; " 
+                                +"        padding: 3px 7px; "
+                                +"        font-size: 12px; "
+                                +"        font-weight: bold;  "
+                                +"        line-height: 1; "
+                                +"        color: #272822; "
+                                +"        text-align: center; "
+                                +"        vertical-align: baseline; "
+                                +"        background-color: #999999; "
+                                +"        border-radius: 10px;}"
+
+                                +"   </style> "     
+                                
+                                +"   <table border='1' class='table table-striped m-b-none dataTable' data-ride='datatables' > "
+                               +"     <thead> "
+                               +"       <tr> "
+                               +"         <th  class='head' width='5%'>COD.</th> "
+                               +"         <th  class='head' width='12%'>Subprograma</th> "
+                               +"         <th  class='head' width='13%'>Meta de Producto</th> "
+                               +"         <th  class='head' width='7%'>Valor Programado</th> "
+                               +"         <th  class='head' width='7%'>Valor Ejecutado</th> "
+                               +"         <th  class='head' width='7%'>Progreso Ponderado</th> "
+                               +"         <th  class='head' width='7%'>Avance Ponderado</th> "
+                               +"         <th  class='head' width='7%'>Avance</th> "
+                                    
+                               +"         <th  class='head' width='7%'>Recursos Programados</th> "
+                               +"         <th  class='head' width='7%'>Recursos Ejecutados</th> "
+                               +"         <th  class='head' width='7%'>Avance</th> "
+                               +"         <th  class='head' width='7%'>Ultima Modificación</th> "
+                               +"       </tr> "
+                               +"     </thead> "
+                               +"     <tbody id='TablaSecretariasDespacho'>";
+
                         var metas = new Array();
                         var semaFis = new Array();
                         var semaFin = new Array();
@@ -213,19 +265,46 @@
                                 <td>"+data[i]['valorLogrado']+"</td>\n\
                                 <td>"+data[i]['ponderado']+"</td>\n\
                                 <td>"+data[i]['avancePonderado']+"</td>\n\
-                                <td>"+getHtmlColor(data[i]['semaSeguiFisico'])+"<br>"+nombreRango(data[i]['semaSeguiFisico'])+"</b></td>\n\
+                                <td >"+getHtmlColor(data[i]['semaSeguiFisico'])+"<br>"+nombreRango(data[i]['semaSeguiFisico'])+"</b></td>\n\
                                 <td>"+"$"+formaterNumeros(data[i]['recurProgramados'])+"</td>\n\
                                 <td>"+"$"+formaterNumeros(data[i]['recurEjecutados'])+"</td>\n\
                                 <td>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"<br>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</td>\n\
                                 <td>"+data[i]['fecha_modificacion']+"</td>\n\
                             </tr>";
 
+
+                                //el excel
+                            mi_excel+= "<tr class='datos-tabla'> "
+                               
+                                
+                                +"  <td>"+data[i]['codigo']+"</td>"
+                                +"  <td class='dato-tabla-nivel'>"+data[i]['nivel']+"</td>"
+                                +"  <td class='dato-tabla-nivel'>"+data[i]['metas']+"</td>"
+                                +"  <td>"+data[i]['valorEsperado']+"</td>"
+                                +"  <td>"+data[i]['valorLogrado']+"</td>"
+                                +"  <td>"+data[i]['ponderado']+"</td> "
+                                +"  <td>"+data[i]['avancePonderado']+"</td> "
+                                +"  <td class='dato-tabla-nivel'>"+getHtmlColor(data[i]['semaSeguiFisico'])+"<br>"+nombreRango(data[i]['semaSeguiFisico'])+"</b></td> "
+                                +"  <td class='dato-tabla-nivel'>"+"$"+formaterNumeros(data[i]['recurProgramados'])+"</td> "
+                                +"  <td class='dato-tabla-nivel'>"+"$"+formaterNumeros(data[i]['recurEjecutados'])+"</td> "
+                                +"  <td class='dato-tabla-nivel'>"+getHtmlColor(data[i]['semaSeguiFinanciero'])+"<br>"+nombreRango(data[i]['semaSeguiFinanciero'])+"</td> "
+                                +"  <td>"+data[i]['fecha_modificacion']+"</td> "
+                             +" </tr>";
+
                             metas[i] = data[i]['codigo'];
 
                             semaFis[i] =  parseFloat(data[i]['semaSeguiFisico']);
-                            semaFin[i] = parseFloat(data[i]['semaSeguiFinanciero']);  
+                            semaFin[i] = parseFloat(data[i]['semaSeguiFinanciero']); 
+
+
+                          //para el excel
+                          
 
                         }
+
+
+                            mi_excel+="     </tbody> "
+                                    +" </table>"; 
 
     //                    console.log(semaFis[1]);
     //                    console.log(semaFin[1]);
@@ -303,7 +382,7 @@ var semaFin = Array();
 
              $('#graficaGeneral1').highcharts({
                             chart: {
-                                type: 'column'
+                                type: 'bar'
                             },
                             title: {
                                 text: ''
@@ -355,7 +434,7 @@ var semaFin = Array();
                                 valueSuffix: ' %'
                             },                        
                             plotOptions: {
-                                column: {
+                                bar: {
                                     dataLabels: {
                                         //rotation: -90,
                                         //x: 2,
@@ -406,7 +485,7 @@ var semaFin = Array();
                          */
                         $('#graficaGeneral2').highcharts({
                             chart: {
-                                type: 'column'
+                                type: 'bar'
                             },
                             title: {
                                 text: ''
@@ -452,7 +531,7 @@ var semaFin = Array();
                                 valueSuffix: ' %'
                             },
                             plotOptions: {
-                                column: {
+                                bar: {
                                     dataLabels: {
                                         //rotation: -90,
                                         //x: 2,
@@ -497,3 +576,7 @@ var semaFin = Array();
                         });
         }
 //});
+
+
+
+

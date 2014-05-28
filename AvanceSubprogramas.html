@@ -21,20 +21,8 @@
 <body>
   <!-- header -->
   <header id="header" class="navbar">
-    <ul class="nav navbar-nav navbar-avatar pull-right">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
-          <span class="hidden-xs-only my_usuario">Mika Sokeil</span>
-          <span class="thumb-small avatar inline "><img src="imagenes/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
-          <b class="caret hidden-xs-only"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Settings</a></li>
-          <li><a href="perfil.html">Profile</a></li>
-          <li class="divider"></li>
-          <li><a href="signin.html">Logout</a></li>
-        </ul>
-      </li>
+    <ul id="mi_login_usuario" class="nav navbar-nav navbar-avatar pull-right">
+     
     </ul>
    <a class="navbar-brand" href="#" style="font-size: 16px">SISMEP</a>
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
@@ -77,9 +65,9 @@
                         <div class="col-sm-6">
                             <div class="dataTables_length">
                                 <label>Mostrar <select size="1"  id="select_my_table">
-                                        <option value="2" selected="selected">2</option>
-                                        <option value="5" >5</option>
-                                        <option value="10">10</option>
+                                        <option value="2" >2</option>
+                                        <option value="5"  >5</option>
+                                        <option value="10" selected="selected">10</option>
                                         <option value="50">50</option>
                                         <option value="100">100</option>
                                       </select>
@@ -134,7 +122,7 @@
                     <section class="panel">
                         <header class="panel-heading"><h5><b>Avance General (Fisico - Financiero)</b></h5></header>
                         <div class="panel-body">
-                            <div id="graficaGeneral1" style="height: 240px; padding: 0px; position: relative;"></div>
+                            <div id="graficaGeneral1" style="height: 1500px; padding: 0px; position: relative;"></div>
                         </div>
                     </section>        
                 </div>                
@@ -142,7 +130,7 @@
                     <section class="panel">
                         <header class="panel-heading"><h5><b>Ejecucion Financiero General</b></h5></header>
                         <div class="panel-body">
-                            <div id="graficaGeneral2" style="height: 240px; padding: 0px; position: relative;"></div>
+                            <div id="graficaGeneral2" style="height: 1500px; padding: 0px; position: relative;"></div>
                         </div>
                     </section>        
                 </div>                            

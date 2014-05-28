@@ -60,6 +60,9 @@
                                 contador++;
                             }
                             
+
+                            $("#contenido_institucional").html("");
+                         
                             
                             if(datos.length>0)
                             {

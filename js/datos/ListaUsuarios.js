@@ -407,12 +407,14 @@ $("#edicion_pass2").change(function(){
                                 else{
 
                                   alert("No tiene acceso su usuario");
+                                  location.href="index.html";
                                 }
                               
                             }//if valicion de secion
                             else{
 
                                  alert("Su sesion expiro, inicie de nuevo");
+                                 location.href="index.html";
                               }
                  }
           });

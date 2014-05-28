@@ -21,21 +21,10 @@
 <body>
   <!-- header -->
   <header id="header" class="navbar">
-    <ul class="nav navbar-nav navbar-avatar pull-right">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
-          <span class="hidden-xs-only my_usuario">Mika Sokeil</span>
-          <span class="thumb-small avatar inline"><img src="imagenes/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
-          <b class="caret hidden-xs-only"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Settings</a></li>
-          <li><a href="perfil.html">Profile</a></li>
-          <li class="divider"></li>
-          <li><a href="index.html">Logout</a></li>
-        </ul>
-      </li>
+    <ul id="mi_login_usuario"  class="nav navbar-nav navbar-avatar pull-right">
+      
     </ul>
+    
     <a class="navbar-brand" href="#" style="font-size: 16px">SISMEP</a>
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
       <i class="fa fa-bars fa-lg text-default"></i>
@@ -54,7 +43,7 @@
     <section class="main padder">
 
         <ul class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i> Noticias</a></li>
+            <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
         </ul>      
         
       <div class="row">
@@ -63,10 +52,13 @@
           <div class="col-lg-6">
           <section class="panel">
             <header class="panel-heading">
-              <span class="label bg-info pull-right" id="contenido_comercial_num">0</span>
-              <b id="contenido_comercial_eq">Comercial</b>
+              <span class="label bg-info pull-right" id="contenido_comercial_num"></span>
+              <b id="contenido_comercial_eq"></b>
             </header>
-            <section class="panel-body noticias fondo_comercial" id="contenido_comercial">                            
+
+            <section class="panel-body noticias " id="contenido_comercial" style="height: auto">
+              <img  src="imagenes/guaviare.png" style="width:100%; height: auto"/>                
+                                         
             </section>
           </section>
         </div>
@@ -78,7 +70,7 @@
           <section class="panel">
             <header class="panel-heading">
               <span class="label bg-info pull-right" id="contenido_institucional_num">0</span>
-              <b id="contenido_institucional_eq" >Institucional</b>
+              <b id="contenido_institucional_eq_" >Noticias</b>
             </header>
             <section class="panel-body noticias" id="contenido_institucional">
               </section>

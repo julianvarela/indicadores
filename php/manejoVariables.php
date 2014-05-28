@@ -59,8 +59,8 @@ switch ($opcion) {
 
 
         $datos=$login->mi_login($pass,$correo);
-        
 
+       
         if(count($datos)>0)
         {
 
@@ -74,6 +74,7 @@ switch ($opcion) {
 
             for($i=0 ;$i<count( $vigencias); $i++)
             {
+
 
                 $contador_sub[$i]= $permisos->contadorSubprogramas($vigencias[$i]['id'], $datos[0]['id']);
 
@@ -98,7 +99,6 @@ switch ($opcion) {
             //permisos
             $tipo_usuario =$permisos->getTipoPermiso($datos[0]['id']);
             $direccion='';
-
 
             if(strcasecmp($tipo_usuario[0]['tipo'],"Admin")==0 )
                 {

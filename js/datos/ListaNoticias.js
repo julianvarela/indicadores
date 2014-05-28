@@ -112,12 +112,14 @@ function cargarDatos(){
                                 else{
 
                                   alert("No tiene acceso su usuario");
+                                  location.href="index.html";
                                   }
                               
                             }//if valicion de secion
                             else{
 
                                  alert("Su sesion expiro, inicie de nuevo");
+                                 location.href="index.html";
                               }
                             
                             
@@ -137,6 +139,10 @@ function cargarDatos(){
 ******************/
 function generaNoticias(lista_noticias){
     
+
+     $("#contenido_institucional").html("");
+     $("#contenido_institucional_num").html("0");
+     
     if(lista_noticias==null)
       return false;
 
@@ -179,6 +185,11 @@ function generaNoticias(lista_noticias){
             contador++;
         }
         
+
+
+       $("#contenido_institucional").html("");
+        $("#contenido_institucional_num").html("0");
+       
         
         if(datos.length>0)
         {
@@ -375,12 +386,14 @@ return false;
                                   else{
 
                                     alert("No tiene acceso su usuario");
+                                    location.href="index.html";
                                     }
                                 
                               }//if valicion de secion
                               else{
 
                                    alert("Su sesion expiro, inicie de nuevo");
+                                   location.href="index.html";
                                 }
                               
                               
@@ -446,12 +459,15 @@ return false;
                                   else{
 
                                     alert("No tiene acceso su usuario");
+                                    location.href="index.html";
+
                                     }
                                 
                               }//if valicion de secion
                               else{
 
                                    alert("Su sesion expiro, inicie de nuevo");
+                                   location.href="index.html";
                                 }
                               
                               

@@ -164,7 +164,7 @@ function dibujarGraficaAvanceSectoreBasicos(mmiId,serie,metas)
                                 valueSuffix: ' %'
                             },                        
                             plotOptions: {
-                                column: {
+                                bar: {
                                     dataLabels: {
                                         //rotation: -90,
                                         //x: 2,

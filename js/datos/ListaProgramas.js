@@ -137,12 +137,14 @@ $("#edicon_form1_prg").validationEngine();
 	                  else{
 
 	                    alert("No tiene acceso su usuario");
+	                    location.href="index.html";
 	                    }
 	                
 	              }//if valicion de secion
 	              else{
 
 	                   alert("Su sesion expiro, inicie de nuevo");
+	                   location.href="index.html";
 	                }
 	    
             }
@@ -225,12 +227,14 @@ $("#edicon_form1_prg").validationEngine();
 	                  else{
 
 	                    alert("No tiene acceso su usuario");
+	                    location.href="index.html";
 	                    }
 	                
 	              }//if valicion de secion
 	              else{
 
 	                   alert("Su sesion expiro, inicie de nuevo");
+	                   location.href="index.html";
 	                }
 	    
             }
@@ -388,18 +392,21 @@ var html="";
 		                     }//valicion de guardado
 		                     else{
 		                       alert("Error No se guardo los datos");
+
 		                     }   
 
 		                   }//valicon de tipo usuairo
 		                  else{
 
 		                    alert("No tiene acceso su usuario");
+		                    location.href="index.html";
 		                    }
 		                
 		              }//if valicion de secion
 		              else{
 
 		                   alert("Su sesion expiro, inicie de nuevo");
+		                   location.href="index.html";
 		                }
 		    
 	            }
@@ -465,12 +472,14 @@ var html="";
 	                  else{
 
 	                    alert("No tiene acceso su usuario");
+	                    location.href="index.html";
 	                    }
 	                
 	              }//if valicion de secion
 	              else{
 
 	                   alert("Su sesion expiro, inicie de nuevo");
+	                   location.href="index.html";
 	                }
 	    
             }

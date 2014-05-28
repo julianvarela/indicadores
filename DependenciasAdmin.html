@@ -21,21 +21,9 @@
 <body>
   <!-- header -->
   <header id="header" class="navbar">
-    <ul class="nav navbar-nav navbar-avatar pull-right">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
-          <span class="hidden-xs-only my_usuario">Mika Sokeil</span>
-          <span class="thumb-small avatar inline"><img src="imagenes/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
-          <b class="caret hidden-xs-only"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Settings</a></li>
-          <li><a href="perfil.html">Profile</a></li>
-          <li class="divider"></li>
-          <li><a href="signin.html">Logout</a></li>
-        </ul>
-      </li>
-    </ul>
+    <ul id="mi_login_usuario" class="nav navbar-nav navbar-avatar pull-right">
+     </ul>
+     
      <a class="navbar-brand" href="#" style="font-size: 16px">SISMEP</a>
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
       <i class="fa fa-bars fa-lg text-default"></i>
@@ -55,7 +43,7 @@
         <ul class="breadcrumb">
             <li><a href="#"><i class="fa fa-home"></i> Seguimiento</a></li>
             <li><a href="#"  class="my_year">2013</a></li>
-            <li class="active">Dependencias Admin.</li>
+            <li class="active" id="tiulo_exportar" >Dependencias Admin.</li>
         </ul>      
         
       <div class="panel">
@@ -79,7 +67,8 @@
                     <div class="row">
                         <div class="col-lg-3 col-sm-4 text-center-sm">
                             <h4>Selecciona  una Secretaria</h4>
-                        </div>                            
+                        </div>    
+
                         <div class="col-lg-3 col-sm-4 text-center-sm">
                             <p>
                             <select name="account" class="form-control" id="selectDependencias">
@@ -89,9 +78,30 @@
                             </select>                            
                             </p>
                         </div>
-                        <div class="col-lg-2 col-lg-offset-2  col-sm-4 text-center">
+                        <div class="col-lg-2 col-lg-offset-1 col-sm-4 text-center">
                             <a href="#graficas" class="btn btn-info btn-block"><i class="fa fa-signal pull-right"></i>Ver Grafica</a>
+
+                            
                         </div>
+
+                        <div class="col-lg-2  col-sm-4 text-center">
+
+                          <form id='mi_form_exportacion_excel' method='post' action='php/excel.php' target='_blank'>
+
+                              <input  name='titulo' value=''  style="display: none"> 
+                              <input name='excel'  value=''  style="display: none">
+                              <input type="submit"
+                                 id="bton_exportar" class="btn btn-primary btn-block fa fa-share pull-right"
+                                 style="height: 35px;font-family: FontAwesome;
+                                        font-style: normal;
+                                        font-weight: normal;"
+                                target="_blank"
+                                value="Exportar a Excel "
+                              >
+                              
+                          </form>
+                        </div>
+                        
                     </div>
                 </header>    
                 <div class="dataTables_wrapper" role="grid">
@@ -121,7 +131,7 @@
                             <th><input type="checkbox" onclick="actulizarGraficarSecretaria()"></th>                                     
                             <th width="5%">COD.</th>
                             <th width="12%">Subprograma</th>
-                            <th width="13%">Meta de Producto</th>
+                            <th width="20%" style="min-width: 350px">Meta de Producto</th>
                             <th width="7%">Valor Programado</th>
                             <th width="7%">Valor Ejecutado</th>
                             <th width="7%">Progreso Ponderado</th>

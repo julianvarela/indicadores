@@ -29,20 +29,8 @@
 <body>
   <!-- header -->
   <header id="header" class="navbar">
-    <ul class="nav navbar-nav navbar-avatar pull-right">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
-          <span class="hidden-xs-only my_usuario">Mika Sokeil</span>
-          <span class="thumb-small avatar inline"><img src="imagenes/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
-          <b class="caret hidden-xs-only"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Settings</a></li>
-          <li><a href="perfil.html">Profile</a></li>
-          <li class="divider"></li>
-          <li><a href="index.html">Logout</a></li>
-        </ul>
-      </li>
+    <ul id="mi_login_usuario" class="nav navbar-nav navbar-avatar pull-right">
+      
     </ul>
    <a class="navbar-brand" href="#" style="font-size: 16px">SISMEP</a>
     <button type="button" class="btn btn-link pull-left nav-toggle visible-xs" data-toggle="class:slide-nav slide-nav-left" data-target="body">
@@ -86,7 +74,7 @@
                             <table class="table table-striped m-b-none" data-ride="datatables">
                               <thead>
                                 <tr>
-                                  <th>Meta</th>
+                                  <th width="20%" style="min-width: 350px">Meta</th>
                                   <th>Linea Base</th>
                                   <th>Valor Esperado Productos</th>
                                   <th>Dependecia Responsable</th>                    
@@ -113,7 +101,7 @@
                                           <textarea  id="edicion_meta"  placeholder="Descripcion de la Meta" rows="5" class="input-sm form-control parsley-validated 
                                           validate[required,custom[mitextarea]]"
                                            data-trigger="keyup" data-rangelength="[20,200]"
-                                          class=""    
+                                          style="width: 100%"  
                                           ></textarea>
                                         </div>
                                       </td>
@@ -279,7 +267,7 @@
                       <th></th>
                       <th>Codigo Nivel PDM</th>
                       <th>Nivel PDM</th>
-                      <th>Meta</th>
+                      <th width="20%" style="min-width: 350px">Meta</th>
                       <th>Linea Base</th>
                       <th>Valor Esperado Productos</th>
                       <th>Dependecia Responsable</th>                    
